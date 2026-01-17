@@ -105,7 +105,8 @@ body {
 }
 
 .scene-card:hover {
-  @apply border-l5r-red scale-102;
+  @apply border-l5r-red;
+  transform: scale(1.02);
 }
 
 /* ===== TECH BADGES ===== */
