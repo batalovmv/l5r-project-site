@@ -32,7 +32,10 @@ export default function Progress() {
                 API, БД, realtime, мониторинг — production‑ready.
               </div>
               <div className="progress-track mb-2">
-                <div className="progress-fill progress-fill-green" style={{ width: '90%' }}></div>
+                <div
+                  className="progress-fill progress-fill-green"
+                  style={{ ['--progress' as any]: 0.9, ['--delay' as any]: '0ms' }}
+                ></div>
               </div>
               <div className="flex justify-between text-xs text-gray-500 font-code">
                 <span>оценка</span><span>~90%</span>
@@ -52,7 +55,10 @@ export default function Progress() {
                 Дизайн ещё не готов — сейчас формируется ТЗ и собираются референсы.
               </div>
               <div className="progress-track mb-2">
-                <div className="progress-fill progress-fill-gold" style={{ width: '5%' }}></div>
+                <div
+                  className="progress-fill progress-fill-gold"
+                  style={{ ['--progress' as any]: 0.05, ['--delay' as any]: '120ms' }}
+                ></div>
               </div>
               <div className="flex justify-between text-xs text-gray-500 font-code">
                 <span>оценка</span><span>~5%</span>
@@ -72,7 +78,10 @@ export default function Progress() {
                 Разработка ещё не началась — стартую после готового дизайна.
               </div>
               <div className="progress-track mb-2">
-                <div className="progress-fill progress-fill-gray" style={{ width: '0%' }}></div>
+                <div
+                  className="progress-fill progress-fill-gray"
+                  style={{ ['--progress' as any]: 0, ['--delay' as any]: '240ms' }}
+                ></div>
               </div>
               <div className="flex justify-between text-xs text-gray-500 font-code">
                 <span>оценка</span><span>~0%</span>

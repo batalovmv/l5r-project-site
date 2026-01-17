@@ -40,13 +40,14 @@ function usePrefersReducedMotion(): boolean {
 
 export default function CodeShowcase() {
   const prefersReducedMotion = usePrefersReducedMotion()
+  const sceneDurationMs = 9000
 
   const scenes = useMemo<CodeScene[]>(
     () => [
       {
         id: 'openapi-sse',
-        title: 'OpenAPI: realtime stream',
-        caption: 'SSE endpoint задокументирован в контракте API.',
+        title: 'Контракт API: SSE stream',
+        caption: 'Realtime endpoint задокументирован в OpenAPI.',
         icon: 'fa-file-code',
         iconColorClass: 'text-l5r-gold',
         sourceLabel: 'docs/openapi.yaml',
@@ -77,8 +78,41 @@ export default function CodeShowcase() {
         ].join('\n'),
       },
       {
+        id: 'realtime-smoke',
+        title: 'Realtime: smoke (2 instances)',
+        caption: 'Скрипт проверяет доставку событий через Redis Pub/Sub между двумя API инстансами.',
+        icon: 'fa-tower-broadcast',
+        iconColorClass: 'text-tech',
+        sourceLabel: 'backend/tools/realtime-smoke.js',
+        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/tools/realtime-smoke.js',
+        languageLabel: 'Node.js',
+        code: [
+          'async function openSse(baseUrl, path, token) {',
+          '  const controller = new AbortController();',
+          '  const res = await fetch(`${baseUrl}${path}`, {',
+          '    headers: { Authorization: `Bearer ${token}` },',
+          '    signal: controller.signal',
+          '  });',
+          '  if (!res.body) throw new Error("SSE response has no body");',
+          '  const reader = new SseReader(res.body.getReader());',
+          '  return { res, reader, close: () => controller.abort() };',
+          '}',
+          '',
+          'console.log("Test 1: Cross-instance delivery (campaign)");',
+          'const campaignChannel = `campaign:${campaign.id}`;',
+          'const campaignStream = await openSse(',
+          '  API_1_BASE_URL,',
+          '  `/api/v1/campaigns/${campaign.id}/stream`,',
+          '  player.token',
+          ');',
+          'await waitFor(() => getNumSub(redis, campaignChannel).then((c) => c === 1), 5000);',
+          'await startScene(API_2_BASE_URL, gm.token, campaign.id, [characterId], `idem-${Date.now()}`);',
+          'await waitForEvent(campaignStream.reader, "campaign.updated", 5000);',
+        ].join('\n'),
+      },
+      {
         id: 'jest-oauth',
-        title: 'Jest: OAuth flow',
+        title: 'Тесты: OAuth flow (Jest)',
         caption: 'Интеграционный тест проверяет логику логина и повторного входа.',
         icon: 'fa-flask',
         iconColorClass: 'text-success',
@@ -121,8 +155,8 @@ export default function CodeShowcase() {
       },
       {
         id: 'prisma-models',
-        title: 'Prisma: data model',
-        caption: 'Реляционная модель: users, devices, oauth identities, идемпотентность.',
+        title: 'DB: Prisma model',
+        caption: 'Пример доменной модели: users + idempotency keys (92 таблицы в схеме).',
         icon: 'fa-database',
         iconColorClass: 'text-tech',
         sourceLabel: 'backend/prisma/schema.prisma',
@@ -160,6 +194,125 @@ export default function CodeShowcase() {
           '  @@unique([userId, scope, key], map: "idempotency_keys_user_id_scope_key_key")',
           '  @@index([expiresAt], map: "idempotency_keys_expires_at_idx")',
           '  @@map("idempotency_keys")',
+          '}',
+        ].join('\n'),
+      },
+      {
+        id: 'metrics-prom',
+        title: 'Observability: /metrics (Prometheus)',
+        caption: 'Метрики (включая realtime) опционально защищены токеном (header или Bearer).',
+        icon: 'fa-chart-line',
+        iconColorClass: 'text-success',
+        sourceLabel: 'backend/src/routes/metrics.routes.ts',
+        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/src/routes/metrics.routes.ts',
+        languageLabel: 'TypeScript',
+        code: [
+          'export const sseConnectionsByChannel = new Gauge({',
+          '  name: "sse_connections_by_channel",',
+          '  help: "Active SSE connections by channel",',
+          '  labelNames: ["channel_type", "channel_id"]',
+          '});',
+          '',
+          'function extractMetricsToken(req: Request): string | null {',
+          '  const headerToken = req.header("x-metrics-token");',
+          '  if (typeof headerToken === "string") return headerToken.trim() || null;',
+          '',
+          '  const auth = req.header("authorization");',
+          '  if (typeof auth === "string" && auth.toLowerCase().startsWith("bearer ")) {',
+          '    const token = auth.slice("bearer ".length).trim();',
+          '    return token.length > 0 ? token : null;',
+          '  }',
+          '  return null;',
+          '}',
+          '',
+          'router.get("/metrics", async (req, res, next) => {',
+          '  if (hasToken) {',
+          '    const provided = extractMetricsToken(req);',
+          '    if (!provided || provided !== metricsToken) {',
+          '      return next(new ApiError({ code: "FORBIDDEN", status: 403, message: "Forbidden" }));',
+          '    }',
+          '  }',
+          '  res.set("Content-Type", register.contentType);',
+          '  res.end(await register.metrics());',
+          '});',
+        ].join('\n'),
+      },
+      {
+        id: 'otel-setup',
+        title: 'Tracing: OpenTelemetry',
+        caption: 'HTTP авто‑инструментация + Prisma, экспорт в Jaeger/Zipkin, исключены health/metrics.',
+        icon: 'fa-wave-square',
+        iconColorClass: 'text-purple-600',
+        sourceLabel: 'backend/src/lib/monitoring/otel.ts',
+        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/src/lib/monitoring/otel.ts',
+        languageLabel: 'TypeScript',
+        code: [
+          'function resolveExporter() {',
+          '  const raw = (process.env.OTEL_TRACES_EXPORTER ?? "").toLowerCase();',
+          '  if (raw === "jaeger") return new JaegerExporter(/* endpoint */);',
+          '  if (raw === "zipkin") return new ZipkinExporter(/* url */);',
+          '  return null;',
+          '}',
+          '',
+          'const ignorePaths = new Set([',
+          '  "/api/v1/health",',
+          '  "/api/v1/ready",',
+          '  "/api/v1/metrics"',
+          ']);',
+          '',
+          'sdk = new NodeSDK({',
+          '  resource,',
+          '  traceExporter: exporter,',
+          '  instrumentations: [',
+          '    getNodeAutoInstrumentations({',
+          '      "@opentelemetry/instrumentation-http": {',
+          '        ignoreIncomingRequestHook: (req) => {',
+          '          const url = typeof req.url === "string" ? req.url.split("?")[0] : "";',
+          '          return ignorePaths.has(url);',
+          '        }',
+          '      }',
+          '    }),',
+          '    new PrismaInstrumentation()',
+          '  ]',
+          '});',
+        ].join('\n'),
+      },
+      {
+        id: 'k6-load',
+        title: 'Perf: k6 load',
+        caption: 'Ramping VUs + p95 guardrails по критичным эндпоинтам.',
+        icon: 'fa-gauge-high',
+        iconColorClass: 'text-l5r-gold',
+        sourceLabel: 'backend/perf/k6/load.js',
+        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/perf/k6/load.js',
+        languageLabel: 'k6 (JS)',
+        code: [
+          'export const options = {',
+          '  scenarios: {',
+          '    load: {',
+          '      executor: "ramping-vus",',
+          '      startVUs: 0,',
+          '      stages: [',
+          '        { duration: __ENV.WARMUP || "60s", target: Number(__ENV.VUS || 100) },',
+          '        { duration: __ENV.STEADY || "180s", target: Number(__ENV.VUS || 100) }',
+          '      ]',
+          '    }',
+          '  },',
+          '  thresholds: {',
+          '    errors: ["rate<0.005"],',
+          '    "http_req_duration{endpoint:characters_list}": [`p(95)<${Number(__ENV.P95_CHAR_LIST_MS || 300)}`],',
+          '    "http_req_duration{endpoint:items_list}": [`p(95)<${Number(__ENV.P95_ITEM_LIST_MS || 300)}`]',
+          '  }',
+          '};',
+          '',
+          'function authOncePerVu(state) {',
+          '  if (state.accessToken) return;',
+          '  const deviceId = `k6-load-${__VU}`;',
+          '  const res = http.post(`${baseUrl}/api/v1/auth/anonymous`, JSON.stringify({ deviceId }), {',
+          '    headers: jsonHeaders(),',
+          '    tags: { endpoint: "auth_anonymous" }',
+          '  });',
+          '  state.accessToken = res.json("data.accessToken");',
           '}',
         ].join('\n'),
       },
@@ -217,6 +370,10 @@ export default function CodeShowcase() {
   const active = scenes[activeIndex] ?? scenes[0]
 
   const scrollRef = useRef<HTMLDivElement | null>(null)
+  const sceneTimeoutIdRef = useRef<number | null>(null)
+  const sceneStartedAtRef = useRef<number | null>(null)
+  const sceneRemainingMsRef = useRef<number>(sceneDurationMs)
+  const prevSceneIdRef = useRef<string>(activeSceneId)
 
   useEffect(() => {
     if (!prefersReducedMotion) return
@@ -224,16 +381,49 @@ export default function CodeShowcase() {
   }, [prefersReducedMotion])
 
   useEffect(() => {
-    if (prefersReducedMotion || !autoplay || pausedByHover) return
-    const intervalId = window.setInterval(() => {
+    const clear = () => {
+      if (sceneTimeoutIdRef.current !== null) {
+        window.clearTimeout(sceneTimeoutIdRef.current)
+        sceneTimeoutIdRef.current = null
+      }
+    }
+
+    if (prevSceneIdRef.current !== activeSceneId) {
+      prevSceneIdRef.current = activeSceneId
+      sceneRemainingMsRef.current = sceneDurationMs
+      sceneStartedAtRef.current = null
+    }
+
+    clear()
+
+    if (prefersReducedMotion || !autoplay || scenes.length <= 1) {
+      sceneRemainingMsRef.current = sceneDurationMs
+      sceneStartedAtRef.current = null
+      return
+    }
+
+    if (pausedByHover) {
+      if (sceneStartedAtRef.current !== null) {
+        const elapsed = Date.now() - sceneStartedAtRef.current
+        sceneRemainingMsRef.current = Math.max(0, sceneRemainingMsRef.current - elapsed)
+      }
+      sceneStartedAtRef.current = null
+      return
+    }
+
+    sceneStartedAtRef.current = Date.now()
+    sceneTimeoutIdRef.current = window.setTimeout(() => {
+      sceneRemainingMsRef.current = sceneDurationMs
+      sceneStartedAtRef.current = null
       setActiveSceneId((current) => {
         const idx = scenes.findIndex((s) => s.id === current)
         const next = idx >= 0 ? (idx + 1) % scenes.length : 0
         return scenes[next]?.id ?? current
       })
-    }, 9000)
-    return () => window.clearInterval(intervalId)
-  }, [autoplay, pausedByHover, prefersReducedMotion, scenes])
+    }, sceneRemainingMsRef.current)
+
+    return clear
+  }, [activeSceneId, autoplay, pausedByHover, prefersReducedMotion, scenes, sceneDurationMs])
 
   useEffect(() => {
     if (prefersReducedMotion || !autoplay || pausedByHover) return
@@ -267,6 +457,8 @@ export default function CodeShowcase() {
     el.scrollTop = 0
   }, [activeSceneId])
 
+  const showAutoplayProgress = autoplay && !prefersReducedMotion && scenes.length > 1
+
   const handleCopy = async () => {
     if (!active?.code) return
     try {
@@ -287,10 +479,10 @@ export default function CodeShowcase() {
             <h3 className="section-title mb-2">Код (вместо скриншотов)</h3>
             <div className="section-divider mx-auto mb-4"></div>
             <p className="section-subtitle mx-auto">
-              Небольшое «видео кода»: реальные фрагменты из backend репозитория (контракт API, тесты, Prisma, CI).
+              Небольшое «видео кода»: реальные фрагменты из backend репозитория (контракт API, realtime, тесты, CI, нагрузка, мониторинг).
             </p>
             <p className="hint-text max-w-2xl mx-auto mt-3">
-              Автопрокрутка останавливается при наведении. Если включён reduced motion — autoplay выключается.
+              Автопрокрутка и автосмена останавливаются при наведении. Если включён reduced motion — autoplay выключается.
             </p>
           </div>
 
@@ -314,7 +506,7 @@ export default function CodeShowcase() {
                   </button>
                 </div>
 
-                <div className="grid gap-2">
+                <div className="grid gap-2 max-h-[520px] overflow-y-auto pr-1">
                   {scenes.map((scene) => {
                     const activeItem = scene.id === activeSceneId
                     return (
@@ -396,9 +588,26 @@ export default function CodeShowcase() {
                   <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-ink to-transparent pointer-events-none"></div>
                   <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-ink to-transparent pointer-events-none"></div>
 
+                  {showAutoplayProgress && (
+                    <div className={`code-progress ${pausedByHover ? 'paused' : ''} bg-white/10`}>
+                      <div
+                        key={activeSceneId}
+                        className="code-progress-bar"
+                        style={{ ['--duration' as any]: `${sceneDurationMs}ms` }}
+                      ></div>
+                    </div>
+                  )}
+
                   <div ref={scrollRef} className="max-h-[380px] overflow-y-auto px-5 py-4">
-                    <pre className="font-code text-[12px] md:text-sm leading-relaxed whitespace-pre">
-                      <code>{active.code}</code>
+                    <pre key={activeSceneId} className="code-scene-enter font-code text-[12px] md:text-sm leading-relaxed">
+                      {active.code.split('\n').map((line, i) => (
+                        <div key={i} className="flex">
+                          <span className="select-none text-white/30 w-10 pr-3 text-right">
+                            {i + 1}
+                          </span>
+                          <code className="whitespace-pre">{line.length > 0 ? line : ' '}</code>
+                        </div>
+                      ))}
                     </pre>
                   </div>
                 </div>
@@ -410,4 +619,3 @@ export default function CodeShowcase() {
     </section>
   )
 }
-

@@ -46,8 +46,12 @@ export default function Header() {
           </div>
           <div className="flex items-center gap-4">
             <div className="lang-toggle hidden sm:flex">
-              <button className="active">🇷🇺 RU</button>
-              <button>🇬🇧 EN</button>
+              <button type="button" className="active" aria-label="Русский (активно)">
+                🇷🇺 RU
+              </button>
+              <button type="button" disabled title="EN позже" aria-label="English (soon)">
+                🇬🇧 EN
+              </button>
             </div>
             <button
               onClick={toggleHints}

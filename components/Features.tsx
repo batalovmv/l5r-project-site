@@ -3,10 +3,10 @@ export default function Features() {
     <section id="features" className="py-20 bg-paper-dark border-b border-ink/10 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h3 className="section-title mb-4">Возможности приложения</h3>
+          <h3 className="section-title mb-4">Функциональность (backend)</h3>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="section-subtitle mx-auto">
-            Полноценный инструментарий для GM и игроков L5R 5th Edition
+            Доменная логика и API уже реализованы; интерфейс появится после UI/UX дизайна
           </p>
           <p className="hint-text max-w-xl mx-auto mt-3">
             Backend документирован (OpenAPI) и покрыт автотестами; UI/UX и фронтенд стартуют после дизайна

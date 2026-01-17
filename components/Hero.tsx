@@ -12,10 +12,10 @@ export default function Hero() {
           <span className="text-l5r-red">Цифровой Компаньон</span>
         </h2>
         <p className="font-body text-xl text-ink-light mb-6 max-w-2xl mx-auto leading-relaxed">
-          Мобильное приложение для проведения онлайн-сессий по настольной ролевой игре{' '}
-          <strong>Legend of the Five Rings 5th Edition</strong>. Вместо того чтобы сидеть за одним 
-          столом с книгами и листами персонажей, вы можете играть онлайн со смартфона — 
-          всё синхронизируется в реальном времени.
+          Цель проекта — мобильное приложение для онлайн‑сессий по настольной ролевой игре{' '}
+          <strong>Legend of the Five Rings 5th Edition</strong>. Вместо того чтобы сидеть за одним
+          столом с книгами и листами персонажей, вы сможете играть со смартфона — всё будет
+          синхронизироваться в реальном времени.
         </p>
         <div className="card-soft p-4 max-w-2xl mx-auto mb-6">
           <div className="text-sm text-ink">
