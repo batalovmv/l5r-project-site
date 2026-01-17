@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== BASE STYLES ===== */
+body {
+  background-color: #f9f7f0;
+  color: #2b2b2b;
+  font-family: 'Crimson Text', serif;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232b2b2b' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ===== KANJI WATERMARK ===== */
+.kanji-watermark {
+  position: absolute;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+}
+
+/* ===== ANIMATIONS ===== */
+.deploy-dot { box-shadow: 0 0 10px #f59e0b; }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); }
+  50% { box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); }
+}
+
+/* ===== CARDS ===== */
+.card {
+  @apply bg-white/95 border border-ink/10 rounded-2xl shadow-lg;
+}
+
+.card-soft {
+  @apply bg-white/70 border border-ink/10 rounded-2xl shadow-md;
+}
+
+/* ===== CHIPS ===== */
+.chip {
+  @apply inline-flex items-center gap-2 px-2 py-1 rounded-full font-code text-xs font-bold tracking-wide border;
+}
+
+.chip-done { @apply text-emerald-700 border-emerald-300 bg-emerald-50; }
+.chip-wip { @apply text-amber-700 border-amber-300 bg-amber-50; }
+.chip-pending { @apply text-gray-500 border-gray-200 bg-gray-50; }
+
+/* ===== ACHIEVEMENT CARDS ===== */
+.achievement-card {
+  @apply bg-white/95 border border-ink/10 rounded-2xl relative overflow-hidden shadow-lg;
+}
+
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #8E1818, #C5A059, #8E1818);
+}
+
+/* ===== PROGRESS BARS ===== */
+.progress-track {
+  @apply h-2.5 rounded-full bg-ink/10 overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-2.5 rounded-full;
+  background: linear-gradient(90deg, #8E1818, #C5A059);
+}
+
+.progress-fill-green { background: linear-gradient(90deg, #059669, #34d399); }
+.progress-fill-gold { background: linear-gradient(90deg, #C5A059, #f3d08f); }
+.progress-fill-gray { background: linear-gradient(90deg, #9ca3af, #e5e7eb); }
+
+/* ===== FEATURE CARDS ===== */
+.feature-card {
+  @apply bg-white/95 border border-ink/10 rounded-2xl p-8 transition-all duration-300 relative overflow-hidden;
+}
+
+.feature-card:hover {
+  @apply -translate-y-1 shadow-xl border-l5r-red/20;
+}
+
+.feature-card::after {
+  content: '';
+  @apply absolute bottom-0 left-0 right-0 h-1 opacity-0 transition-opacity;
+  background: linear-gradient(90deg, #8E1818, #C5A059);
+}
+
+.feature-card:hover::after {
+  @apply opacity-100;
+}
+
+.feature-icon {
+  @apply w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5 shadow-lg;
+}
+
+/* ===== SCENE CARDS ===== */
+.scene-card {
+  @apply bg-white rounded-2xl p-5 border-2 border-transparent transition-all cursor-pointer;
+}
+
+.scene-card:hover {
+  @apply border-l5r-red scale-102;
+}
+
+/* ===== TECH BADGES ===== */
+.tech-badge {
+  @apply inline-flex items-center gap-2 px-4 py-2 bg-white border border-ink/10 rounded-full text-xs font-semibold transition-all;
+}
+
+.tech-badge:hover {
+  @apply border-l5r-red bg-red-50;
+}
+
+/* ===== BOOK BADGES ===== */
+.book-badge {
+  @apply inline-flex items-center gap-2 px-4 py-2 bg-white border rounded-xl text-sm font-semibold shadow-sm transition-all;
+}
+
+.book-badge.supported {
+  @apply border-success bg-success/5;
+}
+
+.book-badge.planned {
+  @apply border-l5r-gold bg-l5r-gold/5 opacity-70;
+}
+
+/* ===== RING BADGES ===== */
+.ring-badge {
+  @apply inline-flex items-center justify-center w-9 h-9 rounded-full font-bold text-sm border-2;
+}
+
+.ring-air { @apply bg-blue-100 border-blue-500 text-blue-700; }
+.ring-earth { @apply bg-amber-100 border-amber-500 text-amber-700; }
+.ring-fire { @apply bg-red-100 border-red-500 text-red-700; }
+.ring-water { @apply bg-cyan-100 border-cyan-500 text-cyan-700; }
+.ring-void { @apply bg-purple-100 border-purple-500 text-purple-700; }
+
+/* ===== TIMELINE ===== */
+.timeline {
+  @apply relative;
+}
+
+.timeline::before {
+  content: '';
+  @apply absolute left-6 top-0 bottom-0 w-0.5;
+  background: linear-gradient(180deg, #059669 0%, #059669 26%, #C5A059 26%, #C5A059 44%, #d1d5db 44%);
+}
+
+@media (min-width: 768px) {
+  .timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timeline-item {
+  @apply relative pl-16 pb-12;
+}
+
+@media (min-width: 768px) {
+  .timeline-item {
+    @apply pl-0 pr-0;
+  }
+  .timeline-item:nth-child(odd) .timeline-content {
+    margin-left: auto;
+    margin-right: calc(50% + 30px);
+  }
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-left: calc(50% + 30px);
+  }
+}
+
+.timeline-dot {
+  @apply absolute left-4 top-0 w-5 h-5 rounded-full border-4 border-white shadow-lg z-10;
+}
+
+@media (min-width: 768px) {
+  .timeline-dot {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timeline-dot.done { @apply bg-success; }
+.timeline-dot.current { @apply bg-l5r-gold; animation: pulse 2s infinite; }
+.timeline-dot.pending { @apply bg-gray-300; }
+
+/* ===== ROADMAP CHECKS ===== */
+.roadmap-check {
+  @apply inline-flex items-center justify-center w-5 h-5 rounded-full mr-2 flex-shrink-0;
+}
+
+.roadmap-check.done { @apply bg-success text-white; }
+.roadmap-check.wip { @apply bg-l5r-gold text-white; }
+.roadmap-check.pending { @apply bg-gray-200 text-gray-400; }
+
+/* ===== CLAN CARDS ===== */
+.clan-card-btn {
+  @apply p-3 rounded-sm flex items-center gap-3 bg-paper border border-ink/10 transition-all;
+}
+
+.clan-card-btn:hover {
+  @apply -translate-y-0.5 shadow-md;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #efebe0; }
+::-webkit-scrollbar-thumb { background: #8E1818; border-radius: 4px; }
+
+/* ===== HINTS SYSTEM ===== */
+.hint-text {
+  @apply hidden text-xs text-gray-500 italic mt-1 pl-2 border-l-2 border-l5r-gold;
+}
+
+.hints-active .hint-text {
+  @apply block;
+}
+
+/* ===== LANG TOGGLE ===== */
+.lang-toggle {
+  @apply inline-flex rounded-lg overflow-hidden border border-ink/10;
+}
+
+.lang-toggle button {
+  @apply px-3 py-1.5 text-xs font-bold bg-white border-none cursor-pointer transition-all;
+}
+
+.lang-toggle button.active {
+  @apply bg-l5r-red text-white;
+}
+
+.lang-toggle button:hover:not(.active) {
+  @apply bg-gray-100;
+}
+
