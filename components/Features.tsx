@@ -10,6 +10,9 @@ export default function Features() {
           <p className="text-ink-light italic max-w-2xl mx-auto">
             Полноценный инструментарий для GM и игроков L5R 5th Edition
           </p>
+          <p className="hint-text max-w-xl mx-auto mt-3">
+            Каждая функция имеет полное покрытие тестами и документацию OpenAPI
+          </p>
         </div>
 
         {/* Auth & Character Creation */}
@@ -157,6 +160,9 @@ export default function Features() {
           </h4>
           <p className="text-center text-ink-light mb-8 max-w-2xl mx-auto">
             Пять типов сцен, соответствующих правилам L5R 5e
+          </p>
+          <p className="hint-text text-center max-w-xl mx-auto -mt-4 mb-8">
+            Каждый тип сцены имеет свою конечную машину состояний (FSM) и валидацию действий
           </p>
 
           <div className="grid md:grid-cols-5 gap-4">

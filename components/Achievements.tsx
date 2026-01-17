@@ -54,7 +54,6 @@ export default function Achievements() {
             Достижения (что уже сделано)
           </h3>
           <div className="w-16 h-1 bg-l5r-red mx-auto mb-4"></div>
-          <p className="text-ink-light italic">Короткий "выжимной" список для портфолио.</p>
         </div>
 
         {/* Big Numbers */}

@@ -45,6 +45,7 @@ export default function TechStack() {
             <h4 className="font-header font-bold text-xl mb-6 text-l5r-red flex items-center gap-2">
               <i className="fa-solid fa-server"></i> Backend
             </h4>
+            <p className="hint-text mb-4">Production-ready архитектура с Clean Architecture и SOLID принципами</p>
             <div className="flex flex-wrap gap-3">
               {backend.map((tech, i) => (
                 <span key={i} className="tech-badge">
@@ -60,6 +61,7 @@ export default function TechStack() {
             <h4 className="font-header font-bold text-xl mb-6 text-tech flex items-center gap-2">
               <i className="fa-solid fa-mobile-screen"></i> Frontend
             </h4>
+            <p className="hint-text mb-4">Кроссплатформенное приложение для iOS и Android с одной кодовой базой</p>
             <div className="flex flex-wrap gap-3">
               {frontend.map((tech, i) => (
                 <span key={i} className="tech-badge">

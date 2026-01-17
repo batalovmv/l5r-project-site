@@ -1,19 +1,22 @@
 'use client'
 
-import { useState } from 'react'
+import { useHints } from '@/contexts/HintsContext'
 
 export default function Header() {
-  const [hintsActive, setHintsActive] = useState(false)
+  const { hintsActive, toggleHints } = useHints()
 
-  const toggleHints = () => {
-    setHintsActive(!hintsActive)
-    document.body.classList.toggle('hints-active', !hintsActive)
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault()
+    const element = document.getElementById(targetId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }
 
   return (
     <>
       {/* TOP STATUS BAR */}
-      <div className="bg-ink text-paper text-xs font-code py-3 border-b-2 border-l5r-gold relative z-50 shadow-md">
+      <div className="bg-ink text-paper text-xs font-code py-3 border-b-2 border-l5r-gold relative z-50 shadow-md select-none">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2 text-amber-400 font-bold tracking-wider">
@@ -35,14 +38,16 @@ export default function Header() {
             </div>
             <button
               onClick={toggleHints}
-              className={`flex items-center gap-2 px-3 py-1 rounded border transition-colors ${
-                hintsActive ? 'text-l5r-gold border-l5r-gold' : 'border-gray-600 hover:border-l5r-gold hover:text-l5r-gold'
+              className={`flex items-center gap-2 px-3 py-1 rounded border ${
+                hintsActive 
+                  ? 'text-l5r-gold border-l5r-gold bg-l5r-gold/10' 
+                  : 'border-gray-600 hover:border-l5r-gold hover:text-l5r-gold'
               }`}
             >
               <i className="fa-solid fa-lightbulb"></i>
               <span className="hidden sm:inline">Подсказки</span>
             </button>
-            <a href="https://github.com/batalovmv/l5r" className="text-gray-400 hover:text-white transition-colors">
+            <a href="https://github.com/batalovmv/l5r" className="text-gray-400 hover:text-white">
               <i className="fa-brands fa-github text-lg"></i>
             </a>
           </div>
@@ -50,13 +55,13 @@ export default function Header() {
       </div>
 
       {/* MAIN HEADER */}
-      <nav className="sticky top-0 z-40 bg-paper/95 backdrop-blur-sm border-b border-ink/10 shadow-lg">
+      <nav className="sticky top-0 z-40 bg-paper/95 backdrop-blur-sm border-b border-ink/10 shadow-lg select-none">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <div 
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="w-12 h-12 bg-l5r-red text-paper flex items-center justify-center font-header text-2xl font-bold rounded-sm border-2 border-ink group-hover:bg-ink group-hover:text-l5r-red transition-colors shadow-md">
+            <div className="w-12 h-12 bg-l5r-red text-paper flex items-center justify-center font-header text-2xl font-bold rounded-sm border-2 border-ink group-hover:bg-ink group-hover:text-l5r-red shadow-md">
               五
             </div>
             <div>
@@ -65,15 +70,44 @@ export default function Header() {
             </div>
           </div>
           <div className="hidden md:flex space-x-6 font-header text-sm font-bold tracking-widest text-ink/80">
-            <a href="#features" className="hover:text-l5r-red transition-colors">ФУНКЦИИ</a>
-            <a href="#achievements" className="hover:text-l5r-red transition-colors">ДОСТИЖЕНИЯ</a>
-            <a href="#demo" className="hover:text-l5r-red transition-colors">КЛАНЫ</a>
-            <a href="#tech" className="hover:text-l5r-red transition-colors">СТЕК</a>
-            <a href="#roadmap" className="hover:text-l5r-red transition-colors">ПЛАН</a>
+            <a 
+              href="#features" 
+              onClick={(e) => handleNavClick(e, 'features')}
+              className="hover:text-l5r-red cursor-pointer"
+            >
+              ФУНКЦИИ
+            </a>
+            <a 
+              href="#achievements" 
+              onClick={(e) => handleNavClick(e, 'achievements')}
+              className="hover:text-l5r-red cursor-pointer"
+            >
+              ДОСТИЖЕНИЯ
+            </a>
+            <a 
+              href="#demo" 
+              onClick={(e) => handleNavClick(e, 'demo')}
+              className="hover:text-l5r-red cursor-pointer"
+            >
+              КЛАНЫ
+            </a>
+            <a 
+              href="#tech" 
+              onClick={(e) => handleNavClick(e, 'tech')}
+              className="hover:text-l5r-red cursor-pointer"
+            >
+              СТЕК
+            </a>
+            <a 
+              href="#roadmap" 
+              onClick={(e) => handleNavClick(e, 'roadmap')}
+              className="hover:text-l5r-red cursor-pointer"
+            >
+              ПЛАН
+            </a>
           </div>
         </div>
       </nav>
     </>
   )
 }
-

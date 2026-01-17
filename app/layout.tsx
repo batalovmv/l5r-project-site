@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { HintsProvider } from '@/contexts/HintsContext'
 
 export const metadata: Metadata = {
   title: 'L5R Project Hub - Legend of the Five Rings Digital Companion',
@@ -31,7 +32,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
-        {children}
+        <HintsProvider>
+          {children}
+        </HintsProvider>
       </body>
     </html>
   )

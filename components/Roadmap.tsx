@@ -97,6 +97,9 @@ export default function Roadmap() {
             План Развития
           </h3>
           <div className="w-24 h-1 bg-l5r-red mx-auto mb-4"></div>
+          <p className="hint-text max-w-xl mx-auto mt-4">
+            Backend полностью готов к продакшену. Фокус сейчас на UI/UX и frontend разработке.
+          </p>
           <p className="font-body text-ink-light italic max-w-2xl mx-auto">
             Путь от MVP до публикации в App Store и Google Play
           </p>
