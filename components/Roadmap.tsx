@@ -16,6 +16,7 @@ export default function Roadmap() {
         { status: 'done', text: 'XP, Notes, Sessions, Downtime' },
         { status: 'done', text: 'Docker + Prometheus + Sentry' },
         { status: 'done', text: 'Справочные данные L5R (5 книг)' },
+        { status: 'done', text: 'Jest автотесты + OpenAPI контракт' },
       ],
     },
     {
@@ -26,10 +27,10 @@ export default function Roadmap() {
       color: 'border-l5r-gold',
       bgColor: 'bg-l5r-gold',
       items: [
-        { status: 'wip', text: 'Дизайн-система L5R стиля' },
-        { status: 'wip', text: 'Home Screen' },
-        { status: 'pending', text: 'Characters List' },
-        { status: 'pending', text: 'Character Details (лист персонажа)' },
+        { status: 'wip', text: 'ТЗ + референсы (дизайн пока отсутствует)' },
+        { status: 'pending', text: 'Дизайн‑система (цвета, типографика, UI kit)' },
+        { status: 'pending', text: 'Прототип основного UX флоу' },
+        { status: 'pending', text: 'Макеты ключевых экранов (Home/Characters/Sheet)' },
         { status: 'pending', text: 'Campaigns screens' },
         { status: 'pending', text: 'Scene/Combat UI' },
       ],
@@ -42,7 +43,8 @@ export default function Roadmap() {
       color: 'border-gray-200',
       bgColor: 'bg-gray-300',
       items: [
-        { status: 'pending', text: 'Реализация всех экранов по макетам' },
+        { status: 'pending', text: 'Старт разработки после готовых макетов' },
+        { status: 'pending', text: 'Реализация всех экранов по дизайну' },
         { status: 'pending', text: 'Character Wizard "20 вопросов" (~10 экранов)' },
         { status: 'pending', text: 'Dice roller с анимацией' },
         { status: 'pending', text: 'OAuth на фронтенде' },
@@ -54,12 +56,12 @@ export default function Roadmap() {
       status: 'pending',
       icon: 'fa-flask-vial',
       label: 'Планируется',
-      title: 'Тестирование',
+      title: 'Тестирование (продукт)',
       color: 'border-gray-200',
       bgColor: 'bg-gray-300',
       items: [
-        { status: 'done', text: 'Jest setup + API integration tests' },
-        { status: 'pending', text: 'Unit tests 80%+ coverage' },
+        { status: 'pending', text: 'UX/QA чек‑листы и тест‑план' },
+        { status: 'pending', text: 'Unit tests на фронтенде' },
         { status: 'pending', text: 'E2E tests (Detox)' },
         { status: 'pending', text: 'Beta-тестирование L5R сообщества' },
       ],
@@ -96,7 +98,7 @@ export default function Roadmap() {
           <h3 className="section-title mb-4">План Развития</h3>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="hint-text max-w-xl mx-auto mt-4">
-            Backend полностью готов к продакшену. Фокус сейчас на UI/UX и frontend разработке.
+            Backend готов. Сейчас нужен дизайн — фронтенд стартует по готовым макетам.
           </p>
           <p className="section-subtitle mx-auto">
             Путь от MVP до публикации в App Store и Google Play

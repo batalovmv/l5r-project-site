@@ -68,7 +68,7 @@ export default function ClansDemo() {
         <div className="text-center mb-12">
           <h3 className="section-title mb-2">Великие Кланы</h3>
           <div className="section-divider mx-auto mb-4"></div>
-          <p className="section-subtitle mx-auto">Интерактивная демонстрация данных из API</p>
+          <p className="section-subtitle mx-auto">Интерактивная демонстрация модели данных (пример)</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

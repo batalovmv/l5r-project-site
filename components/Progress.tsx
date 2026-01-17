@@ -49,33 +49,33 @@ export default function Progress() {
                 <span className="chip chip-wip">WIP</span>
               </div>
               <div className="text-sm text-ink-light mb-4">
-                Дизайнер ведёт экраны и дизайн‑систему.
+                Дизайн ещё не готов — сейчас формируется ТЗ и собираются референсы.
               </div>
               <div className="progress-track mb-2">
-                <div className="progress-fill progress-fill-gold" style={{ width: '20%' }}></div>
+                <div className="progress-fill progress-fill-gold" style={{ width: '5%' }}></div>
               </div>
               <div className="flex justify-between text-xs text-gray-500 font-code">
-                <span>оценка</span><span>~20%</span>
+                <span>оценка</span><span>~5%</span>
               </div>
             </div>
 
-            {/* Mobile App */}
+            {/* Frontend */}
             <div className="card p-6">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <i className="fa-solid fa-mobile-screen text-gray-600"></i>
-                  <div className="font-header font-bold text-lg">Mobile App</div>
+                  <div className="font-header font-bold text-lg">Frontend</div>
                 </div>
                 <span className="chip chip-pending">PENDING</span>
               </div>
               <div className="text-sm text-ink-light mb-4">
-                Код есть, UI ещё не "продуктовый".
+                Разработка ещё не началась — стартую после готового дизайна.
               </div>
               <div className="progress-track mb-2">
-                <div className="progress-fill progress-fill-gray" style={{ width: '10%' }}></div>
+                <div className="progress-fill progress-fill-gray" style={{ width: '0%' }}></div>
               </div>
               <div className="flex justify-between text-xs text-gray-500 font-code">
-                <span>оценка</span><span>~10%</span>
+                <span>оценка</span><span>~0%</span>
               </div>
             </div>
           </div>
@@ -83,10 +83,10 @@ export default function Progress() {
           <div className="mt-6 card-soft p-5">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
               <div className="text-sm text-ink">
-                <span className="font-bold">Сейчас:</span> дизайн интерфейса + уточнение UX флоу.
+                <span className="font-bold">Сейчас:</span> подготовка UI/UX (ТЗ, референсы) → затем старт фронтенда.
               </div>
               <div className="text-sm font-code text-gray-600">
-                81 endpoints • 92 таблицы • 38 сервисов
+                122 endpoints • 92 таблицы • 48 сервисов
               </div>
             </div>
           </div>

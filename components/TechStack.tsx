@@ -57,9 +57,9 @@ export default function TechStack() {
           {/* Frontend */}
           <div className="card p-8">
             <h4 className="font-header font-bold text-xl mb-6 text-tech flex items-center gap-2">
-              <i className="fa-solid fa-mobile-screen"></i> Frontend
+              <i className="fa-solid fa-mobile-screen"></i> Frontend (planned)
             </h4>
-            <p className="hint-text mb-4">Кроссплатформенное приложение для iOS и Android с одной кодовой базой</p>
+            <p className="hint-text mb-4">Разработка начнётся после готового дизайна (макетов и дизайн‑системы)</p>
             <div className="flex flex-wrap gap-3">
               {frontend.map((tech, i) => (
                 <span key={i} className="tech-badge">

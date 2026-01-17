@@ -39,10 +39,10 @@ export default function Footer() {
         </div>
 
         <div className="text-xs text-gray-500 font-code">
-          Backend: Node.js + Express + PostgreSQL | Frontend: React Native + Expo
+          Backend: Node.js + Express + PostgreSQL | Frontend (planned): React Native + Expo
         </div>
         <div className="text-xs text-gray-600 mt-2">
-          81 API endpoints • 92 DB tables • 38 services
+          122 API endpoints • 92 DB tables • 48 services
         </div>
       </div>
     </footer>

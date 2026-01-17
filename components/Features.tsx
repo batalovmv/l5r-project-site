@@ -9,7 +9,7 @@ export default function Features() {
             Полноценный инструментарий для GM и игроков L5R 5th Edition
           </p>
           <p className="hint-text max-w-xl mx-auto mt-3">
-            Каждая функция имеет полное покрытие тестами и документацию OpenAPI
+            Backend документирован (OpenAPI) и покрыт автотестами; UI/UX и фронтенд стартуют после дизайна
           </p>
         </div>
 
@@ -288,17 +288,17 @@ export default function Features() {
         {/* In Development */}
         <div className="mt-12">
           <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center">
-            <i className="fa-solid fa-wrench text-l5r-gold mr-2"></i>В разработке
+            <i className="fa-solid fa-wrench text-l5r-gold mr-2"></i>Следующий этап
           </h4>
           <div className="grid md:grid-cols-4 gap-4">
             {[
-              { icon: 'fa-dice', name: 'Dice Roller', desc: 'Визуальный бросок кубиков L5R' },
-              { icon: 'fa-map', name: 'Карта и токены', desc: 'Визуальное поле боя' },
-              { icon: 'fa-comments', name: 'Чат', desc: 'IC/OOC сообщения' },
-              { icon: 'fa-file-pdf', name: 'Экспорт', desc: 'PDF лист персонажа' },
+              { icon: 'fa-pen-ruler', color: 'text-l5r-gold', name: 'UI/UX дизайн', desc: 'Макетов пока нет: ТЗ + референсы → дизайн‑система', muted: false },
+              { icon: 'fa-mobile-screen', color: 'text-tech', name: 'Frontend (React Native)', desc: 'Старт после дизайна: экраны + навигация', muted: true },
+              { icon: 'fa-flask-vial', color: 'text-success', name: 'QA / Beta', desc: 'Тестирование продукта начнётся после UI', muted: true },
+              { icon: 'fa-dice', color: 'text-l5r-red', name: 'Dice Roller', desc: 'Визуальный бросок кубиков L5R', muted: true },
             ].map((item, i) => (
-              <div key={i} className="card-soft p-5 text-center opacity-70">
-                <i className={`fa-solid ${item.icon} text-3xl text-l5r-red mb-3`}></i>
+              <div key={i} className={`card-soft p-5 text-center ${item.muted ? 'opacity-70' : ''}`}>
+                <i className={`fa-solid ${item.icon} text-3xl ${item.color} mb-3`}></i>
                 <h5 className="font-header font-bold text-sm mb-2">{item.name}</h5>
                 <p className="text-xs text-gray-500">{item.desc}</p>
               </div>

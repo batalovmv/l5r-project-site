@@ -17,6 +17,11 @@ export default function Hero() {
           столом с книгами и листами персонажей, вы можете играть онлайн со смартфона — 
           всё синхронизируется в реальном времени.
         </p>
+        <div className="card-soft p-4 max-w-2xl mx-auto mb-6">
+          <div className="text-sm text-ink">
+            <span className="font-bold">Статус:</span> backend готов → UI/UX дизайн в подготовке → frontend стартует по макетам.
+          </div>
+        </div>
         <p className="hint-text max-w-xl mx-auto mb-6">
           Демонстрирует навыки: REST API, PostgreSQL, TypeScript, React Native, Docker, CI/CD, real-time системы
         </p>

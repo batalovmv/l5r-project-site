@@ -1,48 +1,48 @@
 export default function Achievements() {
   const stats = [
-    { value: '81', label: 'API Endpoints', sub: 'REST + OpenAPI', hint: 'Документация + валидация + типизация ответов' },
+    { value: '122', label: 'API Operations', sub: 'REST + OpenAPI', hint: 'Контракт, документация и типы генерируются из OpenAPI' },
     { value: '92', label: 'Таблиц БД', sub: 'Prisma ORM', hint: 'Сложная реляционная модель + миграции + seed' },
-    { value: '38', label: 'Сервисов', sub: 'Бизнес-логика', hint: 'Сервисы по доменам: auth/campaigns/scenes/xp…' },
-    { value: '30+', label: 'Миграций', sub: 'Версионирование', hint: 'Схема БД эволюционировала вместе с фичами' },
+    { value: '48', label: 'Сервисов', sub: 'Бизнес-логика', hint: 'Сервисы по доменам: auth/campaigns/scenes/xp…' },
+    { value: '32', label: 'Миграций', sub: 'Версионирование', hint: 'Схема БД эволюционировала вместе с фичами' },
   ]
 
   const features = [
     {
       icon: 'fa-shield-halved',
       color: 'bg-l5r-red',
-      title: 'Аутентификация',
-      items: ['JWT + refresh rotation', 'OAuth 2.0 (Google, VK)', 'Анонимная регистрация', 'Rate limiting'],
+      title: 'Безопасность',
+      items: ['JWT + refresh rotation', 'OAuth 2.0 (Google, VK)', 'Rate limiting + Helmet', 'Валидация запросов (Zod/AJV)'],
     },
     {
       icon: 'fa-bolt',
       color: 'bg-tech',
       title: 'Real-time',
-      items: ['Server-Sent Events', 'Redis Pub/Sub', 'Горизонтальное масштабирование', 'Heartbeat'],
+      items: ['Server-Sent Events (SSE)', 'Redis Pub/Sub (multi-instance)', 'Reconnection/heartbeat', 'Sync API (cursor + tombstones)'],
     },
     {
       icon: 'fa-swords',
       color: 'bg-success',
       title: 'Боевая система',
-      items: ['Дуэли с фазами', 'Интриги', 'Массовые сражения', '18 типов действий'],
+      items: ['Дуэли с фазами', 'Интриги', 'Массовые сражения', 'Dice rolls + проверки'],
     },
     {
       icon: 'fa-chart-line',
       color: 'bg-purple-600',
       title: 'Мониторинг',
-      items: ['Prometheus метрики', 'Sentry errors', 'OpenTelemetry', 'Health checks'],
+      items: ['Prometheus /metrics', 'Sentry errors', 'OpenTelemetry traces', 'Structured logs (Pino)'],
     },
     {
       icon: 'fa-docker',
       color: 'bg-orange-500',
       title: 'DevOps',
-      items: ['Docker multi-stage', 'Docker Compose', 'Backup система', 'Graceful shutdown'],
+      items: ['CI: lint/typecheck/tests', 'Docker multi-stage + Compose', 'Backups + runbook', 'k6 load tests'],
       brand: true,
     },
     {
       icon: 'fa-database',
       color: 'bg-cyan-500',
       title: 'Данные L5R',
-      items: ['7 великих кланов', 'Семьи и школы', 'Техники', 'Предметы и качества'],
+      items: ['5 книг справочников', '7 великих кланов + семьи/школы', 'Техники, предметы, качества', 'xlsx → JSON → seed pipeline'],
     },
   ]
 
