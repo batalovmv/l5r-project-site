@@ -3,11 +3,9 @@ export default function Features() {
     <section id="features" className="py-20 bg-paper-dark border-b border-ink/10 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h3 className="font-header text-3xl md:text-4xl font-bold text-ink mb-4 uppercase tracking-widest">
-            Возможности приложения
-          </h3>
-          <div className="w-24 h-1 bg-l5r-red mx-auto mb-4"></div>
-          <p className="text-ink-light italic max-w-2xl mx-auto">
+          <h3 className="section-title mb-4">Возможности приложения</h3>
+          <div className="section-divider mx-auto mb-4"></div>
+          <p className="section-subtitle mx-auto">
             Полноценный инструментарий для GM и игроков L5R 5th Edition
           </p>
           <p className="hint-text max-w-xl mx-auto mt-3">

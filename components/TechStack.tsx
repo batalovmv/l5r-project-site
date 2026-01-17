@@ -33,15 +33,13 @@ export default function TechStack() {
     <section id="tech" className="py-16 bg-paper-dark border-b border-ink/10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h3 className="font-header text-3xl font-bold text-ink mb-2 uppercase tracking-widest">
-            Технологический Стек
-          </h3>
-          <div className="w-16 h-1 bg-l5r-red mx-auto mb-4"></div>
+          <h3 className="section-title mb-2">Технологический Стек</h3>
+          <div className="section-divider mx-auto mb-4"></div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Backend */}
-          <div className="bg-white p-8 rounded-lg shadow-sm border border-ink/10">
+          <div className="card p-8">
             <h4 className="font-header font-bold text-xl mb-6 text-l5r-red flex items-center gap-2">
               <i className="fa-solid fa-server"></i> Backend
             </h4>
@@ -57,7 +55,7 @@ export default function TechStack() {
           </div>
 
           {/* Frontend */}
-          <div className="bg-white p-8 rounded-lg shadow-sm border border-ink/10">
+          <div className="card p-8">
             <h4 className="font-header font-bold text-xl mb-6 text-tech flex items-center gap-2">
               <i className="fa-solid fa-mobile-screen"></i> Frontend
             </h4>

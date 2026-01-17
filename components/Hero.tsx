@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative py-20 px-4 overflow-hidden flex flex-col items-center text-center border-b border-ink/5">
+    <section className="relative py-20 px-4 overflow-hidden flex flex-col items-center text-center border-b border-ink/5 bg-gradient-to-b from-paper to-white/70">
       <div className="kanji-watermark text-[20rem] top-0 text-ink select-none">道</div>
       <div className="relative z-10 max-w-4xl">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-xs font-code font-bold text-amber-600 mb-6 shadow-sm">
@@ -23,15 +23,23 @@ export default function Hero() {
         <div className="flex flex-wrap gap-4 justify-center mb-8">
           <a
             href="#features"
-            className="px-8 py-3 bg-l5r-red text-white font-header font-bold rounded shadow-lg hover:bg-red-900 transition-transform transform hover:-translate-y-1"
+            className="btn btn-primary"
           >
             <i className="fa-solid fa-mobile-screen mr-2"></i>Возможности
           </a>
           <a
             href="#achievements"
-            className="px-8 py-3 bg-white text-ink border border-ink font-header font-bold rounded shadow hover:bg-gray-50 transition-colors"
+            className="btn btn-secondary"
           >
             <i className="fa-solid fa-trophy mr-2"></i>Что сделано
+          </a>
+          <a
+            href="https://github.com/batalovmv/l5r"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-ghost"
+          >
+            <i className="fa-brands fa-github"></i>Исходники
           </a>
         </div>
         {/* Target audience */}

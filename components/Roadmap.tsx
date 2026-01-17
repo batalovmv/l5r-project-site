@@ -93,14 +93,12 @@ export default function Roadmap() {
       <div className="kanji-watermark text-[25rem] top-20 -left-20 text-l5r-red opacity-[0.03]">時</div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h3 className="font-header text-4xl font-bold text-ink mb-4 uppercase tracking-widest">
-            План Развития
-          </h3>
-          <div className="w-24 h-1 bg-l5r-red mx-auto mb-4"></div>
+          <h3 className="section-title mb-4">План Развития</h3>
+          <div className="section-divider mx-auto mb-4"></div>
           <p className="hint-text max-w-xl mx-auto mt-4">
             Backend полностью готов к продакшену. Фокус сейчас на UI/UX и frontend разработке.
           </p>
-          <p className="font-body text-ink-light italic max-w-2xl mx-auto">
+          <p className="section-subtitle mx-auto">
             Путь от MVP до публикации в App Store и Google Play
           </p>
         </div>

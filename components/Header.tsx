@@ -1,12 +1,24 @@
 'use client'
 
+import { useState } from 'react'
 import { useHints } from '@/contexts/HintsContext'
 
 export default function Header() {
   const { hintsActive, toggleHints } = useHints()
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const navItems = [
+    { id: 'progress', label: 'ПРОГРЕСС' },
+    { id: 'features', label: 'ФУНКЦИИ' },
+    { id: 'achievements', label: 'ДОСТИЖЕНИЯ' },
+    { id: 'demo', label: 'КЛАНЫ' },
+    { id: 'tech', label: 'СТЕК' },
+    { id: 'roadmap', label: 'ПЛАН' },
+  ] as const
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault()
+    setMenuOpen(false)
     const element = document.getElementById(targetId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -38,6 +50,7 @@ export default function Header() {
             </div>
             <button
               onClick={toggleHints}
+              aria-pressed={hintsActive}
               className={`flex items-center gap-2 px-3 py-1 rounded border ${
                 hintsActive 
                   ? 'text-l5r-gold border-l5r-gold bg-l5r-gold/10' 
@@ -47,7 +60,13 @@ export default function Header() {
               <i className="fa-solid fa-lightbulb"></i>
               <span className="hidden sm:inline">Подсказки</span>
             </button>
-            <a href="https://github.com/batalovmv/l5r" className="text-gray-400 hover:text-white">
+            <a
+              href="https://github.com/batalovmv/l5r"
+              className="text-gray-400 hover:text-white"
+              aria-label="GitHub репозиторий проекта"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="fa-brands fa-github text-lg"></i>
             </a>
           </div>
@@ -59,7 +78,10 @@ export default function Header() {
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <div 
             className="flex items-center gap-3 cursor-pointer group"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => {
+              setMenuOpen(false)
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
           >
             <div className="w-12 h-12 bg-l5r-red text-paper flex items-center justify-center font-header text-2xl font-bold rounded-sm border-2 border-ink group-hover:bg-ink group-hover:text-l5r-red shadow-md">
               五
@@ -69,42 +91,51 @@ export default function Header() {
               <p className="text-xs text-l5r-red font-bold uppercase tracking-wider">L5R 5e Digital Companion</p>
             </div>
           </div>
+
           <div className="hidden md:flex space-x-6 font-header text-sm font-bold tracking-widest text-ink/80">
-            <a 
-              href="#features" 
-              onClick={(e) => handleNavClick(e, 'features')}
-              className="hover:text-l5r-red cursor-pointer"
-            >
-              ФУНКЦИИ
-            </a>
-            <a 
-              href="#achievements" 
-              onClick={(e) => handleNavClick(e, 'achievements')}
-              className="hover:text-l5r-red cursor-pointer"
-            >
-              ДОСТИЖЕНИЯ
-            </a>
-            <a 
-              href="#demo" 
-              onClick={(e) => handleNavClick(e, 'demo')}
-              className="hover:text-l5r-red cursor-pointer"
-            >
-              КЛАНЫ
-            </a>
-            <a 
-              href="#tech" 
-              onClick={(e) => handleNavClick(e, 'tech')}
-              className="hover:text-l5r-red cursor-pointer"
-            >
-              СТЕК
-            </a>
-            <a 
-              href="#roadmap" 
-              onClick={(e) => handleNavClick(e, 'roadmap')}
-              className="hover:text-l5r-red cursor-pointer"
-            >
-              ПЛАН
-            </a>
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => handleNavClick(e, item.id)}
+                className="hover:text-l5r-red cursor-pointer"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-ink/10 bg-white/70 hover:bg-white shadow-sm"
+            aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-controls="mobile-nav"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <i className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'} text-ink`}></i>
+          </button>
+        </div>
+
+        <div
+          id="mobile-nav"
+          className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ${
+            menuOpen ? 'max-h-96 opacity-100 visible pointer-events-auto' : 'max-h-0 opacity-0 invisible pointer-events-none'
+          }`}
+        >
+          <div className="container mx-auto px-4 pb-4">
+            <div className="pt-2 border-t border-ink/10 grid gap-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => handleNavClick(e, item.id)}
+                  className="px-4 py-3 rounded-xl bg-white/70 border border-ink/10 font-header text-sm font-bold tracking-widest text-ink/80 hover:text-l5r-red hover:border-l5r-red/20"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </nav>

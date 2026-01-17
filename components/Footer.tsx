@@ -2,7 +2,7 @@ export default function Footer() {
   const books = ['Core Rulebook', 'Emerald Empire', 'Shadowlands', 'Courts of Stone', 'Path of Waves']
 
   return (
-    <footer className="bg-ink py-12 text-center">
+    <footer id="footer" className="bg-ink py-12 text-center border-t-2 border-l5r-gold/40">
       <div className="container mx-auto px-4">
         <div className="font-header text-2xl font-bold text-white mb-2">Project Rokugan</div>
         <p className="text-gray-400 mb-4">Legend of the Five Rings 5th Edition Digital Companion</p>
@@ -27,7 +27,13 @@ export default function Footer() {
         </div>
 
         <div className="flex justify-center gap-4 mb-6">
-          <a href="https://github.com/batalovmv/l5r" className="text-gray-400 hover:text-white transition-colors text-2xl">
+          <a
+            href="https://github.com/batalovmv/l5r"
+            className="text-gray-400 hover:text-white transition-colors text-2xl"
+            aria-label="GitHub репозиторий проекта"
+            target="_blank"
+            rel="noreferrer"
+          >
             <i className="fa-brands fa-github"></i>
           </a>
         </div>

@@ -66,11 +66,9 @@ export default function ClansDemo() {
     <section id="demo" className="py-20 bg-white border-y border-ink/10 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h3 className="font-header text-3xl font-bold text-ink mb-2 uppercase tracking-widest">
-            Великие Кланы
-          </h3>
-          <div className="w-16 h-1 bg-l5r-red mx-auto mb-4"></div>
-          <p className="text-ink-light italic">Интерактивная демонстрация данных из API</p>
+          <h3 className="section-title mb-2">Великие Кланы</h3>
+          <div className="section-divider mx-auto mb-4"></div>
+          <p className="section-subtitle mx-auto">Интерактивная демонстрация данных из API</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

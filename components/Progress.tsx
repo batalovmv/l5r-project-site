@@ -5,11 +5,9 @@ export default function Progress() {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
             <div>
-              <h3 className="font-header text-2xl md:text-3xl font-bold text-ink uppercase tracking-widest">
-                Сводка прогресса
-              </h3>
-              <div className="w-16 h-1 bg-l5r-red mt-3"></div>
-              <p className="text-ink-light italic mt-3">
+              <h3 className="section-title-sm">Сводка прогресса</h3>
+              <div className="section-divider mt-3"></div>
+              <p className="section-subtitle mt-3">
                 Коротко и по делу — что реально готово, что в работе, что впереди.
               </p>
             </div>

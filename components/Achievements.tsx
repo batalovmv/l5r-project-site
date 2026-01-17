@@ -50,10 +50,8 @@ export default function Achievements() {
     <section id="achievements" className="py-16 bg-white border-b border-ink/10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h3 className="font-header text-3xl font-bold mb-2 uppercase tracking-widest text-ink">
-            Достижения (что уже сделано)
-          </h3>
-          <div className="w-16 h-1 bg-l5r-red mx-auto mb-4"></div>
+          <h3 className="section-title mb-2">Достижения (что уже сделано)</h3>
+          <div className="section-divider mx-auto mb-4"></div>
         </div>
 
         {/* Big Numbers */}
