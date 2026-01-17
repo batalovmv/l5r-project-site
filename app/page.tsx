@@ -12,6 +12,10 @@ const Achievements = dynamic(() => import('@/components/Achievements'), {
   loading: () => <div className="py-16 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>
 })
 
+const CodeShowcase = dynamic(() => import('@/components/CodeShowcase'), {
+  loading: () => <div className="py-16 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>
+})
+
 const TechStack = dynamic(() => import('@/components/TechStack'), {
   loading: () => <div className="py-16 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>
 })
@@ -36,6 +40,7 @@ export default function Home() {
         <Progress />
         <Features />
         <Achievements />
+        <CodeShowcase />
         <TechStack />
         <ClansDemo />
         <Roadmap />

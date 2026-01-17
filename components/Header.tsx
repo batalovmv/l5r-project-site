@@ -11,6 +11,7 @@ export default function Header() {
     { id: 'progress', label: 'ПРОГРЕСС' },
     { id: 'features', label: 'ФУНКЦИИ' },
     { id: 'achievements', label: 'ДОСТИЖЕНИЯ' },
+    { id: 'code', label: 'КОД' },
     { id: 'demo', label: 'КЛАНЫ' },
     { id: 'tech', label: 'СТЕК' },
     { id: 'roadmap', label: 'ПЛАН' },
