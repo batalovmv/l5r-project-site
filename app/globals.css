@@ -113,67 +113,15 @@ html.reveal-ready [data-reveal].reveal-in {
   color: rgba(142, 24, 24, 0.95);
 }
 
-.docs-shell__toc {
-  display: none;
-}
-
-.docs-shell__tocCard {
-  position: sticky;
-  top: 104px;
-  border: 1px solid rgba(43, 43, 43, 0.12);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.65);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(10px);
-  padding: 14px;
-}
-
-.docs-shell__tocTitle {
-  font-family: 'Fira Code', monospace;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(43, 43, 43, 0.55);
-  margin-bottom: 10px;
-}
-
-.docs-shell__tocLinks {
-  display: grid;
-  gap: 8px;
-}
-
-.docs-shell__tocLink {
-  text-align: left;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(43, 43, 43, 0.1);
-  background: rgba(255, 255, 255, 0.7);
-  font-weight: 800;
-  color: rgba(43, 43, 43, 0.78);
-  transition-duration: 180ms;
-}
-
-.docs-shell__tocLink:hover {
-  border-color: rgba(142, 24, 24, 0.22);
-  color: rgba(142, 24, 24, 0.95);
-}
-
-.docs-shell__tocLink.is-active {
-  border-color: rgba(142, 24, 24, 0.22);
-  background: rgba(142, 24, 24, 0.06);
-  color: rgba(142, 24, 24, 0.95);
-}
-
 .dark .docs-shell__details,
-.dark .docs-shell__tocCard {
+.dark .docs-shell__details {
   border-color: rgba(231, 231, 231, 0.14);
   background: rgba(15, 21, 32, 0.65);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
 }
 
 .dark .docs-shell__summary,
-.dark .docs-shell__tocTitle {
+.dark .docs-shell__summary {
   color: rgba(231, 231, 231, 0.7);
 }
 
@@ -181,30 +129,15 @@ html.reveal-ready [data-reveal].reveal-in {
   border-top-color: rgba(231, 231, 231, 0.1);
 }
 
-.dark .docs-shell__link,
-.dark .docs-shell__tocLink {
+.dark .docs-shell__link {
   border-color: rgba(231, 231, 231, 0.14);
   background: rgba(255, 255, 255, 0.05);
   color: rgba(231, 231, 231, 0.78);
 }
 
-.dark .docs-shell__tocLink.is-active {
-  background: rgba(197, 160, 89, 0.1);
-  border-color: rgba(197, 160, 89, 0.22);
-  color: rgba(197, 160, 89, 0.95);
-}
-
 @media (min-width: 1024px) {
-  .docs-shell {
-    grid-template-columns: minmax(0, 1fr) 320px;
-    gap: 28px;
-    align-items: start;
-  }
   .docs-shell__mobile {
     display: none;
-  }
-  .docs-shell__toc {
-    display: block;
   }
 }
 

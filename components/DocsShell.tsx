@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useMemo, type ReactNode } from 'react'
 import { useLocale } from '@/contexts/LocaleContext'
 
 export type DocsTocItem = {
@@ -14,38 +14,6 @@ export default function DocsShell({ toc, children }: { toc: DocsTocItem[]; child
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
   const items = useMemo(() => toc.map((i) => ({ ...i, text: i.label[locale] })), [locale, toc])
-  const [activeId, setActiveId] = useState(items[0]?.id ?? '')
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (items.length === 0) return
-
-    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false
-
-    const elements = items
-      .map((i) => document.getElementById(i.id))
-      .filter(Boolean) as HTMLElement[]
-
-    if (elements.length === 0) return
-
-    if (reduceMotion) {
-      setActiveId(elements[0]!.id)
-      return
-    }
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => (a.boundingClientRect.top ?? 0) - (b.boundingClientRect.top ?? 0))[0]
-        if (visible?.target) setActiveId((visible.target as HTMLElement).id)
-      },
-      { threshold: 0.2, rootMargin: '-10% 0px -70% 0px' }
-    )
-
-    elements.forEach((el) => obs.observe(el))
-    return () => obs.disconnect()
-  }, [items])
 
   const go = (id: string) => {
     const el = document.getElementById(id)
@@ -79,28 +47,6 @@ export default function DocsShell({ toc, children }: { toc: DocsTocItem[]; child
       <div className="docs-shell__main" data-scroll-progress-root="docs">
         {children}
       </div>
-
-      <aside className="docs-shell__toc" aria-label={t('Оглавление', 'Table of contents')}>
-        <div className="docs-shell__tocCard">
-          <div className="docs-shell__tocTitle">{t('На этой странице', 'On this page')}</div>
-          <div className="docs-shell__tocLinks">
-            {items.map((item) => {
-              const active = item.id === activeId
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`docs-shell__tocLink ${active ? 'is-active' : ''}`}
-                  onClick={() => go(item.id)}
-                >
-                  {item.icon ? <i className={`fa-solid ${item.icon} mr-2 ${active ? 'text-l5r-red' : 'text-gray-500'}`}></i> : null}
-                  {item.text}
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      </aside>
     </div>
   )
 }
