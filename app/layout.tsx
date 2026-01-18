@@ -3,6 +3,9 @@ import './globals.css'
 import { HintsProvider } from '@/contexts/HintsContext'
 import ScrollEffects from '@/components/ScrollEffects'
 import BackToTop from '@/components/BackToTop'
+import { ThemeProvider } from '@/contexts/ThemeContext'
+import { LocaleProvider } from '@/contexts/LocaleContext'
+import Script from 'next/script'
 
 const SITE_URL = 'https://batalovmv.github.io/l5r-project-site/'
 
@@ -48,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -66,11 +69,23 @@ export default function RootLayout({
         <a className="skip-link" href="#main">
           К содержимому
         </a>
-        <HintsProvider>
-          {children}
-          <ScrollEffects />
-          <BackToTop />
-        </HintsProvider>
+        <ThemeProvider>
+          <LocaleProvider>
+            <HintsProvider>
+              {children}
+              <ScrollEffects />
+              <BackToTop />
+            </HintsProvider>
+          </LocaleProvider>
+        </ThemeProvider>
+
+        {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN ? (
+          <Script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN })}
+          />
+        ) : null}
       </body>
     </html>
   )

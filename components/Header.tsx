@@ -2,22 +2,29 @@
 
 import { useEffect, useState } from 'react'
 import { useHints } from '@/contexts/HintsContext'
+import { useTheme } from '@/contexts/ThemeContext'
+import { useLocale } from '@/contexts/LocaleContext'
 
 const NAV_ITEMS = [
-  { id: 'progress', label: 'ПРОГРЕСС' },
-  { id: 'features', label: 'ФУНКЦИИ' },
-  { id: 'achievements', label: 'ДОСТИЖЕНИЯ' },
-  { id: 'code', label: 'КОД' },
-  { id: 'docs', label: 'ДОКИ' },
-  { id: 'demo', label: 'КЛАНЫ' },
-  { id: 'tech', label: 'СТЕК' },
-  { id: 'roadmap', label: 'ПЛАН' },
+  { id: 'progress', label: { ru: 'ПРОГРЕСС', en: 'PROGRESS' } },
+  { id: 'updates', label: { ru: 'ОБНОВЛЕНИЯ', en: 'UPDATES' } },
+  { id: 'design', label: { ru: 'ДИЗАЙН', en: 'DESIGN' } },
+  { id: 'features', label: { ru: 'ФУНКЦИИ', en: 'FEATURES' } },
+  { id: 'achievements', label: { ru: 'ДОСТИЖЕНИЯ', en: 'DONE' } },
+  { id: 'code', label: { ru: 'КОД', en: 'CODE' } },
+  { id: 'docs', label: { ru: 'ДОКИ', en: 'DOCS' } },
+  { id: 'tech', label: { ru: 'СТЕК', en: 'STACK' } },
+  { id: 'roadmap', label: { ru: 'ПЛАН', en: 'ROADMAP' } },
 ] as const
 
 export default function Header() {
   const { hintsActive, toggleHints } = useHints()
+  const { theme, toggleTheme } = useTheme()
+  const { locale, setLocale } = useLocale()
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSectionId, setActiveSectionId] = useState<(typeof NAV_ITEMS)[number]['id']>('progress')
+
+  const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault()
@@ -75,7 +82,7 @@ export default function Header() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500 deploy-dot"></span>
               </span>
-              ACTIVE DEVELOPMENT
+              {t('АКТИВНАЯ РАЗРАБОТКА', 'ACTIVE DEVELOPMENT')}
             </div>
             <div className="hidden md:flex gap-4 text-gray-400">
               <span><i className="fa-solid fa-code-branch text-l5r-gold mr-1"></i> main</span>
@@ -84,13 +91,36 @@ export default function Header() {
           </div>
           <div className="flex items-center gap-4">
             <div className="lang-toggle hidden sm:flex">
-              <button type="button" className="active" aria-label="Русский (активно)">
+              <button
+                type="button"
+                className={locale === 'ru' ? 'active' : ''}
+                aria-label={t('Русский', 'Russian')}
+                aria-pressed={locale === 'ru'}
+                onClick={() => setLocale('ru')}
+              >
                 🇷🇺 RU
               </button>
-              <button type="button" disabled title="EN позже" aria-label="English (soon)">
+              <button
+                type="button"
+                className={locale === 'en' ? 'active' : ''}
+                aria-label="English"
+                aria-pressed={locale === 'en'}
+                onClick={() => setLocale('en')}
+              >
                 🇬🇧 EN
               </button>
             </div>
+
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={t('Переключить тему', 'Toggle theme')}
+              className="flex items-center gap-2 px-3 py-1 rounded border border-gray-600 hover:border-l5r-gold hover:text-l5r-gold"
+            >
+              <i className={`fa-solid ${theme === 'dark' ? 'fa-moon' : 'fa-sun'}`}></i>
+              <span className="hidden sm:inline">{t('Тема', 'Theme')}</span>
+            </button>
+
             <button
               onClick={toggleHints}
               aria-pressed={hintsActive}
@@ -101,7 +131,7 @@ export default function Header() {
               }`}
             >
               <i className="fa-solid fa-lightbulb"></i>
-              <span className="hidden sm:inline">Подсказки</span>
+              <span className="hidden sm:inline">{t('Подсказки', 'Hints')}</span>
             </button>
             <a
               href="https://github.com/batalovmv/l5r"
@@ -125,7 +155,7 @@ export default function Header() {
           <button
             type="button"
             className="flex items-center gap-3 cursor-pointer group text-left"
-            aria-label="На верх страницы"
+            aria-label={t('Наверх', 'Scroll to top')}
             onClick={() => {
               setMenuOpen(false)
               window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -149,7 +179,7 @@ export default function Header() {
                 aria-current={activeSectionId === item.id ? 'page' : undefined}
                 className={`nav-link ${activeSectionId === item.id ? 'nav-link-active' : ''}`}
               >
-                {item.label}
+                {item.label[locale]}
               </a>
             ))}
           </div>
@@ -188,7 +218,7 @@ export default function Header() {
                       : 'border-ink/10 text-ink/80 hover:text-l5r-red hover:border-l5r-red/20'
                   }`}
                 >
-                  {item.label}
+                  {item.label[locale]}
                 </a>
                 )
               })}
