@@ -45,8 +45,8 @@ export default function Hero() {
           <div className="text-sm text-ink">
             <span className="font-bold">{t('Статус:', 'Status:')}</span>{' '}
             {t(
-              'backend готов → UI/UX дизайн в подготовке → frontend стартует по макетам.',
-              'backend ready → UI/UX design in progress → frontend starts from the designs.'
+              'backend готов → frontend ещё не начат.',
+              'backend ready → frontend has not started yet.'
             )}
           </div>
         </div>

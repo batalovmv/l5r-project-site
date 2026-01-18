@@ -16,7 +16,7 @@ const SITE_URL = 'https://batalovmv.github.io/l5r-project-site/'
 export const metadata: Metadata = {
   title: 'L5R Project Hub - Legend of the Five Rings Digital Companion',
   description:
-    'Project hub for the Legend of the Five Rings 5e digital companion: backend ready, UI/UX design pending, frontend planned',
+    'Project hub for the Legend of the Five Rings 5e digital companion: backend ready, frontend planned',
   keywords: ['L5R', 'Legend of the Five Rings', 'TTRPG', 'React Native', 'Node.js'],
   authors: [{ name: 'batalovmv' }],
   metadataBase: new URL(SITE_URL),

@@ -2,9 +2,6 @@ import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Progress from '@/components/Progress'
-import ProjectTimeline from '@/components/ProjectTimeline'
-import Updates from '@/components/Updates'
-import DesignBrief from '@/components/DesignBrief'
 import SectionSkeleton from '@/components/SectionSkeleton'
 
 // Lazy load heavy components
@@ -48,9 +45,6 @@ export default function Home() {
       <main id="main" tabIndex={-1}>
         <Hero />
         <Progress />
-        <ProjectTimeline />
-        <Updates />
-        <DesignBrief />
         <Features />
         <Achievements />
         <CodeShowcase />
