@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext'
 import { LocaleProvider } from '@/contexts/LocaleContext'
 import Script from 'next/script'
 import SkipLink from '@/components/SkipLink'
+import ScrollProgress from '@/components/ScrollProgress'
 
 const SITE_URL = 'https://batalovmv.github.io/l5r-project-site/'
 
@@ -73,6 +74,7 @@ export default function RootLayout({
               <SkipLink />
               {children}
               <ScrollEffects />
+              <ScrollProgress />
               <BackToTop />
             </HintsProvider>
           </LocaleProvider>

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useMemo, useState } from 'react'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
 
@@ -46,6 +47,17 @@ const DOCS = [
 export default function DocsIndexPage() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+  const [query, setQuery] = useState('')
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return DOCS
+    return DOCS.filter((d) => {
+      const title = d.title[locale].toLowerCase()
+      const desc = d.desc[locale].toLowerCase()
+      return title.includes(q) || desc.includes(q)
+    })
+  }, [locale, query])
 
   return (
     <>
@@ -71,8 +83,40 @@ export default function DocsIndexPage() {
       <section className="py-16 bg-white border-b border-ink/10">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
+            <div className="max-w-xl mx-auto mb-10" data-reveal>
+              <div className="card-soft p-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white/70 border border-ink/10 flex items-center justify-center">
+                    <i className="fa-solid fa-magnifying-glass text-gray-600"></i>
+                  </div>
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder={t('Поиск по публичным докам…', 'Search public docs…')}
+                    className="w-full bg-transparent outline-none font-bold text-ink placeholder:text-gray-500"
+                    aria-label={t('Поиск по документации', 'Search documentation')}
+                  />
+                  {query.trim() ? (
+                    <button
+                      type="button"
+                      className="px-3 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 text-sm font-bold"
+                      onClick={() => setQuery('')}
+                    >
+                      {t('Очистить', 'Clear')}
+                    </button>
+                  ) : null}
+                </div>
+              </div>
+              <div className="text-xs text-gray-500 font-code mt-3 text-center">
+                {t(
+                  'Подсказка: приватные материалы (полный контракт/Runbook) выдаются по запросу.',
+                  'Hint: private materials (full contract/runbook) are available on request.'
+                )}
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-6">
-              {DOCS.map((doc, i) => (
+              {filtered.map((doc, i) => (
                 <Link key={doc.href} href={doc.href} className="card p-6 group hover:-translate-y-1 hover:shadow-xl" data-reveal data-reveal-delay={String(i * 90)}>
                   <div className="flex items-start gap-4">
                     <div className="w-11 h-11 rounded-xl bg-l5r-red/10 border border-l5r-red/20 flex items-center justify-center flex-shrink-0">
@@ -90,6 +134,17 @@ export default function DocsIndexPage() {
                 </Link>
               ))}
             </div>
+
+            {filtered.length === 0 ? (
+              <div className="mt-8 text-center" data-reveal data-reveal-delay="120">
+                <div className="card-soft p-6 max-w-2xl mx-auto">
+                  <div className="font-header font-bold text-lg text-ink">{t('Ничего не найдено', 'No results')}</div>
+                  <div className="text-sm text-ink-light mt-2">
+                    {t('Попробуйте другой запрос или откройте оглавление без фильтра.', 'Try another query or clear the filter.')}
+                  </div>
+                </div>
+              </div>
+            ) : null}
 
             <div className="mt-8 card-soft p-6" data-reveal data-reveal-delay="180">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

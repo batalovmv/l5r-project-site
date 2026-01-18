@@ -98,6 +98,29 @@ h1, h2, h3, h4, h5, h6, .font-header {
   outline-offset: 3px;
 }
 
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 70;
+  pointer-events: none;
+  background: transparent;
+}
+
+.scroll-progress__bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #C5A059, #8E1818, #C5A059);
+  box-shadow: 0 0 18px rgba(197, 160, 89, 0.25);
+}
+
+.dark .scroll-progress__bar {
+  box-shadow: 0 0 22px rgba(197, 160, 89, 0.22);
+}
+
 .skip-link {
   position: absolute;
   top: 12px;
@@ -230,6 +253,36 @@ section {
 
 .card-soft {
   @apply bg-white/70 border border-ink/10 rounded-2xl shadow-md;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card,
+  .card-soft {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before,
+  .card-soft::before {
+    content: '';
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(closest-side at 30% 20%, rgba(197, 160, 89, 0.14), transparent 60%);
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+    transition: opacity 240ms ease-out;
+    pointer-events: none;
+  }
+
+  .dark .card::before,
+  .dark .card-soft::before {
+    background: radial-gradient(closest-side at 30% 20%, rgba(197, 160, 89, 0.1), transparent 62%);
+  }
+
+  .card:hover::before,
+  .card-soft:hover::before {
+    opacity: 1;
+  }
 }
 
 .dark .card {

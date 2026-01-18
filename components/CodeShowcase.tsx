@@ -60,8 +60,11 @@ function sanitizeCode(code: string): string {
 
       line = line.replace(/(postgres(?:ql)?:\/\/[^:\s]+:)([^@\s]+)(@)/gi, '$1***$3')
       line = line.replace(/(redis:\/\/:)([^@\s]+)(@)/gi, '$1***$3')
+      line = line.replace(/(redis:\/\/[^:\s]+:)([^@\s]+)(@)/gi, '$1***$3')
+      line = line.replace(/(https?:\/\/[^:\s]+:)([^@\s]+)(@)/gi, '$1***$3')
       line = line.replace(/(\bBearer\s+)([A-Za-z0-9._-]+)\b/g, '$1***')
       line = line.replace(/eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/g, '***.***.***')
+      line = line.replace(/(x-admin-token:\s*)(\S+)/gi, '$1***')
 
       return line
     })
