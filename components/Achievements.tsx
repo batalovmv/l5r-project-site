@@ -35,7 +35,7 @@ export default function Achievements() {
       icon: 'fa-docker',
       color: 'bg-orange-500',
       title: 'DevOps',
-      items: ['CI: lint/typecheck/tests', 'Docker multi-stage + Compose', 'Backups + runbook', 'k6 load tests'],
+      items: ['CI: lint/typecheck/tests', 'Docker multi-stage + Compose', 'Feature flags + kill switch', 'Backups + runbook', 'k6 load tests'],
       brand: true,
     },
     {
