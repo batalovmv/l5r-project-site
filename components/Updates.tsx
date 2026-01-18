@@ -60,6 +60,16 @@ export default function Updates() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Link href="/updates/" className="px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
+                  <i className="fa-solid fa-clock-rotate-left mr-2"></i>
+                  {t('Все updates', 'All updates')}
+                </Link>
+                <Link href="/docs/" className="px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
+                  <i className="fa-solid fa-book mr-2"></i>
+                  {t('Публичные доки', 'Public docs')}
+                </Link>
+              </div>
             </div>
 
             <div className="card p-6" data-reveal data-reveal-delay="120">

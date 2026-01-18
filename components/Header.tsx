@@ -10,6 +10,7 @@ import { SITE_REPO_URL } from '@/lib/links'
 
 const HOME_NAV_ITEMS = [
   { id: 'progress', label: { ru: 'ПРОГРЕСС', en: 'PROGRESS' } },
+  { id: 'timeline', label: { ru: 'ТАЙМЛАЙН', en: 'TIMELINE' } },
   { id: 'updates', label: { ru: 'ОБНОВЛЕНИЯ', en: 'UPDATES' } },
   { id: 'design', label: { ru: 'ДИЗАЙН', en: 'DESIGN' } },
   { id: 'features', label: { ru: 'ФУНКЦИИ', en: 'FEATURES' } },
@@ -23,6 +24,7 @@ const HOME_NAV_ITEMS = [
 const DOC_NAV_ITEMS = [
   { href: '/', label: { ru: 'ГЛАВНАЯ', en: 'HOME' } },
   { href: '/docs/', label: { ru: 'ДОКИ', en: 'DOCS' } },
+  { href: '/updates/', label: { ru: 'UPDATES', en: 'UPDATES' } },
   { href: '/docs/architecture/', label: { ru: 'АРХИТЕКТУРА', en: 'ARCH' } },
   { href: '/docs/api/', label: { ru: 'API', en: 'API' } },
   { href: '/docs/security/', label: { ru: 'SECURITY', en: 'SECURITY' } },
