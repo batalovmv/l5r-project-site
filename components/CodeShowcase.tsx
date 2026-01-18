@@ -626,6 +626,30 @@ export default function CodeShowcase() {
               </div>
             </div>
           </div>
+
+          <div className="mt-8 card-soft p-6" data-reveal data-reveal-delay="180">
+            <div className="flex items-start gap-4">
+              <div className="w-11 h-11 rounded-xl bg-success/10 border border-success/25 flex items-center justify-center flex-shrink-0">
+                <i className="fa-solid fa-shield-halved text-success"></i>
+              </div>
+              <div>
+                <div className="font-header font-bold text-lg text-ink mb-1">Security / Privacy</div>
+                <div className="text-sm text-ink-light leading-relaxed">
+                  Витрина показывает безопасные фрагменты: значения секретов маскируются, а детали инфраструктуры не раскрываются.
+                </div>
+                <ul className="mt-3 space-y-2 text-sm text-ink-light">
+                  <li className="flex items-start gap-2">
+                    <i className="fa-solid fa-check text-success mt-0.5"></i>
+                    <span>Секреты (token/password/key) не публикуются и не копируются “как есть”.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <i className="fa-solid fa-check text-success mt-0.5"></i>
+                    <span>Фрагменты могут быть сокращены — цель секции: показать подходы (контракт, тесты, CI, мониторинг).</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

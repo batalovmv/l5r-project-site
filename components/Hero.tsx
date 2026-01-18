@@ -1,4 +1,17 @@
 export default function Hero() {
+  const badges = [
+    {
+      href: 'https://github.com/batalovmv/l5r/actions/workflows/backend-ci.yml',
+      src: 'https://github.com/batalovmv/l5r/actions/workflows/backend-ci.yml/badge.svg?branch=main',
+      alt: 'Backend CI status',
+    },
+    {
+      href: 'https://github.com/batalovmv/l5r-project-site/actions/workflows/deploy.yml',
+      src: 'https://github.com/batalovmv/l5r-project-site/actions/workflows/deploy.yml/badge.svg?branch=main',
+      alt: 'Project site deploy status',
+    },
+  ]
+
   return (
     <section className="relative py-20 px-4 overflow-hidden flex flex-col items-center text-center border-b border-ink/5 bg-gradient-to-b from-paper to-white/70">
       <div className="kanji-watermark text-[20rem] top-0 text-ink select-none">道</div>
@@ -25,6 +38,21 @@ export default function Hero() {
         <p className="hint-text max-w-xl mx-auto mb-6">
           Технический фокус: REST API, PostgreSQL, TypeScript, React Native, Docker, CI/CD, real-time системы
         </p>
+        <div className="gh-badges justify-center mb-6" aria-label="Статусы CI и деплоя">
+          {badges.map((badge) => (
+            <a
+              key={badge.href}
+              href={badge.href}
+              target="_blank"
+              rel="noreferrer"
+              className="gh-badge"
+              aria-label={badge.alt}
+              title={badge.alt}
+            >
+              <img src={badge.src} alt={badge.alt} loading="lazy" decoding="async" />
+            </a>
+          ))}
+        </div>
         <div className="flex flex-wrap gap-4 justify-center mb-8">
           <a
             href="#features"

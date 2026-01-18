@@ -2,38 +2,43 @@ import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Progress from '@/components/Progress'
+import Updates from '@/components/Updates'
+import DesignBrief from '@/components/DesignBrief'
+import SectionSkeleton from '@/components/SectionSkeleton'
 
 // Lazy load heavy components
 const Features = dynamic(() => import('@/components/Features'), {
-  loading: () => <div className="py-20 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>
+  loading: () => <SectionSkeleton kind="features" />,
 })
 
 const Achievements = dynamic(() => import('@/components/Achievements'), {
-  loading: () => <div className="py-16 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>
+  loading: () => <SectionSkeleton kind="achievements" />,
 })
 
 const CodeShowcase = dynamic(() => import('@/components/CodeShowcase'), {
-  loading: () => <div className="py-16 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>
+  loading: () => <SectionSkeleton kind="code" />,
 })
 
 const DocsLinks = dynamic(() => import('@/components/DocsLinks'), {
-  loading: () => <div className="py-16 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>
+  loading: () => <SectionSkeleton kind="docs" />,
 })
 
 const TechStack = dynamic(() => import('@/components/TechStack'), {
-  loading: () => <div className="py-16 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>
+  loading: () => <SectionSkeleton kind="tech" />,
 })
 
 const ClansDemo = dynamic(() => import('@/components/ClansDemo'), {
-  loading: () => <div className="py-20 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>,
+  loading: () => <SectionSkeleton kind="demo" />,
   ssr: false // Chart.js needs client-side rendering
 })
 
 const Roadmap = dynamic(() => import('@/components/Roadmap'), {
-  loading: () => <div className="py-24 text-center"><i className="fa-solid fa-spinner fa-spin text-l5r-red text-2xl"></i></div>
+  loading: () => <SectionSkeleton kind="roadmap" />,
 })
 
-const Footer = dynamic(() => import('@/components/Footer'))
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: () => <SectionSkeleton kind="footer" />,
+})
 
 export default function Home() {
   return (
@@ -42,6 +47,8 @@ export default function Home() {
       <main id="main" tabIndex={-1}>
         <Hero />
         <Progress />
+        <Updates />
+        <DesignBrief />
         <Features />
         <Achievements />
         <CodeShowcase />
