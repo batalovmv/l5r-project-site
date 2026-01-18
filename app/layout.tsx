@@ -8,6 +8,7 @@ import { LocaleProvider } from '@/contexts/LocaleContext'
 import Script from 'next/script'
 import SkipLink from '@/components/SkipLink'
 import ScrollProgress from '@/components/ScrollProgress'
+import HeroPointerGlow from '@/components/HeroPointerGlow'
 
 const SITE_URL = 'https://batalovmv.github.io/l5r-project-site/'
 
@@ -75,6 +76,7 @@ export default function RootLayout({
               {children}
               <ScrollEffects />
               <ScrollProgress />
+              <HeroPointerGlow />
               <BackToTop />
             </HintsProvider>
           </LocaleProvider>

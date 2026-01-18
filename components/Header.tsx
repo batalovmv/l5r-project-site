@@ -48,6 +48,11 @@ export default function Header() {
     const element = document.getElementById(targetId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      element.classList.remove('section-hit')
+      // Force reflow to restart animation
+      void element.offsetWidth
+      element.classList.add('section-hit')
+      window.setTimeout(() => element.classList.remove('section-hit'), 900)
     }
   }
 
