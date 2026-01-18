@@ -1,17 +1,14 @@
 'use client'
 
+import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
+import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
 
 export default function Hero() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
   const badges = [
-    {
-      href: 'https://github.com/batalovmv/l5r/actions/workflows/backend-ci.yml',
-      src: 'https://github.com/batalovmv/l5r/actions/workflows/backend-ci.yml/badge.svg?branch=main',
-      alt: 'Backend CI status',
-    },
     {
       href: 'https://github.com/batalovmv/l5r-project-site/actions/workflows/deploy.yml',
       src: 'https://github.com/batalovmv/l5r-project-site/actions/workflows/deploy.yml/badge.svg?branch=main',
@@ -72,6 +69,10 @@ export default function Hero() {
               <img src={badge.src} alt={badge.alt} loading="lazy" decoding="async" />
             </a>
           ))}
+          <div className="gh-badge" aria-label={t('Backend репозиторий приватный', 'Backend repository is private')} title={t('Backend репозиторий приватный', 'Backend repository is private')}>
+            <i className="fa-solid fa-lock text-gray-600 mr-2"></i>
+            <span className="text-xs font-code text-gray-600">{t('backend: private', 'backend: private')}</span>
+          </div>
         </div>
         <div className="flex flex-wrap gap-4 justify-center mb-8">
           <a
@@ -81,21 +82,26 @@ export default function Hero() {
             <i className="fa-solid fa-mobile-screen mr-2"></i>
             {t('Возможности', 'Features')}
           </a>
-          <a
-            href="#achievements"
-            className="btn btn-secondary"
-          >
+          <Link href="/docs/" className="btn btn-secondary">
+            <i className="fa-solid fa-book mr-2"></i>
+            {t('Публичные доки', 'Public docs')}
+          </Link>
+          <a href="#achievements" className="btn btn-secondary">
             <i className="fa-solid fa-trophy mr-2"></i>
             {t('Что сделано', 'Done')}
           </a>
           <a
-            href="https://github.com/batalovmv/l5r"
+            href={ACCESS_REQUEST_URL}
             target="_blank"
             rel="noreferrer"
             className="btn btn-ghost"
           >
+            <i className="fa-solid fa-lock"></i>
+            {t('Доступ к backend', 'Backend access')}
+          </a>
+          <a href={SITE_REPO_URL} target="_blank" rel="noreferrer" className="btn btn-ghost">
             <i className="fa-brands fa-github"></i>
-            {t('Исходники', 'Source')}
+            {t('Репозиторий сайта', 'Site repo')}
           </a>
         </div>
         {/* Target audience */}

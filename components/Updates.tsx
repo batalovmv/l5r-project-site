@@ -1,7 +1,9 @@
 'use client'
 
+import Link from 'next/link'
 import SectionLinkButton from '@/components/SectionLinkButton'
 import { useLocale } from '@/contexts/LocaleContext'
+import { ACCESS_REQUEST_URL } from '@/lib/links'
 
 const HUB_UPDATES = {
   ru: [
@@ -62,38 +64,29 @@ export default function Updates() {
 
             <div className="card p-6" data-reveal data-reveal-delay="120">
               <div className="font-header font-bold text-lg mb-3 text-ink">
-                <i className="fa-solid fa-scroll text-l5r-gold mr-2"></i>
-                {t('Changelog backend', 'Backend changelog')}
+                <i className="fa-solid fa-lock text-l5r-gold mr-2"></i>
+                {t('Backend: приватный репозиторий', 'Backend: private repository')}
               </div>
               <p className="text-sm text-ink-light mb-4 leading-relaxed">
                 {t(
-                  'История изменений API и поведения backend — в официальном changelog репозитория.',
-                  'API and backend behavior changes are tracked in the repository changelog.'
+                  'Backend репозиторий и подробные документы закрыты: доступ выдаётся по запросу. Публичные доки — на этом сайте.',
+                  'Backend repo and detailed docs are private: access is granted on request. Public docs live on this site.'
                 )}
               </p>
               <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://github.com/batalovmv/l5r/blob/main/CHANGELOG.md"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm"
-                >
-                  <i className="fa-solid fa-file-lines mr-2"></i>
-                  {t('Открыть CHANGELOG', 'Open CHANGELOG')}
-                </a>
-                <a
-                  href="https://github.com/batalovmv/l5r/releases"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm"
-                >
-                  <i className="fa-solid fa-tag mr-2"></i>Releases
+                <Link href="/docs/" className="px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
+                  <i className="fa-solid fa-book mr-2"></i>
+                  {t('Открыть публичные доки', 'Open public docs')}
+                </Link>
+                <a href={ACCESS_REQUEST_URL} target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
+                  <i className="fa-solid fa-lock mr-2"></i>
+                  {t('Запросить доступ', 'Request access')}
                 </a>
               </div>
               <p className="hint-text mt-4">
                 {t(
-                  'Если важен конкретный эндпоинт/поведение — ориентируйтесь на changelog и OpenAPI контракт.',
-                  'For specific endpoints/behavior, rely on the changelog and the OpenAPI contract.'
+                  'Публично: обзор архитектуры, API и подходов. Полный контракт/детали — внутри приватного репозитория.',
+                  'Public: architecture/API overview and approaches. Full contract/details live in the private repo.'
                 )}
               </p>
             </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useLocale } from '@/contexts/LocaleContext'
+import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
 
 export default function Footer() {
   const { locale } = useLocale()
@@ -38,13 +39,22 @@ export default function Footer() {
 
         <div className="flex justify-center gap-4 mb-6">
           <a
-            href="https://github.com/batalovmv/l5r"
+            href={SITE_REPO_URL}
             className="text-gray-400 hover:text-white transition-colors text-2xl"
             aria-label={t('GitHub репозиторий проекта', 'Project GitHub repository')}
             target="_blank"
             rel="noreferrer"
           >
             <i className="fa-brands fa-github"></i>
+          </a>
+          <a
+            href={ACCESS_REQUEST_URL}
+            className="text-gray-400 hover:text-white transition-colors text-2xl"
+            aria-label={t('Запросить доступ к backend', 'Request backend access')}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="fa-solid fa-lock"></i>
           </a>
         </div>
 

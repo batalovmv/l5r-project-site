@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import SectionLinkButton from '@/components/SectionLinkButton'
 import { useLocale } from '@/contexts/LocaleContext'
+import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
 
 type CodeScene = {
   id: string
@@ -82,8 +83,7 @@ export default function CodeShowcase() {
         caption: t('Realtime endpoint задокументирован в OpenAPI.', 'Realtime endpoint is documented in OpenAPI.'),
         icon: 'fa-file-code',
         iconColorClass: 'text-l5r-gold',
-        sourceLabel: 'docs/openapi.yaml',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/docs/openapi.yaml',
+        sourceLabel: t('private repo • OpenAPI', 'private repo • OpenAPI'),
         languageLabel: 'YAML',
         code: [
           '  /api/v1/campaigns/{campaignId}/stream:',
@@ -118,8 +118,7 @@ export default function CodeShowcase() {
         ),
         icon: 'fa-heart-pulse',
         iconColorClass: 'text-success',
-        sourceLabel: 'backend/src/routes/health.routes.ts',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/src/routes/health.routes.ts',
+        sourceLabel: t('private repo • routes', 'private repo • routes'),
         languageLabel: 'TypeScript',
         code: [
           'import { Router } from "express";',
@@ -144,8 +143,7 @@ export default function CodeShowcase() {
         caption: t('Лимиты на API защищают от brute-force и спайков; конфиг контролируемый и предсказуемый.', 'API limits protect against brute-force and spikes; the config is controlled and predictable.'),
         icon: 'fa-shield-halved',
         iconColorClass: 'text-l5r-red',
-        sourceLabel: 'backend/src/middlewares/rateLimit.ts',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/src/middlewares/rateLimit.ts',
+        sourceLabel: t('private repo • middleware', 'private repo • middleware'),
         languageLabel: 'TypeScript',
         code: [
           'import rateLimit from "express-rate-limit";',
@@ -168,8 +166,7 @@ export default function CodeShowcase() {
         ),
         icon: 'fa-tower-broadcast',
         iconColorClass: 'text-tech',
-        sourceLabel: 'backend/tools/realtime-smoke.js',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/tools/realtime-smoke.js',
+        sourceLabel: t('private repo • tools', 'private repo • tools'),
         languageLabel: 'Node.js',
         code: [
           'async function openSse(baseUrl, path, token) {',
@@ -201,8 +198,7 @@ export default function CodeShowcase() {
         caption: t('Интеграционный тест проверяет логику логина и повторного входа.', 'Integration test covers login and repeat login.'),
         icon: 'fa-flask',
         iconColorClass: 'text-success',
-        sourceLabel: 'backend/test/auth.oauth.test.ts',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/test/auth.oauth.test.ts',
+        sourceLabel: t('private repo • tests', 'private repo • tests'),
         languageLabel: 'TypeScript',
         code: [
           'describe("POST /api/v1/auth/oauth/:provider", () => {',
@@ -244,8 +240,7 @@ export default function CodeShowcase() {
         caption: t('Пример доменной модели: users + idempotency keys (96 таблиц в схеме).', 'Example domain model: users + idempotency keys (96 tables).'),
         icon: 'fa-database',
         iconColorClass: 'text-tech',
-        sourceLabel: 'backend/prisma/schema.prisma',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/prisma/schema.prisma',
+        sourceLabel: t('private repo • schema', 'private repo • schema'),
         languageLabel: 'Prisma',
         code: [
           'model User {',
@@ -291,8 +286,7 @@ export default function CodeShowcase() {
         ),
         icon: 'fa-chart-line',
         iconColorClass: 'text-success',
-        sourceLabel: 'backend/src/routes/metrics.routes.ts',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/src/routes/metrics.routes.ts',
+        sourceLabel: t('private repo • metrics', 'private repo • metrics'),
         languageLabel: 'TypeScript',
         code: [
           'export const sseConnectionsByChannel = new Gauge({',
@@ -320,8 +314,7 @@ export default function CodeShowcase() {
         ),
         icon: 'fa-wave-square',
         iconColorClass: 'text-purple-600',
-        sourceLabel: 'backend/src/lib/monitoring/otel.ts',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/src/lib/monitoring/otel.ts',
+        sourceLabel: t('private repo • tracing', 'private repo • tracing'),
         languageLabel: 'TypeScript',
         code: [
           'function resolveExporter() {',
@@ -360,8 +353,7 @@ export default function CodeShowcase() {
         caption: t('Ramping VUs + p95 guardrails по критичным эндпоинтам.', 'Ramping VUs + p95 guardrails for critical endpoints.'),
         icon: 'fa-gauge-high',
         iconColorClass: 'text-l5r-gold',
-        sourceLabel: 'backend/perf/k6/load.js',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/perf/k6/load.js',
+        sourceLabel: t('private repo • perf', 'private repo • perf'),
         languageLabel: 'k6 (JS)',
         code: [
           'export const options = {',
@@ -399,8 +391,7 @@ export default function CodeShowcase() {
         caption: t('Форматирование, линт, OpenAPI checks, тесты с БД и coverage.', 'Formatting, lint, OpenAPI checks, DB tests and coverage.'),
         icon: 'fa-gears',
         iconColorClass: 'text-l5r-red',
-        sourceLabel: '.github/workflows/backend-ci.yml',
-        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/.github/workflows/backend-ci.yml',
+        sourceLabel: t('private repo • CI', 'private repo • CI'),
         languageLabel: 'GitHub Actions',
         code: [
           'jobs:',
@@ -660,13 +651,22 @@ export default function CodeShowcase() {
                             : t('Копировать', 'Copy')}
                       </button>
                       <a
-                        href="https://github.com/batalovmv/l5r"
+                        href={ACCESS_REQUEST_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-3 py-1.5 text-xs font-bold rounded-lg border border-ink/10 bg-white hover:bg-gray-50"
+                      >
+                        <i className="fa-solid fa-lock mr-2"></i>
+                        {t('Доступ к backend', 'Backend access')}
+                      </a>
+                      <a
+                        href={SITE_REPO_URL}
                         target="_blank"
                         rel="noreferrer"
                         className="px-3 py-1.5 text-xs font-bold rounded-lg border border-ink/10 bg-white hover:bg-gray-50"
                       >
                         <i className="fa-brands fa-github mr-2"></i>
-                        {t('Репозиторий', 'Repository')}
+                        {t('Репозиторий сайта', 'Site repo')}
                       </a>
                     </div>
                   </div>

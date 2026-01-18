@@ -2,6 +2,7 @@
 
 import SectionLinkButton from '@/components/SectionLinkButton'
 import { useLocale } from '@/contexts/LocaleContext'
+import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
 
 const DELIVERABLES = {
   ru: [
@@ -108,15 +109,26 @@ export default function DesignBrief() {
                   'lock the visual style and UX flow → then build the RN UI fast with minimal rework.'
                 )}
               </div>
-              <a
-                href="https://github.com/batalovmv/l5r"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm"
-              >
-                <i className="fa-brands fa-github"></i>
-                {t('Исходники', 'Source')}
-              </a>
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href={ACCESS_REQUEST_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm"
+                >
+                  <i className="fa-solid fa-lock"></i>
+                  {t('Доступ к backend', 'Backend access')}
+                </a>
+                <a
+                  href={SITE_REPO_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm"
+                >
+                  <i className="fa-brands fa-github"></i>
+                  {t('Репозиторий сайта', 'Site repo')}
+                </a>
+              </div>
             </div>
           </div>
         </div>

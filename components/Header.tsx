@@ -1,11 +1,14 @@
 'use client'
 
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useHints } from '@/contexts/HintsContext'
 import { useTheme } from '@/contexts/ThemeContext'
 import { useLocale } from '@/contexts/LocaleContext'
+import { SITE_REPO_URL } from '@/lib/links'
 
-const NAV_ITEMS = [
+const HOME_NAV_ITEMS = [
   { id: 'progress', label: { ru: 'ПРОГРЕСС', en: 'PROGRESS' } },
   { id: 'updates', label: { ru: 'ОБНОВЛЕНИЯ', en: 'UPDATES' } },
   { id: 'design', label: { ru: 'ДИЗАЙН', en: 'DESIGN' } },
@@ -17,19 +20,31 @@ const NAV_ITEMS = [
   { id: 'roadmap', label: { ru: 'ПЛАН', en: 'ROADMAP' } },
 ] as const
 
+const DOC_NAV_ITEMS = [
+  { href: '/', label: { ru: 'ГЛАВНАЯ', en: 'HOME' } },
+  { href: '/docs/', label: { ru: 'ДОКИ', en: 'DOCS' } },
+  { href: '/docs/architecture/', label: { ru: 'АРХИТЕКТУРА', en: 'ARCH' } },
+  { href: '/docs/api/', label: { ru: 'API', en: 'API' } },
+  { href: '/docs/security/', label: { ru: 'SECURITY', en: 'SECURITY' } },
+  { href: '/docs/ops/', label: { ru: 'OPS', en: 'OPS' } },
+] as const
+
 export default function Header() {
+  const pathname = usePathname()
+  const pathnameKey = (pathname ?? '').replace(/\/$/, '')
+  const isDocs = pathnameKey.startsWith('/docs')
   const { hintsActive, toggleHints } = useHints()
   const { theme, toggleTheme } = useTheme()
   const { locale, setLocale } = useLocale()
   const [menuOpen, setMenuOpen] = useState(false)
-  const [activeSectionId, setActiveSectionId] = useState<(typeof NAV_ITEMS)[number]['id']>('progress')
+  const [activeSectionId, setActiveSectionId] = useState<(typeof HOME_NAV_ITEMS)[number]['id']>('progress')
 
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault()
     setMenuOpen(false)
-    setActiveSectionId(targetId as (typeof NAV_ITEMS)[number]['id'])
+    setActiveSectionId(targetId as (typeof HOME_NAV_ITEMS)[number]['id'])
     const element = document.getElementById(targetId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -38,15 +53,16 @@ export default function Header() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return
+    if (isDocs) return
 
     let raf = 0
 
     const updateActive = () => {
       raf = 0
       const y = window.scrollY + 140
-      let current: (typeof NAV_ITEMS)[number]['id'] | null = null
+      let current: (typeof HOME_NAV_ITEMS)[number]['id'] | null = null
 
-      for (const item of NAV_ITEMS) {
+      for (const item of HOME_NAV_ITEMS) {
         const el = document.getElementById(item.id)
         if (!el) continue
         if (el.offsetTop <= y) current = item.id
@@ -69,7 +85,7 @@ export default function Header() {
       window.removeEventListener('resize', onScroll)
       if (raf) window.cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [isDocs])
 
   return (
     <>
@@ -134,7 +150,7 @@ export default function Header() {
               <span className="hidden sm:inline">{t('Подсказки', 'Hints')}</span>
             </button>
             <a
-              href="https://github.com/batalovmv/l5r"
+              href={SITE_REPO_URL}
               className="text-gray-400 hover:text-white"
               aria-label={t('GitHub репозиторий проекта', 'Project GitHub repository')}
               target="_blank"
@@ -171,17 +187,32 @@ export default function Header() {
           </button>
 
           <div className="hidden md:flex space-x-6 font-header text-sm font-bold tracking-widest text-ink/80">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => handleNavClick(e, item.id)}
-                aria-current={activeSectionId === item.id ? 'page' : undefined}
-                className={`nav-link ${activeSectionId === item.id ? 'nav-link-active' : ''}`}
-              >
-                {item.label[locale]}
-              </a>
-            ))}
+            {isDocs
+              ? DOC_NAV_ITEMS.map((item) => {
+                  const active = pathnameKey === item.href.replace(/\/$/, '')
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      aria-current={active ? 'page' : undefined}
+                      className={`nav-link ${active ? 'nav-link-active' : ''}`}
+                    >
+                      {item.label[locale]}
+                    </Link>
+                  )
+                })
+              : HOME_NAV_ITEMS.map((item) => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={(e) => handleNavClick(e, item.id)}
+                    aria-current={activeSectionId === item.id ? 'page' : undefined}
+                    className={`nav-link ${activeSectionId === item.id ? 'nav-link-active' : ''}`}
+                  >
+                    {item.label[locale]}
+                  </a>
+                ))}
           </div>
 
           <button
@@ -204,24 +235,43 @@ export default function Header() {
         >
           <div className="container mx-auto px-4 pb-4">
             <div className="pt-2 border-t border-ink/10 grid gap-2">
-              {NAV_ITEMS.map((item) => {
-                const active = activeSectionId === item.id
-                return (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={(e) => handleNavClick(e, item.id)}
-                  aria-current={active ? 'page' : undefined}
-                  className={`px-4 py-3 rounded-xl bg-white/70 border font-header text-sm font-bold tracking-widest transition-colors ${
-                    active
-                      ? 'border-l5r-red/30 text-l5r-red bg-l5r-red/5'
-                      : 'border-ink/10 text-ink/80 hover:text-l5r-red hover:border-l5r-red/20'
-                  }`}
-                >
-                  {item.label[locale]}
-                </a>
-                )
-              })}
+              {isDocs
+                ? DOC_NAV_ITEMS.map((item) => {
+                    const active = pathnameKey === item.href.replace(/\/$/, '')
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        aria-current={active ? 'page' : undefined}
+                        className={`px-4 py-3 rounded-xl bg-white/70 border font-header text-sm font-bold tracking-widest transition-colors ${
+                          active
+                            ? 'border-l5r-red/30 text-l5r-red bg-l5r-red/5'
+                            : 'border-ink/10 text-ink/80 hover:text-l5r-red hover:border-l5r-red/20'
+                        }`}
+                      >
+                        {item.label[locale]}
+                      </Link>
+                    )
+                  })
+                : HOME_NAV_ITEMS.map((item) => {
+                    const active = activeSectionId === item.id
+                    return (
+                      <a
+                        key={item.id}
+                        href={`#${item.id}`}
+                        onClick={(e) => handleNavClick(e, item.id)}
+                        aria-current={active ? 'page' : undefined}
+                        className={`px-4 py-3 rounded-xl bg-white/70 border font-header text-sm font-bold tracking-widest transition-colors ${
+                          active
+                            ? 'border-l5r-red/30 text-l5r-red bg-l5r-red/5'
+                            : 'border-ink/10 text-ink/80 hover:text-l5r-red hover:border-l5r-red/20'
+                        }`}
+                      >
+                        {item.label[locale]}
+                      </a>
+                    )
+                  })}
             </div>
           </div>
         </div>
