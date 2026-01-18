@@ -1,3 +1,5 @@
+import SectionLinkButton from '@/components/SectionLinkButton'
+
 export default function Roadmap() {
   const phases = [
     {
@@ -95,7 +97,10 @@ export default function Roadmap() {
       <div className="kanji-watermark text-[25rem] top-20 -left-20 text-l5r-red opacity-[0.03]">時</div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16" data-reveal>
-          <h3 className="section-title mb-4">План Развития</h3>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <h3 className="section-title mb-0">План Развития</h3>
+            <SectionLinkButton targetId="roadmap" />
+          </div>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="hint-text max-w-xl mx-auto mt-4">
             Backend готов. Сейчас нужен дизайн — фронтенд стартует по готовым макетам.

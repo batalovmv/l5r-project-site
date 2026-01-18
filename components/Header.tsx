@@ -1,30 +1,68 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useHints } from '@/contexts/HintsContext'
+
+const NAV_ITEMS = [
+  { id: 'progress', label: 'ПРОГРЕСС' },
+  { id: 'features', label: 'ФУНКЦИИ' },
+  { id: 'achievements', label: 'ДОСТИЖЕНИЯ' },
+  { id: 'code', label: 'КОД' },
+  { id: 'docs', label: 'ДОКИ' },
+  { id: 'demo', label: 'КЛАНЫ' },
+  { id: 'tech', label: 'СТЕК' },
+  { id: 'roadmap', label: 'ПЛАН' },
+] as const
 
 export default function Header() {
   const { hintsActive, toggleHints } = useHints()
   const [menuOpen, setMenuOpen] = useState(false)
-
-  const navItems = [
-    { id: 'progress', label: 'ПРОГРЕСС' },
-    { id: 'features', label: 'ФУНКЦИИ' },
-    { id: 'achievements', label: 'ДОСТИЖЕНИЯ' },
-    { id: 'code', label: 'КОД' },
-    { id: 'demo', label: 'КЛАНЫ' },
-    { id: 'tech', label: 'СТЕК' },
-    { id: 'roadmap', label: 'ПЛАН' },
-  ] as const
+  const [activeSectionId, setActiveSectionId] = useState<(typeof NAV_ITEMS)[number]['id']>('progress')
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault()
     setMenuOpen(false)
+    setActiveSectionId(targetId as (typeof NAV_ITEMS)[number]['id'])
     const element = document.getElementById(targetId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    let raf = 0
+
+    const updateActive = () => {
+      raf = 0
+      const y = window.scrollY + 140
+      let current: (typeof NAV_ITEMS)[number]['id'] | null = null
+
+      for (const item of NAV_ITEMS) {
+        const el = document.getElementById(item.id)
+        if (!el) continue
+        if (el.offsetTop <= y) current = item.id
+      }
+
+      if (current) setActiveSectionId(current)
+    }
+
+    const onScroll = () => {
+      if (raf) return
+      raf = window.requestAnimationFrame(updateActive)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    updateActive()
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (raf) window.cancelAnimationFrame(raf)
+    }
+  }, [])
 
   return (
     <>
@@ -79,10 +117,15 @@ export default function Header() {
       </div>
 
       {/* MAIN HEADER */}
-      <nav className="sticky top-0 z-40 bg-paper/95 backdrop-blur-sm border-b border-ink/10 shadow-lg select-none">
+      <nav
+        className="sticky top-0 z-40 bg-paper/95 backdrop-blur-sm border-b border-ink/10 shadow-lg select-none"
+        aria-label="Навигация по странице"
+      >
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-          <div 
-            className="flex items-center gap-3 cursor-pointer group"
+          <button
+            type="button"
+            className="flex items-center gap-3 cursor-pointer group text-left"
+            aria-label="На верх страницы"
             onClick={() => {
               setMenuOpen(false)
               window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -95,15 +138,16 @@ export default function Header() {
               <h1 className="font-header text-xl font-bold text-ink uppercase tracking-widest">Project Rokugan</h1>
               <p className="text-xs text-l5r-red font-bold uppercase tracking-wider">L5R 5e Digital Companion</p>
             </div>
-          </div>
+          </button>
 
           <div className="hidden md:flex space-x-6 font-header text-sm font-bold tracking-widest text-ink/80">
-            {navItems.map((item) => (
+            {NAV_ITEMS.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={(e) => handleNavClick(e, item.id)}
-                className="hover:text-l5r-red cursor-pointer"
+                aria-current={activeSectionId === item.id ? 'page' : undefined}
+                className={`nav-link ${activeSectionId === item.id ? 'nav-link-active' : ''}`}
               >
                 {item.label}
               </a>
@@ -130,16 +174,24 @@ export default function Header() {
         >
           <div className="container mx-auto px-4 pb-4">
             <div className="pt-2 border-t border-ink/10 grid gap-2">
-              {navItems.map((item) => (
+              {NAV_ITEMS.map((item) => {
+                const active = activeSectionId === item.id
+                return (
                 <a
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={(e) => handleNavClick(e, item.id)}
-                  className="px-4 py-3 rounded-xl bg-white/70 border border-ink/10 font-header text-sm font-bold tracking-widest text-ink/80 hover:text-l5r-red hover:border-l5r-red/20"
+                  aria-current={active ? 'page' : undefined}
+                  className={`px-4 py-3 rounded-xl bg-white/70 border font-header text-sm font-bold tracking-widest transition-colors ${
+                    active
+                      ? 'border-l5r-red/30 text-l5r-red bg-l5r-red/5'
+                      : 'border-ink/10 text-ink/80 hover:text-l5r-red hover:border-l5r-red/20'
+                  }`}
                 >
                   {item.label}
                 </a>
-              ))}
+                )
+              })}
             </div>
           </div>
         </div>

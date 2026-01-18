@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import SectionLinkButton from '@/components/SectionLinkButton'
 
 type CodeScene = {
   id: string
@@ -484,7 +485,10 @@ export default function CodeShowcase() {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12" data-reveal>
-            <h3 className="section-title mb-2">Техническая витрина</h3>
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <h3 className="section-title mb-0">Техническая витрина</h3>
+              <SectionLinkButton targetId="code" />
+            </div>
             <div className="section-divider mx-auto mb-4"></div>
             <p className="section-subtitle mx-auto">
               Вместо скриншотов — живые фрагменты из backend репозитория: контракт API, realtime, тесты, CI, нагрузка и мониторинг.

@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { HintsProvider } from '@/contexts/HintsContext'
 import ScrollEffects from '@/components/ScrollEffects'
+import BackToTop from '@/components/BackToTop'
+
+const SITE_URL = 'https://batalovmv.github.io/l5r-project-site/'
 
 export const metadata: Metadata = {
   title: 'L5R Project Hub - Legend of the Five Rings Digital Companion',
@@ -9,10 +12,33 @@ export const metadata: Metadata = {
     'Project hub: backend готов, мобильное приложение для онлайн-сессий по Legend of the Five Rings 5th Edition — в разработке',
   keywords: ['L5R', 'Legend of the Five Rings', 'TTRPG', 'React Native', 'Node.js'],
   authors: [{ name: 'batalovmv' }],
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: SITE_URL,
+  },
+  icons: {
+    icon: 'favicon.svg',
+  },
   openGraph: {
     title: 'L5R Project Hub',
     description: 'Full-stack проект: production-ready backend + мобильное приложение (в разработке) для L5R 5e',
     type: 'website',
+    url: SITE_URL,
+    siteName: 'Project Rokugan',
+    images: [
+      {
+        url: 'og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Project Rokugan — L5R Project Hub',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'L5R Project Hub',
+    description: 'Full-stack проект: production-ready backend + мобильное приложение (в разработке) для L5R 5e',
+    images: ['og.png'],
   },
 }
 
@@ -24,6 +50,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Noto+Serif+JP:wght@300;700&family=Fira+Code:wght@400;600&display=swap"
           rel="stylesheet"
@@ -34,9 +63,13 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+        <a className="skip-link" href="#main">
+          К содержимому
+        </a>
         <HintsProvider>
           {children}
           <ScrollEffects />
+          <BackToTop />
         </HintsProvider>
       </body>
     </html>

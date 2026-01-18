@@ -52,6 +52,25 @@ h1, h2, h3, h4, h5, h6, .font-header {
   outline-offset: 3px;
 }
 
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #2b2b2b;
+  color: #f9f7f0;
+  border: 2px solid rgba(197, 160, 89, 0.9);
+  transform: translateY(-220%);
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 /* ===== SMOOTH TRANSITIONS ===== */
 * {
   transition-property: color, background-color, border-color, opacity, transform;
@@ -382,6 +401,61 @@ section {
   @apply bg-white;
 }
 
+/* ===== NAV LINKS ===== */
+.nav-link {
+  @apply relative cursor-pointer;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #C5A059, #8E1818);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 260ms ease-out;
+}
+
+.nav-link:hover {
+  @apply text-l5r-red;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.nav-link-active {
+  @apply text-l5r-red;
+}
+
+.nav-link-active::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* ===== SECTION LINK BUTTON ===== */
+.section-link-btn {
+  @apply inline-flex items-center justify-center w-9 h-9 rounded-full border border-ink/10 bg-white/70 text-ink/60 shadow-sm;
+}
+
+.section-link-btn:hover {
+  @apply text-l5r-red border-l5r-red/20 bg-white;
+}
+
+.section-link-btn.is-copied {
+  @apply text-success border-success/30 bg-success/10;
+}
+
+.section-link-btn.is-error {
+  @apply text-l5r-red border-l5r-red/30 bg-l5r-red/5;
+}
+
 /* ===== TYPOGRAPHY HELPERS ===== */
 .section-title {
   @apply font-header text-3xl md:text-4xl font-bold text-ink uppercase tracking-widest;
@@ -437,4 +511,36 @@ section {
 
 .btn-ghost {
   @apply bg-transparent text-ink border border-ink/10 hover:bg-white/60;
+}
+
+/* ===== BACK TO TOP ===== */
+.back-to-top {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  border: 1px solid rgba(43, 43, 43, 0.14);
+  background: rgba(255, 255, 255, 0.78);
+  color: rgba(43, 43, 43, 0.7);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  pointer-events: none;
+  transition-duration: 240ms;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  color: rgba(142, 24, 24, 0.95);
+  border-color: rgba(142, 24, 24, 0.22);
+  background: rgba(255, 255, 255, 0.92);
+  transform: translateY(-2px) scale(1);
 }

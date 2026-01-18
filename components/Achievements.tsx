@@ -1,3 +1,5 @@
+import SectionLinkButton from '@/components/SectionLinkButton'
+
 export default function Achievements() {
   const stats = [
     { value: '122', label: 'API Operations', sub: 'REST + OpenAPI', hint: 'Контракт, документация и типы генерируются из OpenAPI' },
@@ -50,7 +52,10 @@ export default function Achievements() {
     <section id="achievements" className="py-16 bg-white border-b border-ink/10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12" data-reveal>
-          <h3 className="section-title mb-2">Достижения (что уже сделано)</h3>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <h3 className="section-title mb-0">Достижения (что уже сделано)</h3>
+            <SectionLinkButton targetId="achievements" />
+          </div>
           <div className="section-divider mx-auto mb-4"></div>
         </div>
 

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js'
 import { Radar } from 'react-chartjs-2'
+import SectionLinkButton from '@/components/SectionLinkButton'
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend)
 
@@ -66,7 +67,10 @@ export default function ClansDemo() {
     <section id="demo" className="py-20 bg-white border-y border-ink/10 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12" data-reveal>
-          <h3 className="section-title mb-2">Великие Кланы</h3>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <h3 className="section-title mb-0">Великие Кланы</h3>
+            <SectionLinkButton targetId="demo" />
+          </div>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="section-subtitle mx-auto">Интерактивная демонстрация модели данных (пример)</p>
         </div>

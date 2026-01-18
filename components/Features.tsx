@@ -1,9 +1,14 @@
+import SectionLinkButton from '@/components/SectionLinkButton'
+
 export default function Features() {
   return (
     <section id="features" className="py-20 bg-paper-dark border-b border-ink/10 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16" data-reveal>
-          <h3 className="section-title mb-4">Функциональность (backend)</h3>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <h3 className="section-title mb-0">Функциональность (backend)</h3>
+            <SectionLinkButton targetId="features" />
+          </div>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="section-subtitle mx-auto">
             Доменная логика и API уже реализованы; интерфейс появится после UI/UX дизайна

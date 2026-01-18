@@ -1,3 +1,5 @@
+import SectionLinkButton from '@/components/SectionLinkButton'
+
 export default function TechStack() {
   const backend = [
     { icon: 'fa-node-js', name: 'Node.js 20+', color: 'text-green-600', brand: true },
@@ -33,7 +35,10 @@ export default function TechStack() {
     <section id="tech" className="py-16 bg-paper-dark border-b border-ink/10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12" data-reveal>
-          <h3 className="section-title mb-2">Технологический Стек</h3>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <h3 className="section-title mb-0">Технологический Стек</h3>
+            <SectionLinkButton targetId="tech" />
+          </div>
           <div className="section-divider mx-auto mb-4"></div>
         </div>
 

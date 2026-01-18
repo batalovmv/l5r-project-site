@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://batalovmv.github.io/l5r-project-site/sitemap.xml
