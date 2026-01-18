@@ -3,10 +3,18 @@
 import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL } from '@/lib/links'
+import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
 
 export default function SecurityDocPage() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+
+  const toc: DocsTocItem[] = [
+    { id: 'validation', icon: 'fa-circle-check', label: { ru: 'Валидация', en: 'Validation' } },
+    { id: 'access', icon: 'fa-user-shield', label: { ru: 'Доступ', en: 'Access control' } },
+    { id: 'limits', icon: 'fa-gauge-high', label: { ru: 'Ограничения', en: 'Rate limits' } },
+    { id: 'observability', icon: 'fa-eye', label: { ru: 'Наблюдаемость', en: 'Observability' } },
+  ]
 
   return (
     <>
@@ -31,50 +39,54 @@ export default function SecurityDocPage() {
 
       <section className="py-16 bg-white border-b border-ink/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-            <div className="card p-6" data-reveal>
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-circle-check text-success mr-2"></i>
-                {t('Валидация', 'Validation')}
-              </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('Схемы для входных данных и понятные ошибки', 'Schema-based input validation and clear errors')}</li>
-                <li>• {t('Запрет “молчаливых” типов и неожиданных полей', 'No silent typing or unexpected fields')}</li>
-              </ul>
-            </div>
+          <div className="max-w-5xl mx-auto">
+            <DocsShell toc={toc}>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div id="validation" className="card p-6" data-reveal>
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-circle-check text-success mr-2"></i>
+                    {t('Валидация', 'Validation')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('Схемы для входных данных и понятные ошибки', 'Schema-based input validation and clear errors')}</li>
+                    <li>• {t('Запрет “молчаливых” типов и неожиданных полей', 'No silent typing or unexpected fields')}</li>
+                  </ul>
+                </div>
 
-            <div className="card p-6" data-reveal data-reveal-delay="90">
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-user-shield text-l5r-red mr-2"></i>
-                {t('Доступ', 'Access control')}
-              </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('Проверки владения данными (IDOR protection)', 'Ownership checks (IDOR protection)')}</li>
-                <li>• {t('Роли GM/Player в кампании и сценах', 'GM/Player roles for campaigns and scenes')}</li>
-              </ul>
-            </div>
+                <div id="access" className="card p-6" data-reveal data-reveal-delay="90">
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-user-shield text-l5r-red mr-2"></i>
+                    {t('Доступ', 'Access control')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('Проверки владения данными (IDOR protection)', 'Ownership checks (IDOR protection)')}</li>
+                    <li>• {t('Роли GM/Player в кампании и сценах', 'GM/Player roles for campaigns and scenes')}</li>
+                  </ul>
+                </div>
 
-            <div className="card p-6" data-reveal>
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-gauge-high text-tech mr-2"></i>
-                {t('Ограничения', 'Rate limits')}
-              </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('Лимиты на API против brute-force и спайков', 'API rate limits against brute-force and spikes')}</li>
-                <li>• {t('Предсказуемые политики и безопасные дефолты', 'Predictable policies and safe defaults')}</li>
-              </ul>
-            </div>
+                <div id="limits" className="card p-6" data-reveal>
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-gauge-high text-tech mr-2"></i>
+                    {t('Ограничения', 'Rate limits')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('Лимиты на API против brute-force и спайков', 'API rate limits against brute-force and spikes')}</li>
+                    <li>• {t('Предсказуемые политики и безопасные дефолты', 'Predictable policies and safe defaults')}</li>
+                  </ul>
+                </div>
 
-            <div className="card p-6" data-reveal data-reveal-delay="90">
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-eye text-l5r-gold mr-2"></i>
-                {t('Наблюдаемость', 'Observability')}
+                <div id="observability" className="card p-6" data-reveal data-reveal-delay="90">
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-eye text-l5r-gold mr-2"></i>
+                    {t('Наблюдаемость', 'Observability')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('Метрики/трейсы/логи без утечки секретов', 'Metrics/traces/logs without leaking secrets')}</li>
+                    <li>• {t('Ограничение доступа к диагностике в production', 'Restricted access to diagnostics in production')}</li>
+                  </ul>
+                </div>
               </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('Метрики/трейсы/логи без утечки секретов', 'Metrics/traces/logs without leaking secrets')}</li>
-                <li>• {t('Ограничение доступа к диагностике в production', 'Restricted access to diagnostics in production')}</li>
-              </ul>
-            </div>
+            </DocsShell>
           </div>
 
           <div className="max-w-5xl mx-auto mt-8 card-soft p-6" data-reveal data-reveal-delay="180">

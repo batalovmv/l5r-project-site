@@ -56,6 +56,158 @@ html.reveal-ready [data-reveal].reveal-in {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ===== DOCS SHELL / TOC ===== */
+.docs-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+.docs-shell__mobile {
+  display: block;
+}
+
+.docs-shell__details {
+  border: 1px solid rgba(43, 43, 43, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.docs-shell__summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 14px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(43, 43, 43, 0.75);
+}
+
+.docs-shell__summary::-webkit-details-marker {
+  display: none;
+}
+
+.docs-shell__list {
+  padding: 10px 12px 12px;
+  display: grid;
+  gap: 8px;
+  border-top: 1px solid rgba(43, 43, 43, 0.08);
+}
+
+.docs-shell__link {
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(43, 43, 43, 0.1);
+  background: rgba(255, 255, 255, 0.7);
+  font-weight: 800;
+  color: rgba(43, 43, 43, 0.8);
+}
+
+.docs-shell__link:hover {
+  border-color: rgba(142, 24, 24, 0.22);
+  color: rgba(142, 24, 24, 0.95);
+}
+
+.docs-shell__toc {
+  display: none;
+}
+
+.docs-shell__tocCard {
+  position: sticky;
+  top: 104px;
+  border: 1px solid rgba(43, 43, 43, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(10px);
+  padding: 14px;
+}
+
+.docs-shell__tocTitle {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(43, 43, 43, 0.55);
+  margin-bottom: 10px;
+}
+
+.docs-shell__tocLinks {
+  display: grid;
+  gap: 8px;
+}
+
+.docs-shell__tocLink {
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(43, 43, 43, 0.1);
+  background: rgba(255, 255, 255, 0.7);
+  font-weight: 800;
+  color: rgba(43, 43, 43, 0.78);
+  transition-duration: 180ms;
+}
+
+.docs-shell__tocLink:hover {
+  border-color: rgba(142, 24, 24, 0.22);
+  color: rgba(142, 24, 24, 0.95);
+}
+
+.docs-shell__tocLink.is-active {
+  border-color: rgba(142, 24, 24, 0.22);
+  background: rgba(142, 24, 24, 0.06);
+  color: rgba(142, 24, 24, 0.95);
+}
+
+.dark .docs-shell__details,
+.dark .docs-shell__tocCard {
+  border-color: rgba(231, 231, 231, 0.14);
+  background: rgba(15, 21, 32, 0.65);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
+}
+
+.dark .docs-shell__summary,
+.dark .docs-shell__tocTitle {
+  color: rgba(231, 231, 231, 0.7);
+}
+
+.dark .docs-shell__list {
+  border-top-color: rgba(231, 231, 231, 0.1);
+}
+
+.dark .docs-shell__link,
+.dark .docs-shell__tocLink {
+  border-color: rgba(231, 231, 231, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(231, 231, 231, 0.78);
+}
+
+.dark .docs-shell__tocLink.is-active {
+  background: rgba(197, 160, 89, 0.1);
+  border-color: rgba(197, 160, 89, 0.22);
+  color: rgba(197, 160, 89, 0.95);
+}
+
+@media (min-width: 1024px) {
+  .docs-shell {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 28px;
+    align-items: start;
+  }
+  .docs-shell__mobile {
+    display: none;
+  }
+  .docs-shell__toc {
+    display: block;
+  }
+}
+
 /* ===== DARK OVERRIDES (COMMON TAILWIND UTILITIES) ===== */
 .dark .bg-white { background-color: #0f1520 !important; }
 .dark .bg-paper { background-color: #0b0f14 !important; }
@@ -150,11 +302,76 @@ h1, h2, h3, h4, h5, h6, .font-header {
   transform: translateY(0);
 }
 
+/* ===== SCROLL CUE ===== */
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(43, 43, 43, 0.12);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.scroll-cue__label {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(43, 43, 43, 0.62);
+}
+
+.scroll-cue__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  background: rgba(142, 24, 24, 0.1);
+  border: 1px solid rgba(142, 24, 24, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(142, 24, 24, 0.9);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue__icon {
+    animation: scrollCueBounce 1400ms cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  }
+}
+
+@keyframes scrollCueBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+.dark .scroll-cue {
+  border-color: rgba(231, 231, 231, 0.14);
+  background: rgba(15, 21, 32, 0.65);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+}
+
+.dark .scroll-cue__label {
+  color: rgba(231, 231, 231, 0.62);
+}
+
+.dark .scroll-cue__icon {
+  background: rgba(197, 160, 89, 0.12);
+  border-color: rgba(197, 160, 89, 0.2);
+  color: rgba(197, 160, 89, 0.95);
+}
+
 /* ===== SMOOTH TRANSITIONS ===== */
 * {
   transition-property: color, background-color, border-color, opacity, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+html.theme-switching * {
+  transition-duration: 220ms !important;
 }
 
 section {
@@ -675,6 +892,52 @@ section {
 
 .section-link-btn.is-error {
   @apply text-l5r-red border-l5r-red/30 bg-l5r-red/5;
+}
+
+/* ===== COPY TOAST (CODE SHOWCASE) ===== */
+.copy-toast {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(43, 43, 43, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(43, 43, 43, 0.82);
+  transform: translateY(-6px);
+  opacity: 0;
+  pointer-events: none;
+  animation: toastInOut 1200ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  z-index: 20;
+}
+
+.copy-toast.is-ok {
+  border-color: rgba(5, 150, 105, 0.28);
+}
+
+.copy-toast.is-err {
+  border-color: rgba(142, 24, 24, 0.28);
+}
+
+.dark .copy-toast {
+  border-color: rgba(231, 231, 231, 0.16);
+  background: rgba(15, 21, 32, 0.8);
+  color: rgba(231, 231, 231, 0.8);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.36);
+}
+
+@keyframes toastInOut {
+  0% { opacity: 0; transform: translateY(-6px); }
+  18% { opacity: 1; transform: translateY(0); }
+  70% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
 }
 
 /* ===== GH BADGES ===== */

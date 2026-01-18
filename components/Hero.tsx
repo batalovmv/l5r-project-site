@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
+import ScrollCue from '@/components/ScrollCue'
 
 export default function Hero() {
   const { locale } = useLocale()
@@ -123,6 +124,9 @@ export default function Hero() {
             {t('Ветераны', 'Veterans')}
           </span>
         </div>
+      </div>
+      <div className="relative z-10 mt-10" data-reveal data-reveal-delay="200">
+        <ScrollCue />
       </div>
     </section>
   )

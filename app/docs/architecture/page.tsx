@@ -3,10 +3,18 @@
 import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL } from '@/lib/links'
+import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
 
 export default function ArchitectureDocPage() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+
+  const toc: DocsTocItem[] = [
+    { id: 'layers', icon: 'fa-layer-group', label: { ru: 'Слои и границы', en: 'Layers & boundaries' } },
+    { id: 'realtime', icon: 'fa-tower-broadcast', label: { ru: 'Realtime', en: 'Realtime' } },
+    { id: 'data', icon: 'fa-database', label: { ru: 'Данные и модель', en: 'Data & model' } },
+    { id: 'observability', icon: 'fa-chart-line', label: { ru: 'Наблюдаемость', en: 'Observability' } },
+  ]
 
   return (
     <>
@@ -31,54 +39,58 @@ export default function ArchitectureDocPage() {
 
       <section className="py-16 bg-white border-b border-ink/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-            <div className="card p-6" data-reveal>
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-layer-group text-l5r-red mr-2"></i>
-                {t('Слои и границы', 'Layers & boundaries')}
-              </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('Routes → Controllers → Services → Repositories', 'Routes → Controllers → Services → Repositories')}</li>
-                <li>• {t('Бизнес-логика в сервисах, доступ к данным изолирован', 'Business logic in services, data access isolated')}</li>
-                <li>• {t('Валидация входа и единый формат ошибок', 'Input validation and a consistent error envelope')}</li>
-              </ul>
-            </div>
+          <div className="max-w-5xl mx-auto">
+            <DocsShell toc={toc}>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div id="layers" className="card p-6" data-reveal>
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-layer-group text-l5r-red mr-2"></i>
+                    {t('Слои и границы', 'Layers & boundaries')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('Routes → Controllers → Services → Repositories', 'Routes → Controllers → Services → Repositories')}</li>
+                    <li>• {t('Бизнес-логика в сервисах, доступ к данным изолирован', 'Business logic in services, data access isolated')}</li>
+                    <li>• {t('Валидация входа и единый формат ошибок', 'Input validation and a consistent error envelope')}</li>
+                  </ul>
+                </div>
 
-            <div className="card p-6" data-reveal data-reveal-delay="90">
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-tower-broadcast text-tech mr-2"></i>
-                {t('Realtime', 'Realtime')}
-              </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('SSE для клиентов', 'SSE for clients')}</li>
-                <li>• {t('Pub/Sub шина для multi-instance доставки', 'Pub/Sub bus for multi-instance delivery')}</li>
-                <li>• {t('События сцены/кампании как “event stream”', 'Scene/campaign events as an “event stream”')}</li>
-              </ul>
-            </div>
+                <div id="realtime" className="card p-6" data-reveal data-reveal-delay="90">
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-tower-broadcast text-tech mr-2"></i>
+                    {t('Realtime', 'Realtime')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('SSE для клиентов', 'SSE for clients')}</li>
+                    <li>• {t('Pub/Sub шина для multi-instance доставки', 'Pub/Sub bus for multi-instance delivery')}</li>
+                    <li>• {t('События сцены/кампании как “event stream”', 'Scene/campaign events as an “event stream”')}</li>
+                  </ul>
+                </div>
 
-            <div className="card p-6" data-reveal>
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-database text-success mr-2"></i>
-                {t('Данные и модель', 'Data & model')}
-              </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('PostgreSQL + Prisma ORM', 'PostgreSQL + Prisma ORM')}</li>
-                <li>• {t('Сложная доменная схема под L5R 5e', 'A rich domain schema for L5R 5e')}</li>
-                <li>• {t('Идемпотентность для критичных операций', 'Idempotency for critical operations')}</li>
-              </ul>
-            </div>
+                <div id="data" className="card p-6" data-reveal>
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-database text-success mr-2"></i>
+                    {t('Данные и модель', 'Data & model')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('PostgreSQL + Prisma ORM', 'PostgreSQL + Prisma ORM')}</li>
+                    <li>• {t('Сложная доменная схема под L5R 5e', 'A rich domain schema for L5R 5e')}</li>
+                    <li>• {t('Идемпотентность для критичных операций', 'Idempotency for critical operations')}</li>
+                  </ul>
+                </div>
 
-            <div className="card p-6" data-reveal data-reveal-delay="90">
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
-                {t('Наблюдаемость', 'Observability')}
+                <div id="observability" className="card p-6" data-reveal data-reveal-delay="90">
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
+                    {t('Наблюдаемость', 'Observability')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('Метрики и health/ready эндпоинты', 'Metrics and health/ready endpoints')}</li>
+                    <li>• {t('Трассировка (OpenTelemetry)', 'Tracing (OpenTelemetry)')}</li>
+                    <li>• {t('Логи с корреляцией (request id)', 'Correlated logs (request id)')}</li>
+                  </ul>
+                </div>
               </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('Метрики и health/ready эндпоинты', 'Metrics and health/ready endpoints')}</li>
-                <li>• {t('Трассировка (OpenTelemetry)', 'Tracing (OpenTelemetry)')}</li>
-                <li>• {t('Логи с корреляцией (request id)', 'Correlated logs (request id)')}</li>
-              </ul>
-            </div>
+            </DocsShell>
           </div>
 
           <div className="max-w-5xl mx-auto mt-8 card-soft p-6" data-reveal data-reveal-delay="180">

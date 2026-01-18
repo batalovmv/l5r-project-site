@@ -641,18 +641,22 @@ export default function CodeShowcase() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        className="px-3 py-1.5 text-xs font-bold rounded-lg border border-ink/10 bg-white hover:bg-gray-50"
-                        onClick={handleCopy}
-                      >
-                        <i className="fa-solid fa-copy mr-2"></i>
-                        {copyState === 'copied'
-                          ? t('Скопировано', 'Copied')
-                          : copyState === 'error'
-                            ? t('Ошибка', 'Error')
-                            : t('Копировать', 'Copy')}
-                      </button>
+                      <div className="relative">
+                        <button
+                          type="button"
+                          className="px-3 py-1.5 text-xs font-bold rounded-lg border border-ink/10 bg-white hover:bg-gray-50"
+                          onClick={handleCopy}
+                        >
+                          <i className="fa-solid fa-copy mr-2"></i>
+                          {t('Копировать', 'Copy')}
+                        </button>
+                        {copyState !== 'idle' ? (
+                          <div className={`copy-toast ${copyState === 'copied' ? 'is-ok' : 'is-err'}`} role="status" aria-live="polite">
+                            <i className={`fa-solid ${copyState === 'copied' ? 'fa-check' : 'fa-triangle-exclamation'}`}></i>
+                            <span>{copyState === 'copied' ? t('Скопировано', 'Copied') : t('Ошибка', 'Error')}</span>
+                          </div>
+                        ) : null}
+                      </div>
                       <a
                         href={ACCESS_REQUEST_URL}
                         target="_blank"

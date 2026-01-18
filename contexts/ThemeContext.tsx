@@ -23,6 +23,13 @@ function getInitialTheme(): Theme {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('light')
 
+  const markThemeSwitch = () => {
+    if (typeof document === 'undefined') return
+    const root = document.documentElement
+    root.classList.add('theme-switching')
+    window.setTimeout(() => root.classList.remove('theme-switching'), 280)
+  }
+
   useEffect(() => {
     setThemeState(getInitialTheme())
   }, [])
@@ -37,8 +44,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const value = useMemo<ThemeContextValue>(
     () => ({
       theme,
-      setTheme: setThemeState,
-      toggleTheme: () => setThemeState((t) => (t === 'dark' ? 'light' : 'dark')),
+      setTheme: (next) => {
+        markThemeSwitch()
+        setThemeState(next)
+      },
+      toggleTheme: () => {
+        markThemeSwitch()
+        setThemeState((t) => (t === 'dark' ? 'light' : 'dark'))
+      },
     }),
     [theme]
   )
@@ -51,4 +64,3 @@ export function useTheme() {
   if (!ctx) throw new Error('useTheme must be used within ThemeProvider')
   return ctx
 }
-

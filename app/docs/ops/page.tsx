@@ -3,10 +3,18 @@
 import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL } from '@/lib/links'
+import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
 
 export default function OpsDocPage() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+
+  const toc: DocsTocItem[] = [
+    { id: 'deploy', icon: 'fa-rocket', label: { ru: 'Деплой', en: 'Deploy' } },
+    { id: 'health', icon: 'fa-heart-pulse', label: { ru: 'Проверки', en: 'Health checks' } },
+    { id: 'observability', icon: 'fa-chart-line', label: { ru: 'Метрики и трейсинг', en: 'Metrics & tracing' } },
+    { id: 'backups', icon: 'fa-database', label: { ru: 'Бэкапы и миграции', en: 'Backups & migrations' } },
+  ]
 
   return (
     <>
@@ -31,50 +39,54 @@ export default function OpsDocPage() {
 
       <section className="py-16 bg-white border-b border-ink/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-            <div className="card p-6" data-reveal>
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-rocket text-l5r-red mr-2"></i>
-                {t('Деплой', 'Deploy')}
-              </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('CI quality gate: формат, линт, контракт, тесты', 'CI quality gate: format, lint, contract, tests')}</li>
-                <li>• {t('Повторяемые сборки и окружения через переменные', 'Repeatable builds and environments via variables')}</li>
-              </ul>
-            </div>
+          <div className="max-w-5xl mx-auto">
+            <DocsShell toc={toc}>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div id="deploy" className="card p-6" data-reveal>
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-rocket text-l5r-red mr-2"></i>
+                    {t('Деплой', 'Deploy')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('CI quality gate: формат, линт, контракт, тесты', 'CI quality gate: format, lint, contract, tests')}</li>
+                    <li>• {t('Повторяемые сборки и окружения через переменные', 'Repeatable builds and environments via variables')}</li>
+                  </ul>
+                </div>
 
-            <div className="card p-6" data-reveal data-reveal-delay="90">
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-heart-pulse text-success mr-2"></i>
-                {t('Проверки', 'Health checks')}
-              </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('/health и /ready для оркестратора', '/health and /ready for orchestrators')}</li>
-                <li>• {t('Readiness учитывает зависимости (по необходимости)', 'Readiness accounts for dependencies when needed')}</li>
-              </ul>
-            </div>
+                <div id="health" className="card p-6" data-reveal data-reveal-delay="90">
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-heart-pulse text-success mr-2"></i>
+                    {t('Проверки', 'Health checks')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('/health и /ready для оркестратора', '/health and /ready for orchestrators')}</li>
+                    <li>• {t('Readiness учитывает зависимости (по необходимости)', 'Readiness accounts for dependencies when needed')}</li>
+                  </ul>
+                </div>
 
-            <div className="card p-6" data-reveal>
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
-                {t('Метрики и трейсинг', 'Metrics & tracing')}
-              </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('Prometheus metrics для SLO/алертов', 'Prometheus metrics for SLOs/alerts')}</li>
-                <li>• {t('OpenTelemetry для поиска узких мест', 'OpenTelemetry for bottleneck analysis')}</li>
-              </ul>
-            </div>
+                <div id="observability" className="card p-6" data-reveal>
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
+                    {t('Метрики и трейсинг', 'Metrics & tracing')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('Prometheus metrics для SLO/алертов', 'Prometheus metrics for SLOs/alerts')}</li>
+                    <li>• {t('OpenTelemetry для поиска узких мест', 'OpenTelemetry for bottleneck analysis')}</li>
+                  </ul>
+                </div>
 
-            <div className="card p-6" data-reveal data-reveal-delay="90">
-              <div className="font-header font-bold text-lg text-ink mb-2">
-                <i className="fa-solid fa-database text-tech mr-2"></i>
-                {t('Бэкапы и миграции', 'Backups & migrations')}
+                <div id="backups" className="card p-6" data-reveal data-reveal-delay="90">
+                  <h3 className="font-header font-bold text-lg text-ink mb-2">
+                    <i className="fa-solid fa-database text-tech mr-2"></i>
+                    {t('Бэкапы и миграции', 'Backups & migrations')}
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('Бэкапы БД как регулярная операция', 'DB backups as a routine operation')}</li>
+                    <li>• {t('Миграции применяются предсказуемо и контролируемо', 'Migrations applied predictably and controlled')}</li>
+                  </ul>
+                </div>
               </div>
-              <ul className="text-sm text-ink-light space-y-2">
-                <li>• {t('Бэкапы БД как регулярная операция', 'DB backups as a routine operation')}</li>
-                <li>• {t('Миграции применяются предсказуемо и контролируемо', 'Migrations applied predictably and controlled')}</li>
-              </ul>
-            </div>
+            </DocsShell>
           </div>
 
           <div className="max-w-5xl mx-auto mt-8 card-soft p-6" data-reveal data-reveal-delay="180">
