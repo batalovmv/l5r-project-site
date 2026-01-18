@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import '@fortawesome/fontawesome-free/css/all.min.css'
 import { HintsProvider } from '@/contexts/HintsContext'
 import ScrollEffects from '@/components/ScrollEffects'
 import BackToTop from '@/components/BackToTop'
@@ -58,14 +59,9 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Noto+Serif+JP:wght@300;700&family=Fira+Code:wght@400;600&display=swap"
           rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
       </head>
       <body className="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
