@@ -20,7 +20,7 @@ export default function Progress() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Backend */}
-            <div className="card p-6">
+            <div className="card p-6" data-reveal data-reveal-delay="0">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <i className="fa-solid fa-server text-success"></i>
@@ -43,7 +43,7 @@ export default function Progress() {
             </div>
 
             {/* UI/UX */}
-            <div className="card p-6">
+            <div className="card p-6" data-reveal data-reveal-delay="120">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <i className="fa-solid fa-palette text-l5r-gold"></i>
@@ -66,7 +66,7 @@ export default function Progress() {
             </div>
 
             {/* Frontend */}
-            <div className="card p-6">
+            <div className="card p-6" data-reveal data-reveal-delay="240">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <i className="fa-solid fa-mobile-screen text-gray-600"></i>
@@ -89,7 +89,7 @@ export default function Progress() {
             </div>
           </div>
 
-          <div className="mt-6 card-soft p-5">
+          <div className="mt-6 card-soft p-5" data-reveal data-reveal-delay="120">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
               <div className="text-sm text-ink">
                 <span className="font-bold">Сейчас:</span> подготовка UI/UX (ТЗ, референсы) → затем старт фронтенда.

@@ -49,7 +49,7 @@ export default function Achievements() {
   return (
     <section id="achievements" className="py-16 bg-white border-b border-ink/10">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" data-reveal>
           <h3 className="section-title mb-2">Достижения (что уже сделано)</h3>
           <div className="section-divider mx-auto mb-4"></div>
         </div>
@@ -57,7 +57,7 @@ export default function Achievements() {
         {/* Big Numbers */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           {stats.map((stat, i) => (
-            <div key={i} className="achievement-card p-6 text-center">
+            <div key={i} className="achievement-card p-6 text-center" data-reveal data-reveal-delay={String(i * 90)}>
               <div className="text-5xl font-bold text-l5r-gold mb-2">{stat.value}</div>
               <div className="text-sm font-bold uppercase tracking-wider">{stat.label}</div>
               <p className="text-xs text-gray-500 mt-2">{stat.sub}</p>
@@ -69,7 +69,7 @@ export default function Achievements() {
         {/* Features Grid */}
         <div className="grid md:grid-cols-3 gap-6">
           {features.map((feature, i) => (
-            <div key={i} className="card p-6">
+            <div key={i} className="card p-6" data-reveal data-reveal-delay={String((i % 3) * 90)}>
               <div className="flex items-center gap-3 mb-4">
                 <div className={`w-10 h-10 ${feature.color} rounded-full flex items-center justify-center`}>
                   <i className={`${feature.brand ? 'fa-brands' : 'fa-solid'} ${feature.icon} text-white`}></i>

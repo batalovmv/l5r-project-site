@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { HintsProvider } from '@/contexts/HintsContext'
+import ScrollEffects from '@/components/ScrollEffects'
 
 export const metadata: Metadata = {
   title: 'L5R Project Hub - Legend of the Five Rings Digital Companion',
-  description: 'Мобильное приложение для проведения онлайн-сессий по настольной ролевой игре Legend of the Five Rings 5th Edition',
+  description:
+    'Project hub: backend готов, мобильное приложение для онлайн-сессий по Legend of the Five Rings 5th Edition — в разработке',
   keywords: ['L5R', 'Legend of the Five Rings', 'TTRPG', 'React Native', 'Node.js'],
   authors: [{ name: 'batalovmv' }],
   openGraph: {
     title: 'L5R Project Hub',
-    description: 'Full-stack проект: production-ready backend + мобильное приложение для L5R 5e',
+    description: 'Full-stack проект: production-ready backend + мобильное приложение (в разработке) для L5R 5e',
     type: 'website',
   },
 }
@@ -34,6 +36,7 @@ export default function RootLayout({
       <body className="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
         <HintsProvider>
           {children}
+          <ScrollEffects />
         </HintsProvider>
       </body>
     </html>

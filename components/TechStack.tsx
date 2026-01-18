@@ -32,14 +32,14 @@ export default function TechStack() {
   return (
     <section id="tech" className="py-16 bg-paper-dark border-b border-ink/10">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" data-reveal>
           <h3 className="section-title mb-2">Технологический Стек</h3>
           <div className="section-divider mx-auto mb-4"></div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Backend */}
-          <div className="card p-8">
+          <div className="card p-8" data-reveal data-reveal-delay="0">
             <h4 className="font-header font-bold text-xl mb-6 text-l5r-red flex items-center gap-2">
               <i className="fa-solid fa-server"></i> Backend
             </h4>
@@ -55,7 +55,7 @@ export default function TechStack() {
           </div>
 
           {/* Frontend */}
-          <div className="card p-8">
+          <div className="card p-8" data-reveal data-reveal-delay="120">
             <h4 className="font-header font-bold text-xl mb-6 text-tech flex items-center gap-2">
               <i className="fa-solid fa-mobile-screen"></i> Frontend (planned)
             </h4>
@@ -72,7 +72,7 @@ export default function TechStack() {
         </div>
 
         {/* Supported Books */}
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center" data-reveal data-reveal-delay="90">
           <h4 className="font-header font-bold text-xl mb-6 text-ink">
             <i className="fa-solid fa-book text-l5r-gold mr-2"></i>Поддерживаемые книги L5R 5e
           </h4>

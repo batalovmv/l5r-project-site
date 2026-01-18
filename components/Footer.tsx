@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="flex justify-center gap-4 mb-6 text-sm">
           <span className="text-gray-400">🇷🇺 Русский</span>
           <span className="text-gray-600">|</span>
-          <span className="text-gray-400">🇬🇧 English</span>
+          <span className="text-gray-500" title="EN позже">🇬🇧 English (soon)</span>
         </div>
 
         <div className="flex justify-center gap-4 mb-6">

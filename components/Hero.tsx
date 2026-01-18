@@ -5,7 +5,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-4xl">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-xs font-code font-bold text-amber-600 mb-6 shadow-sm">
           <i className="fa-solid fa-code"></i>
-          FULL-STACK PROJECT • PORTFOLIO
+          FULL-STACK PROJECT • PROJECT HUB
         </div>
         <h2 className="font-header text-4xl md:text-6xl font-bold text-ink mb-6">
           Легенда Пяти Колец <br />
@@ -23,7 +23,7 @@ export default function Hero() {
           </div>
         </div>
         <p className="hint-text max-w-xl mx-auto mb-6">
-          Демонстрирует навыки: REST API, PostgreSQL, TypeScript, React Native, Docker, CI/CD, real-time системы
+          Технический фокус: REST API, PostgreSQL, TypeScript, React Native, Docker, CI/CD, real-time системы
         </p>
         <div className="flex flex-wrap gap-4 justify-center mb-8">
           <a

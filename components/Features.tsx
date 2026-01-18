@@ -2,7 +2,7 @@ export default function Features() {
   return (
     <section id="features" className="py-20 bg-paper-dark border-b border-ink/10 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-reveal>
           <h3 className="section-title mb-4">Функциональность (backend)</h3>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="section-subtitle mx-auto">
@@ -16,7 +16,7 @@ export default function Features() {
         {/* Auth & Character Creation */}
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
           {/* Authentication */}
-          <div className="feature-card">
+          <div className="feature-card" data-reveal data-reveal-delay="0">
             <div className="feature-icon bg-gradient-to-br from-purple-500 to-purple-700 text-white">
               <i className="fa-solid fa-user-shield"></i>
             </div>
@@ -38,7 +38,7 @@ export default function Features() {
           </div>
 
           {/* Character Creation */}
-          <div className="feature-card">
+          <div className="feature-card" data-reveal data-reveal-delay="120">
             <div className="feature-icon bg-gradient-to-br from-l5r-red to-red-800 text-white">
               <i className="fa-solid fa-scroll"></i>
             </div>
@@ -66,12 +66,12 @@ export default function Features() {
 
         {/* Character Sheet */}
         <div className="mb-12">
-          <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center">
+          <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center" data-reveal>
             <i className="fa-solid fa-id-card text-l5r-gold mr-2"></i>Полный лист персонажа
           </h4>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Rings */}
-            <div className="card p-5">
+            <div className="card p-5" data-reveal data-reveal-delay="0">
               <h5 className="font-header font-bold text-sm uppercase tracking-wider mb-3 text-l5r-red">Пять Колец</h5>
               <div className="flex flex-wrap gap-2 mb-3">
                 <span className="ring-badge ring-air">空</span>
@@ -84,7 +84,7 @@ export default function Features() {
             </div>
 
             {/* Derived Stats */}
-            <div className="card p-5">
+            <div className="card p-5" data-reveal data-reveal-delay="90">
               <h5 className="font-header font-bold text-sm uppercase tracking-wider mb-3 text-l5r-red">Производные статы</h5>
               <ul className="text-sm space-y-1 text-ink-light">
                 <li><i className="fa-solid fa-heart text-red-400 w-4"></i> Выносливость (Endurance)</li>
@@ -96,7 +96,7 @@ export default function Features() {
             </div>
 
             {/* Void Points */}
-            <div className="card p-5">
+            <div className="card p-5" data-reveal data-reveal-delay="180">
               <h5 className="font-header font-bold text-sm uppercase tracking-wider mb-3 text-l5r-red">Void Points</h5>
               <ul className="text-xs space-y-1 text-ink-light">
                 <li>• Seize the Moment (+1 кубик)</li>
@@ -108,7 +108,7 @@ export default function Features() {
             </div>
 
             {/* Skills */}
-            <div className="card p-5">
+            <div className="card p-5" data-reveal data-reveal-delay="270">
               <h5 className="font-header font-bold text-sm uppercase tracking-wider mb-3 text-l5r-red">Навыки</h5>
               <p className="text-sm text-ink-light mb-2">Все навыки L5R 5e с рангами от 0 до 5</p>
               <p className="text-xs text-gray-500">Прокачка через трату XP</p>
@@ -117,7 +117,7 @@ export default function Features() {
 
           {/* More features */}
           <div className="grid md:grid-cols-3 gap-4 mt-4">
-            <div className="card p-5">
+            <div className="card p-5" data-reveal data-reveal-delay="0">
               <h5 className="font-header font-bold text-sm uppercase tracking-wider mb-3 text-tech">Техники</h5>
               <div className="flex flex-wrap gap-1 text-xs">
                 {['Ката', 'Киходзюцу', 'Инвокации', 'Ритуалы', 'Шуджи', 'Маху'].map((tech, i) => (
@@ -130,7 +130,7 @@ export default function Features() {
               </div>
             </div>
 
-            <div className="card p-5">
+            <div className="card p-5" data-reveal data-reveal-delay="90">
               <h5 className="font-header font-bold text-sm uppercase tracking-wider mb-3 text-tech">Инвентарь</h5>
               <ul className="text-xs space-y-1 text-ink-light">
                 {['Экипировка (надеть/снять)', 'Готовность (взять в руку)', 'Хват (одно/двуручный)', 'Состояние предмета', 'Нагрузка (Encumbrance)'].map((item, i) => (
@@ -139,7 +139,7 @@ export default function Features() {
               </ul>
             </div>
 
-            <div className="card p-5">
+            <div className="card p-5" data-reveal data-reveal-delay="180">
               <h5 className="font-header font-bold text-sm uppercase tracking-wider mb-3 text-tech">Валюта и черты</h5>
               <div className="flex gap-2 mb-2">
                 <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-bold">Koku 💰</span>
@@ -153,13 +153,13 @@ export default function Features() {
 
         {/* Scenes */}
         <div className="mb-12">
-          <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center">
+          <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center" data-reveal>
             <i className="fa-solid fa-theater-masks text-l5r-gold mr-2"></i>Сцены — главный геймплей!
           </h4>
-          <p className="text-center text-ink-light mb-8 max-w-2xl mx-auto">
+          <p className="text-center text-ink-light mb-8 max-w-2xl mx-auto" data-reveal data-reveal-delay="90">
             Пять типов сцен, соответствующих правилам L5R 5e
           </p>
-          <p className="hint-text text-center max-w-xl mx-auto -mt-4 mb-8">
+          <p className="hint-text text-center max-w-xl mx-auto -mt-4 mb-8" data-reveal data-reveal-delay="120">
             Каждый тип сцены имеет свою конечную машину состояний (FSM) и валидацию действий
           </p>
 
@@ -171,7 +171,7 @@ export default function Features() {
               { icon: 'fa-book-open', name: 'Нарратив', desc: 'Исследование и отыгрыш', color: 'bg-green-100 text-green-600' },
               { icon: 'fa-chess-rook', name: 'Mass Battle', desc: 'Командование армиями', color: 'bg-gray-800 text-white' },
             ].map((scene, i) => (
-              <div key={i} className="scene-card text-center">
+              <div key={i} className="scene-card text-center" data-reveal data-reveal-delay={String(i * 80)}>
                 <div className={`w-14 h-14 mx-auto mb-3 rounded-xl flex items-center justify-center ${scene.color}`}>
                   <i className={`fa-solid ${scene.icon} text-2xl`}></i>
                 </div>
@@ -181,7 +181,7 @@ export default function Features() {
             ))}
           </div>
 
-          <div className="mt-6 card p-6">
+          <div className="mt-6 card p-6" data-reveal>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h5 className="font-header font-bold mb-3 text-l5r-red">
@@ -212,7 +212,7 @@ export default function Features() {
 
         {/* Campaigns, Downtime, GM Tools */}
         <div className="grid lg:grid-cols-3 gap-6">
-          <div className="feature-card">
+          <div className="feature-card" data-reveal data-reveal-delay="0">
             <div className="feature-icon bg-gradient-to-br from-tech to-blue-700 text-white">
               <i className="fa-solid fa-users"></i>
             </div>
@@ -225,22 +225,40 @@ export default function Features() {
             </ul>
           </div>
 
-          <div className="feature-card">
+          <div className="feature-card" data-reveal data-reveal-delay="120">
             <div className="feature-icon bg-gradient-to-br from-success to-emerald-700 text-white">
               <i className="fa-solid fa-bed"></i>
             </div>
             <h4 className="font-header text-xl font-bold text-ink mb-3">Отдых (Downtime)</h4>
             <ul className="space-y-1 text-sm text-ink-light">
-              <li>🏥 Лечение Fatigue и крит. ранений</li>
-              <li>🧘 Восстановление Strife и Void</li>
-              <li>⚔️ Тренировка навыков</li>
-              <li>🔨 Крафтинг предметов</li>
-              <li>📚 Исследование</li>
-              <li>🤝 Налаживание связей</li>
+              <li className="flex items-start gap-2">
+                <i className="fa-solid fa-kit-medical text-success mt-0.5"></i>
+                <span>Лечение Fatigue и крит. ранений</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <i className="fa-solid fa-spa text-purple-600 mt-0.5"></i>
+                <span>Восстановление Strife и Void</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <i className="fa-solid fa-dumbbell text-l5r-red mt-0.5"></i>
+                <span>Тренировка навыков</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <i className="fa-solid fa-hammer text-tech mt-0.5"></i>
+                <span>Крафтинг предметов</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <i className="fa-solid fa-compass text-l5r-gold mt-0.5"></i>
+                <span>Исследование</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <i className="fa-solid fa-handshake text-gray-600 mt-0.5"></i>
+                <span>Налаживание связей</span>
+              </li>
             </ul>
           </div>
 
-          <div className="feature-card">
+          <div className="feature-card" data-reveal data-reveal-delay="240">
             <div className="feature-icon bg-gradient-to-br from-l5r-gold to-amber-700 text-white">
               <i className="fa-solid fa-wand-magic-sparkles"></i>
             </div>
@@ -255,11 +273,11 @@ export default function Features() {
         </div>
 
         {/* Knowledge Base */}
-        <div className="mt-12 card p-8">
-          <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center">
+        <div className="mt-12 card p-8" data-reveal>
+          <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center" data-reveal data-reveal-delay="90">
             <i className="fa-solid fa-book-bookmark text-l5r-gold mr-2"></i>База знаний L5R 5e
           </h4>
-          <p className="text-center text-ink-light mb-6">
+          <p className="text-center text-ink-light mb-6" data-reveal data-reveal-delay="120">
             Полные справочники на <strong>русском</strong> и <strong>английском</strong> языках
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
@@ -277,7 +295,12 @@ export default function Features() {
               { icon: 'fa-virus', name: 'Состояния' },
               { icon: 'fa-heart-crack', name: 'Крит. раны' },
             ].map((item, i) => (
-              <div key={i} className="text-center p-3 bg-white/50 rounded-lg">
+              <div
+                key={i}
+                className="text-center p-3 bg-white/50 rounded-lg"
+                data-reveal
+                data-reveal-delay={String(150 + i * 35)}
+              >
                 <i className={`fa-solid ${item.icon} text-2xl text-l5r-red mb-2`}></i>
                 <p className="text-xs font-bold">{item.name}</p>
               </div>
@@ -287,7 +310,7 @@ export default function Features() {
 
         {/* In Development */}
         <div className="mt-12">
-          <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center">
+          <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center" data-reveal>
             <i className="fa-solid fa-wrench text-l5r-gold mr-2"></i>Следующий этап
           </h4>
           <div className="grid md:grid-cols-4 gap-4">
@@ -297,7 +320,12 @@ export default function Features() {
               { icon: 'fa-flask-vial', color: 'text-success', name: 'QA / Beta', desc: 'Тестирование продукта начнётся после UI', muted: true },
               { icon: 'fa-dice', color: 'text-l5r-red', name: 'Dice Roller', desc: 'Визуальный бросок кубиков L5R', muted: true },
             ].map((item, i) => (
-              <div key={i} className={`card-soft p-5 text-center ${item.muted ? 'opacity-70' : ''}`}>
+              <div
+                key={i}
+                className={`card-soft p-5 text-center ${item.muted ? 'opacity-70' : ''}`}
+                data-reveal
+                data-reveal-delay={String(i * 90)}
+              >
                 <i className={`fa-solid ${item.icon} text-3xl ${item.color} mb-3`}></i>
                 <h5 className="font-header font-bold text-sm mb-2">{item.name}</h5>
                 <p className="text-xs text-gray-500">{item.desc}</p>

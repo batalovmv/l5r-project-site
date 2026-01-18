@@ -38,6 +38,31 @@ function usePrefersReducedMotion(): boolean {
   return reduced
 }
 
+function sanitizeCode(code: string): string {
+  const secretKey =
+    /(PASSWORD|SECRET|API_KEY|DATABASE_URL|REDIS_URL|SENTRY_DSN|METRICS_TOKEN|JWT_ACCESS_SECRET|JWT_REFRESH_SECRET|REFRESH_TOKEN_PEPPER|FEATURE_FLAGS_ADMIN_TOKEN|ADMIN_TOKEN)/i
+
+  return code
+    .split('\n')
+    .map((rawLine) => {
+      let line = rawLine
+
+      const assign = /^(\s*)([A-Z0-9_]+)\s*[:=]\s*(.+)$/.exec(line)
+      if (assign) {
+        const [, indent, key, value] = assign
+        if (secretKey.test(key) && value.trim() && !value.trim().startsWith('${{')) {
+          return `${indent}${key}: ***`
+        }
+      }
+
+      line = line.replace(/(postgres(?:ql)?:\/\/[^:\s]+:)([^@\s]+)(@)/gi, '$1***$3')
+      line = line.replace(/(redis:\/\/:)([^@\s]+)(@)/gi, '$1***$3')
+
+      return line
+    })
+    .join('\n')
+}
+
 export default function CodeShowcase() {
   const prefersReducedMotion = usePrefersReducedMotion()
   const sceneDurationMs = 9000
@@ -200,7 +225,7 @@ export default function CodeShowcase() {
       {
         id: 'metrics-prom',
         title: 'Observability: /metrics (Prometheus)',
-        caption: 'Метрики (включая realtime) опционально защищены токеном (header или Bearer).',
+        caption: 'Prometheus /metrics + realtime gauge по SSE каналам. Доступ в production ограничивается.',
         icon: 'fa-chart-line',
         iconColorClass: 'text-success',
         sourceLabel: 'backend/src/routes/metrics.routes.ts',
@@ -213,28 +238,14 @@ export default function CodeShowcase() {
           '  labelNames: ["channel_type", "channel_id"]',
           '});',
           '',
-          'function extractMetricsToken(req: Request): string | null {',
-          '  const headerToken = req.header("x-metrics-token");',
-          '  if (typeof headerToken === "string") return headerToken.trim() || null;',
-          '',
-          '  const auth = req.header("authorization");',
-          '  if (typeof auth === "string" && auth.toLowerCase().startsWith("bearer ")) {',
-          '    const token = auth.slice("bearer ".length).trim();',
-          '    return token.length > 0 ? token : null;',
-          '  }',
-          '  return null;',
+          'export function createMetricsRouter(config: AppConfig) {',
+          '  const router = Router();',
+          '  router.get("/metrics", async (req, res) => {',
+          '    res.set("Content-Type", register.contentType);',
+          '    res.end(await register.metrics());',
+          '  });',
+          '  return router;',
           '}',
-          '',
-          'router.get("/metrics", async (req, res, next) => {',
-          '  if (hasToken) {',
-          '    const provided = extractMetricsToken(req);',
-          '    if (!provided || provided !== metricsToken) {',
-          '      return next(new ApiError({ code: "FORBIDDEN", status: 403, message: "Forbidden" }));',
-          '    }',
-          '  }',
-          '  res.set("Content-Type", register.contentType);',
-          '  res.end(await register.metrics());',
-          '});',
         ].join('\n'),
       },
       {
@@ -332,10 +343,6 @@ export default function CodeShowcase() {
           '    services:',
           '      postgres:',
           '        image: postgres:16',
-          '        env:',
-          '          POSTGRES_USER: l5r',
-          '          POSTGRES_PASSWORD: l5r',
-          '          POSTGRES_DB: l5r',
           '        ports:',
           '          - 5432:5432',
           '    steps:',
@@ -368,6 +375,7 @@ export default function CodeShowcase() {
     scenes.findIndex((s) => s.id === activeSceneId)
   )
   const active = scenes[activeIndex] ?? scenes[0]
+  const activeCode = useMemo(() => sanitizeCode(active.code), [active.code])
 
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const sceneTimeoutIdRef = useRef<number | null>(null)
@@ -460,9 +468,9 @@ export default function CodeShowcase() {
   const showAutoplayProgress = autoplay && !prefersReducedMotion && scenes.length > 1
 
   const handleCopy = async () => {
-    if (!active?.code) return
+    if (!activeCode) return
     try {
-      await navigator.clipboard.writeText(active.code)
+      await navigator.clipboard.writeText(activeCode)
       setCopyState('copied')
       window.setTimeout(() => setCopyState('idle'), 1200)
     } catch {
@@ -475,11 +483,11 @@ export default function CodeShowcase() {
     <section id="code" className="py-20 bg-white border-b border-ink/10">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h3 className="section-title mb-2">Код (вместо скриншотов)</h3>
+          <div className="text-center mb-12" data-reveal>
+            <h3 className="section-title mb-2">Техническая витрина</h3>
             <div className="section-divider mx-auto mb-4"></div>
             <p className="section-subtitle mx-auto">
-              Небольшое «видео кода»: реальные фрагменты из backend репозитория (контракт API, realtime, тесты, CI, нагрузка, мониторинг).
+              Вместо скриншотов — живые фрагменты из backend репозитория: контракт API, realtime, тесты, CI, нагрузка и мониторинг.
             </p>
             <p className="hint-text max-w-2xl mx-auto mt-3">
               Автопрокрутка и автосмена останавливаются при наведении. Если включён reduced motion — autoplay выключается.
@@ -487,7 +495,7 @@ export default function CodeShowcase() {
           </div>
 
           <div className="grid lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-4" data-reveal data-reveal-delay="0">
               <div className="card-soft p-4">
                 <div className="flex items-center justify-between gap-3 mb-3">
                   <div className="text-xs font-code text-gray-600 uppercase tracking-wider">Сцены</div>
@@ -502,7 +510,7 @@ export default function CodeShowcase() {
                     aria-pressed={autoplay}
                   >
                     <i className={`fa-solid ${autoplay ? 'fa-pause' : 'fa-play'} mr-2`}></i>
-                    {autoplay ? 'Autoplay' : 'Manual'}
+                    {autoplay ? 'Автопоказ' : 'Ручной'}
                   </button>
                 </div>
 
@@ -534,7 +542,7 @@ export default function CodeShowcase() {
               </div>
             </div>
 
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-8" data-reveal data-reveal-delay="120">
               <div
                 className="card overflow-hidden"
                 onMouseEnter={() => setPausedByHover(true)}
@@ -600,7 +608,7 @@ export default function CodeShowcase() {
 
                   <div ref={scrollRef} className="max-h-[380px] overflow-y-auto px-5 py-4">
                     <pre key={activeSceneId} className="code-scene-enter font-code text-[12px] md:text-sm leading-relaxed">
-                      {active.code.split('\n').map((line, i) => (
+                      {activeCode.split('\n').map((line, i) => (
                         <div key={i} className="flex">
                           <span className="select-none text-white/30 w-10 pr-3 text-right">
                             {i + 1}

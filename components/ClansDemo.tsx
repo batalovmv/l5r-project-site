@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js'
 import { Radar } from 'react-chartjs-2'
 
@@ -65,7 +65,7 @@ export default function ClansDemo() {
   return (
     <section id="demo" className="py-20 bg-white border-y border-ink/10 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" data-reveal>
           <h3 className="section-title mb-2">Великие Кланы</h3>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="section-subtitle mx-auto">Интерактивная демонстрация модели данных (пример)</p>
@@ -73,7 +73,7 @@ export default function ClansDemo() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Clan Grid */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-4" data-reveal data-reveal-delay="0">
             <div className="grid grid-cols-2 gap-3">
               {Object.entries(clanData).map(([key, data]) => (
                 <button
@@ -101,7 +101,7 @@ export default function ClansDemo() {
 
           {/* Clan Display */}
           <div className="lg:col-span-8">
-            <div className="bg-paper p-8 rounded-sm shadow-xl border border-ink/10 relative overflow-hidden min-h-[500px]">
+            <div className="bg-paper p-8 rounded-sm shadow-xl border border-ink/10 relative overflow-hidden min-h-[500px]" data-reveal data-reveal-delay="120">
               {/* Watermark */}
               <div
                 className="absolute -top-10 -right-10 text-[18rem] leading-none opacity-[0.07] font-jp font-bold pointer-events-none transition-all duration-500 select-none"

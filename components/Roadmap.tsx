@@ -94,7 +94,7 @@ export default function Roadmap() {
     <section id="roadmap" className="py-24 bg-paper-dark relative overflow-hidden">
       <div className="kanji-watermark text-[25rem] top-20 -left-20 text-l5r-red opacity-[0.03]">時</div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-reveal>
           <h3 className="section-title mb-4">План Развития</h3>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="hint-text max-w-xl mx-auto mt-4">
@@ -110,7 +110,11 @@ export default function Roadmap() {
           {phases.map((phase, i) => (
             <div key={i} className="timeline-item">
               <div className={`timeline-dot ${phase.status}`}></div>
-              <div className={`timeline-content bg-white rounded-xl shadow-lg border-2 ${phase.color} p-6 max-w-lg ${phase.status === 'pending' ? 'bg-white/80' : ''}`}>
+              <div
+                className={`timeline-content bg-white rounded-xl shadow-lg border-2 ${phase.color} p-6 max-w-lg ${phase.status === 'pending' ? 'bg-white/80' : ''}`}
+                data-reveal
+                data-reveal-delay={String((i % 2) * 90)}
+              >
                 <div className="flex items-center gap-3 mb-4">
                   <div className={`w-12 h-12 ${phase.bgColor} rounded-xl flex items-center justify-center shadow-md`}>
                     <i className={`fa-solid ${phase.icon} text-white text-xl`}></i>
@@ -144,7 +148,7 @@ export default function Roadmap() {
           {/* Future */}
           <div className="timeline-item pb-0">
             <div className="timeline-dot pending"></div>
-            <div className="timeline-content bg-white/40 rounded-xl shadow border border-gray-200 p-6 max-w-lg">
+            <div className="timeline-content bg-white/40 rounded-xl shadow border border-gray-200 p-6 max-w-lg" data-reveal>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-gray-200 rounded-xl flex items-center justify-center">
                   <i className="fa-solid fa-crystal-ball text-gray-400 text-xl"></i>
