@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Progress from '@/components/Progress'
+import MiniFAQ from '@/components/MiniFAQ'
 import SectionSkeleton from '@/components/SectionSkeleton'
 
 // Lazy load heavy components
@@ -52,6 +53,7 @@ export default function Home() {
         <TechStack />
         <ClansDemo />
         <Roadmap />
+        <MiniFAQ />
       </main>
       <Footer />
     </>

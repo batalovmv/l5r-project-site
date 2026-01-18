@@ -7,6 +7,7 @@ import { SITE_REPO_URL } from '@/lib/links'
 export default function Hero() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+  const lastUpdated = '2026-01-18'
 
   return (
     <section className="hero-surface relative py-20 px-4 overflow-hidden flex flex-col items-center text-center border-b border-ink/5 bg-gradient-to-b from-paper to-white/70">
@@ -39,6 +40,9 @@ export default function Hero() {
               'жду дизайн → по нему стартую frontend.',
               'waiting for design → then I start the frontend.'
             )}
+          </div>
+          <div className="text-xs font-code text-gray-600 mt-2">
+            {t('Обновлено:', 'Last updated:')} {lastUpdated}
           </div>
         </div>
         <p className="hint-text max-w-xl mx-auto mb-6">
