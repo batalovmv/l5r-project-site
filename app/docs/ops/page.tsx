@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
-import { ACCESS_REQUEST_URL } from '@/lib/links'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
 import SectionLinkButton from '@/components/SectionLinkButton'
 import GlossaryTerm from '@/components/GlossaryTerm'
@@ -129,17 +128,13 @@ export default function OpsDocPage() {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="text-sm text-ink">
                 <span className="font-bold">{t('Runbook:', 'Runbook:')}</span>{' '}
-                {t('пошаговые инструкции и плейбуки — в приватном репозитории.', 'step-by-step procedures and playbooks live in the private repo.')}
+                {t('будет добавлен позже (без чувствительных деталей).', 'will be added later (without sensitive details).')}
               </div>
               <div className="flex flex-wrap gap-2">
                 <Link href="/docs/" className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
                   <i className="fa-solid fa-arrow-left"></i>
                   {t('К оглавлению', 'Back to docs')}
                 </Link>
-                <a href={ACCESS_REQUEST_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
-                  <i className="fa-solid fa-lock"></i>
-                  {t('Запросить доступ', 'Request access')}
-                </a>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useLocale } from '@/contexts/LocaleContext'
-import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
+import { SITE_REPO_URL } from '@/lib/links'
 
 export default function Footer() {
   const { locale } = useLocale()
@@ -46,15 +46,6 @@ export default function Footer() {
             rel="noreferrer"
           >
             <i className="fa-brands fa-github"></i>
-          </a>
-          <a
-            href={ACCESS_REQUEST_URL}
-            className="text-gray-400 hover:text-white transition-colors text-2xl"
-            aria-label={t('Запросить доступ к backend', 'Request backend access')}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <i className="fa-solid fa-lock"></i>
           </a>
         </div>
 

@@ -53,7 +53,7 @@ export default function Achievements() {
       items: ['Server-Sent Events (SSE)', 'Redis Pub/Sub (multi-instance)', 'Reconnection/heartbeat', 'Sync API (cursor + tombstones)'],
     },
     {
-      icon: 'fa-swords',
+      icon: 'fa-khanda',
       color: 'bg-success',
       title: t('Боевая система', 'Combat system'),
       items: [t('Дуэли с фазами', 'Duels with phases'), t('Интриги', 'Intrigues'), t('Массовые сражения', 'Mass battles'), t('Dice rolls + проверки', 'Dice rolls + checks')],

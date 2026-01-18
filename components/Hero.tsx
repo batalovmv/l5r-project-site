@@ -2,20 +2,11 @@
 
 import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
-import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
-import ScrollCue from '@/components/ScrollCue'
+import { SITE_REPO_URL } from '@/lib/links'
 
 export default function Hero() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
-
-  const badges = [
-    {
-      href: 'https://github.com/batalovmv/l5r-project-site/actions/workflows/deploy.yml',
-      src: 'https://github.com/batalovmv/l5r-project-site/actions/workflows/deploy.yml/badge.svg?branch=main',
-      alt: 'Project site deploy status',
-    },
-  ]
 
   return (
     <section className="hero-surface relative py-20 px-4 overflow-hidden flex flex-col items-center text-center border-b border-ink/5 bg-gradient-to-b from-paper to-white/70">
@@ -45,8 +36,8 @@ export default function Hero() {
           <div className="text-sm text-ink">
             <span className="font-bold">{t('Статус:', 'Status:')}</span>{' '}
             {t(
-              'backend готов → frontend ещё не начат.',
-              'backend ready → frontend has not started yet.'
+              'жду дизайн → по нему стартую frontend.',
+              'waiting for design → then I start the frontend.'
             )}
           </div>
         </div>
@@ -56,25 +47,6 @@ export default function Hero() {
             'Tech focus: REST API, PostgreSQL, TypeScript, React Native, Docker, CI/CD, real-time systems'
           )}
         </p>
-        <div className="gh-badges justify-center mb-6" aria-label={t('Статусы CI и деплоя', 'CI and deploy status')}>
-          {badges.map((badge) => (
-            <a
-              key={badge.href}
-              href={badge.href}
-              target="_blank"
-              rel="noreferrer"
-              className="gh-badge"
-              aria-label={badge.alt}
-              title={badge.alt}
-            >
-              <img src={badge.src} alt={badge.alt} loading="lazy" decoding="async" />
-            </a>
-          ))}
-          <div className="gh-badge" aria-label={t('Backend репозиторий приватный', 'Backend repository is private')} title={t('Backend репозиторий приватный', 'Backend repository is private')}>
-            <i className="fa-solid fa-lock text-gray-600 mr-2"></i>
-            <span className="text-xs font-code text-gray-600">{t('backend: private', 'backend: private')}</span>
-          </div>
-        </div>
         <div className="flex flex-wrap gap-4 justify-center mb-8">
           <a
             href="#features"
@@ -90,15 +62,6 @@ export default function Hero() {
           <a href="#achievements" className="btn btn-secondary">
             <i className="fa-solid fa-trophy mr-2"></i>
             {t('Что сделано', 'Done')}
-          </a>
-          <a
-            href={ACCESS_REQUEST_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-ghost"
-          >
-            <i className="fa-solid fa-lock"></i>
-            {t('Доступ к backend', 'Backend access')}
           </a>
           <a href={SITE_REPO_URL} target="_blank" rel="noreferrer" className="btn btn-ghost">
             <i className="fa-brands fa-github"></i>
@@ -124,9 +87,6 @@ export default function Hero() {
             {t('Ветераны', 'Veterans')}
           </span>
         </div>
-      </div>
-      <div className="relative z-10 mt-10" data-reveal data-reveal-delay="200">
-        <ScrollCue />
       </div>
     </section>
   )

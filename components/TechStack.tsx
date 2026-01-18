@@ -29,14 +29,6 @@ export default function TechStack() {
     { icon: 'fa-flask', name: 'Jest', color: 'text-red-500' },
   ]
 
-  const books = [
-    'Core Rulebook',
-    'Emerald Empire',
-    'Shadowlands',
-    'Courts of Stone',
-    'Path of Waves',
-  ]
-
   return (
     <section id="tech" className="py-16 bg-paper-dark border-b border-ink/10">
       <div className="container mx-auto px-4">
@@ -92,25 +84,6 @@ export default function TechStack() {
           </div>
         </div>
 
-        {/* Supported Books */}
-        <div className="mt-12 text-center" data-reveal data-reveal-delay="90">
-          <h4 className="font-header font-bold text-xl mb-6 text-ink">
-            <i className="fa-solid fa-book text-l5r-gold mr-2"></i>
-            {t('Поддерживаемые книги L5R 5e', 'Supported L5R 5e books')}
-          </h4>
-          <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-            {books.map((book, i) => (
-              <span key={i} className="book-badge supported">
-                <i className="fa-solid fa-check-circle text-success"></i>
-                {book}
-              </span>
-            ))}
-            <span className="book-badge planned">
-              <i className="fa-solid fa-clock text-l5r-gold"></i>
-              {t('Дополнительные книги', 'More books planned')}
-            </span>
-          </div>
-        </div>
       </div>
     </section>
   )

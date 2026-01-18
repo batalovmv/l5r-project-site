@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import SectionLinkButton from '@/components/SectionLinkButton'
 import { useLocale } from '@/contexts/LocaleContext'
-import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
+import { SITE_REPO_URL } from '@/lib/links'
 import Notice from '@/components/Notice'
 
 type CodeScene = {
@@ -87,7 +87,7 @@ export default function CodeShowcase() {
         caption: t('Realtime endpoint задокументирован в OpenAPI.', 'Realtime endpoint is documented in OpenAPI.'),
         icon: 'fa-file-code',
         iconColorClass: 'text-l5r-gold',
-        sourceLabel: t('private repo • OpenAPI', 'private repo • OpenAPI'),
+        sourceLabel: t('backend • OpenAPI', 'backend • OpenAPI'),
         languageLabel: 'YAML',
         code: [
           '  /api/v1/campaigns/{campaignId}/stream:',
@@ -122,7 +122,7 @@ export default function CodeShowcase() {
         ),
         icon: 'fa-heart-pulse',
         iconColorClass: 'text-success',
-        sourceLabel: t('private repo • routes', 'private repo • routes'),
+        sourceLabel: t('backend • routes', 'backend • routes'),
         languageLabel: 'TypeScript',
         code: [
           'import { Router } from "express";',
@@ -147,7 +147,7 @@ export default function CodeShowcase() {
         caption: t('Лимиты на API защищают от brute-force и спайков; конфиг контролируемый и предсказуемый.', 'API limits protect against brute-force and spikes; the config is controlled and predictable.'),
         icon: 'fa-shield-halved',
         iconColorClass: 'text-l5r-red',
-        sourceLabel: t('private repo • middleware', 'private repo • middleware'),
+        sourceLabel: t('backend • middleware', 'backend • middleware'),
         languageLabel: 'TypeScript',
         code: [
           'import rateLimit from "express-rate-limit";',
@@ -170,7 +170,7 @@ export default function CodeShowcase() {
         ),
         icon: 'fa-tower-broadcast',
         iconColorClass: 'text-tech',
-        sourceLabel: t('private repo • tools', 'private repo • tools'),
+        sourceLabel: t('backend • tools', 'backend • tools'),
         languageLabel: 'Node.js',
         code: [
           'async function openSse(baseUrl, path, token) {',
@@ -202,7 +202,7 @@ export default function CodeShowcase() {
         caption: t('Интеграционный тест проверяет логику логина и повторного входа.', 'Integration test covers login and repeat login.'),
         icon: 'fa-flask',
         iconColorClass: 'text-success',
-        sourceLabel: t('private repo • tests', 'private repo • tests'),
+        sourceLabel: t('backend • tests', 'backend • tests'),
         languageLabel: 'TypeScript',
         code: [
           'describe("POST /api/v1/auth/oauth/:provider", () => {',
@@ -244,7 +244,7 @@ export default function CodeShowcase() {
         caption: t('Пример доменной модели: users + idempotency keys (96 таблиц в схеме).', 'Example domain model: users + idempotency keys (96 tables).'),
         icon: 'fa-database',
         iconColorClass: 'text-tech',
-        sourceLabel: t('private repo • schema', 'private repo • schema'),
+        sourceLabel: t('backend • schema', 'backend • schema'),
         languageLabel: 'Prisma',
         code: [
           'model User {',
@@ -290,7 +290,7 @@ export default function CodeShowcase() {
         ),
         icon: 'fa-chart-line',
         iconColorClass: 'text-success',
-        sourceLabel: t('private repo • metrics', 'private repo • metrics'),
+        sourceLabel: t('backend • metrics', 'backend • metrics'),
         languageLabel: 'TypeScript',
         code: [
           'export const sseConnectionsByChannel = new Gauge({',
@@ -318,7 +318,7 @@ export default function CodeShowcase() {
         ),
         icon: 'fa-wave-square',
         iconColorClass: 'text-purple-600',
-        sourceLabel: t('private repo • tracing', 'private repo • tracing'),
+        sourceLabel: t('backend • tracing', 'backend • tracing'),
         languageLabel: 'TypeScript',
         code: [
           'function resolveExporter() {',
@@ -357,7 +357,7 @@ export default function CodeShowcase() {
         caption: t('Ramping VUs + p95 guardrails по критичным эндпоинтам.', 'Ramping VUs + p95 guardrails for critical endpoints.'),
         icon: 'fa-gauge-high',
         iconColorClass: 'text-l5r-gold',
-        sourceLabel: t('private repo • perf', 'private repo • perf'),
+        sourceLabel: t('backend • perf', 'backend • perf'),
         languageLabel: 'k6 (JS)',
         code: [
           'export const options = {',
@@ -395,7 +395,7 @@ export default function CodeShowcase() {
         caption: t('Форматирование, линт, OpenAPI checks, тесты с БД и coverage.', 'Formatting, lint, OpenAPI checks, DB tests and coverage.'),
         icon: 'fa-gears',
         iconColorClass: 'text-l5r-red',
-        sourceLabel: t('private repo • CI', 'private repo • CI'),
+        sourceLabel: t('backend • CI', 'backend • CI'),
         languageLabel: 'GitHub Actions',
         code: [
           'jobs:',
@@ -553,7 +553,7 @@ export default function CodeShowcase() {
             <p className="section-subtitle mx-auto">
               {t(
                 'Не скриншоты — а «видео кода»: живые фрагменты из backend репозитория (контракт API, realtime, тесты, CI, нагрузка и мониторинг).',
-                'Not screenshots — a code walkthrough: live snippets from the backend repo (API contract, realtime, tests, CI, load and observability).'
+                'Not screenshots — a code walkthrough: curated snippets (API contract, realtime, tests, CI, load and observability).'
               )}
             </p>
             <p className="hint-text max-w-2xl mx-auto mt-3">
@@ -658,15 +658,6 @@ export default function CodeShowcase() {
                           </div>
                         ) : null}
                       </div>
-                      <a
-                        href={ACCESS_REQUEST_URL}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="px-3 py-1.5 text-xs font-bold rounded-lg border border-ink/10 bg-white hover:bg-gray-50"
-                      >
-                        <i className="fa-solid fa-lock mr-2"></i>
-                        {t('Доступ к backend', 'Backend access')}
-                      </a>
                       <a
                         href={SITE_REPO_URL}
                         target="_blank"

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import SectionLinkButton from '@/components/SectionLinkButton'
 import { useLocale } from '@/contexts/LocaleContext'
-import { ACCESS_REQUEST_URL } from '@/lib/links'
 import Notice from '@/components/Notice'
 
 const PUBLIC_DOC_LINKS = [
@@ -61,14 +60,8 @@ export default function DocsLinks() {
             <div className="section-divider mx-auto mb-4"></div>
             <p className="section-subtitle mx-auto">
               {t(
-                'Backend репозиторий приватный, поэтому публичные доки размещены прямо здесь.',
-                'The backend repo is private, so public docs are hosted here.'
-              )}
-            </p>
-            <p className="hint-text max-w-2xl mx-auto mt-3">
-              {t(
-                'Нужно больше деталей (полный контракт, runbook, changelog) — запросите доступ.',
-                'Need more details (full contract, runbook, changelog) — request access.'
+                'Короткая документация проекта: архитектура, API, безопасность и ops.',
+                'Short project docs: architecture, API, security and ops.'
               )}
             </p>
           </div>
@@ -100,23 +93,10 @@ export default function DocsLinks() {
           </div>
 
           <div className="mt-8" data-reveal data-reveal-delay="180">
-            <Notice
-              variant="info"
-              title={t('Приватные материалы', 'Private materials')}
-              icon="fa-lock"
-              actions={
-                <a
-                  href={ACCESS_REQUEST_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm"
-                >
-                  <i className="fa-solid fa-lock"></i>
-                  {t('Запросить доступ', 'Request access')}
-                </a>
-              }
-            >
-              {t('Полный контракт, runbook и changelog доступны по запросу (read‑only).', 'Full contract, runbook and changelog are available on request (read‑only).')}
+            <Notice compact variant="info" icon="fa-circle-info">
+              <div className="text-xs font-code text-gray-600">
+                {t('Здесь только публичный обзор — без инфраструктурных деталей и секретов.', 'Public overview only — no infrastructure details or secrets.')}
+              </div>
             </Notice>
           </div>
         </div>

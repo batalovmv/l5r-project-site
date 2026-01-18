@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { useLocale } from '@/contexts/LocaleContext'
-import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
+import { SITE_REPO_URL } from '@/lib/links'
 import Notice from '@/components/Notice'
 
 const DOCS = [
@@ -73,8 +73,8 @@ export default function DocsIndexPage() {
             <h2 className="font-header text-4xl md:text-5xl font-bold text-ink mb-4">{t('Документация проекта', 'Project documentation')}</h2>
             <p className="font-body text-lg text-ink-light max-w-2xl mx-auto leading-relaxed">
               {t(
-                'Backend репозиторий приватный — здесь собран безопасный публичный обзор: архитектура, API и подходы.',
-                'The backend repository is private — this is a safe public overview: architecture, API, and approaches.'
+                'Публичный обзор: архитектура, API и подходы к безопасности/эксплуатации.',
+                'Public overview: architecture, API, and security/ops approaches.'
               )}
             </p>
           </div>
@@ -112,8 +112,8 @@ export default function DocsIndexPage() {
                 <Notice compact variant="info" icon="fa-lock" className="max-w-xl mx-auto">
                   <div className="text-xs font-code text-gray-600">
                     {t(
-                      'Подсказка: приватные материалы (полный контракт/Runbook) выдаются по запросу.',
-                      'Hint: private materials (full contract/runbook) are available on request.'
+                      'Безопасность: без хостов, ключей и секретов.',
+                      'Security: no hosts, keys, or secrets.'
                     )}
                   </div>
                 </Notice>
@@ -154,14 +154,10 @@ export default function DocsIndexPage() {
             <div className="mt-8 card-soft p-6" data-reveal data-reveal-delay="180">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="text-sm text-ink">
-                  <span className="font-bold">{t('Нужны приватные материалы?', 'Need private materials?')}</span>{' '}
-                  {t('Полный контракт, runbook и changelog — по запросу (read-only).', 'Full contract, runbook and changelog — available on request (read-only).')}
+                  <span className="font-bold">{t('Исходники сайта:', 'Site sources:')}</span>{' '}
+                  {t('этот репозиторий содержит только project hub.', 'this repository contains the project hub only.')}
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <a href={ACCESS_REQUEST_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
-                    <i className="fa-solid fa-lock"></i>
-                    {t('Запросить доступ', 'Request access')}
-                  </a>
                   <a href={SITE_REPO_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
                     <i className="fa-brands fa-github"></i>
                     {t('Репозиторий сайта', 'Site repo')}

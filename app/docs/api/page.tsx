@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
-import { ACCESS_REQUEST_URL } from '@/lib/links'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
 import SectionLinkButton from '@/components/SectionLinkButton'
 import GlossaryTerm from '@/components/GlossaryTerm'
@@ -55,7 +54,7 @@ export default function ApiDocPage() {
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Guest режим для старта “без регистрации”', 'Guest mode for instant start')}</li>
                     <li>• {t('OAuth вход для привязки аккаунта', 'OAuth sign-in for account linking')}</li>
-                    <li>• {t('Access/refresh токены с ротацией (детали — приватно)', 'Access/refresh tokens with rotation (details private)')}</li>
+                    <li>• {t('Access/refresh токены с ротацией', 'Access/refresh tokens with rotation')}</li>
                   </ul>
                 </div>
 
@@ -111,7 +110,7 @@ export default function ApiDocPage() {
                       )}
                     </li>
                     <li>• {t('События как “append-only” лента', 'Events as an append-only feed')}</li>
-                    <li>• {t('Стабильная доставка в multi-instance (детали — приватно)', 'Stable multi-instance delivery (details private)')}</li>
+                    <li>• {t('Стабильная доставка в multi-instance', 'Stable multi-instance delivery')}</li>
                   </ul>
                 </div>
               </div>
@@ -122,17 +121,13 @@ export default function ApiDocPage() {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="text-sm text-ink">
                 <span className="font-bold">{t('Полный контракт:', 'Full contract:')}</span>{' '}
-                {t('OpenAPI + примеры запросов/ответов — в приватном репозитории.', 'OpenAPI + request/response examples live in the private repo.')}
+                {t('будет опубликован позже (когда фронтенд начнёт интеграцию).', 'will be published later (when the frontend integration begins).')}
               </div>
               <div className="flex flex-wrap gap-2">
                 <Link href="/docs/" className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
                   <i className="fa-solid fa-arrow-left"></i>
                   {t('К оглавлению', 'Back to docs')}
                 </Link>
-                <a href={ACCESS_REQUEST_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">
-                  <i className="fa-solid fa-lock"></i>
-                  {t('Запросить доступ', 'Request access')}
-                </a>
               </div>
             </div>
           </div>

@@ -23,14 +23,14 @@ export default function Features() {
   const scenes =
     locale === 'ru'
       ? [
-          { icon: 'fa-swords', name: 'Бой (Skirmish)', desc: 'Атаки, защита, маневры', color: 'bg-red-100 text-red-600' },
+          { icon: 'fa-khanda', name: 'Бой (Skirmish)', desc: 'Атаки, защита, маневры', color: 'bg-red-100 text-red-600' },
           { icon: 'fa-khanda', name: 'Дуэли', desc: '4 фазы: Оценка → Удар', color: 'bg-amber-100 text-amber-600' },
           { icon: 'fa-comments', name: 'Интриги', desc: 'Социальные конфликты', color: 'bg-purple-100 text-purple-600' },
           { icon: 'fa-book-open', name: 'Нарратив', desc: 'Исследование и отыгрыш', color: 'bg-green-100 text-green-600' },
           { icon: 'fa-chess-rook', name: 'Mass Battle', desc: 'Командование армиями', color: 'bg-gray-800 text-white' },
         ]
       : [
-          { icon: 'fa-swords', name: 'Skirmish', desc: 'Attacks, defense, maneuvers', color: 'bg-red-100 text-red-600' },
+          { icon: 'fa-khanda', name: 'Skirmish', desc: 'Attacks, defense, maneuvers', color: 'bg-red-100 text-red-600' },
           { icon: 'fa-khanda', name: 'Duel', desc: '4 phases: Assess → Strike', color: 'bg-amber-100 text-amber-600' },
           { icon: 'fa-comments', name: 'Intrigue', desc: 'Social conflicts', color: 'bg-purple-100 text-purple-600' },
           { icon: 'fa-book-open', name: 'Narrative', desc: 'Exploration and roleplay', color: 'bg-green-100 text-green-600' },
@@ -327,7 +327,7 @@ export default function Features() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h5 className="font-header font-bold mb-3 text-l5r-red">
-                  <i className="fa-solid fa-swords mr-2"></i>
+                  <i className="fa-solid fa-khanda mr-2"></i>
                   {t('Боевые механики', 'Combat mechanics')}
                 </h5>
                 <ul className="text-sm space-y-1 text-ink-light">
@@ -484,4 +484,3 @@ export default function Features() {
     </section>
   )
 }
-
