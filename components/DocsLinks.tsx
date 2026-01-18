@@ -4,6 +4,7 @@ import Link from 'next/link'
 import SectionLinkButton from '@/components/SectionLinkButton'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL } from '@/lib/links'
+import Notice from '@/components/Notice'
 
 const PUBLIC_DOC_LINKS = [
   {
@@ -98,22 +99,25 @@ export default function DocsLinks() {
             ))}
           </div>
 
-          <div className="mt-8 card-soft p-6" data-reveal data-reveal-delay="180">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div className="text-sm text-ink">
-                <span className="font-bold">{t('Доступ к приватным докам:', 'Private docs access:')}</span>{' '}
-                {t('выдаётся по запросу (read-only).', 'granted on request (read-only).')}
-              </div>
-              <a
-                href={ACCESS_REQUEST_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm"
-              >
-                <i className="fa-solid fa-lock"></i>
-                {t('Запросить доступ', 'Request access')}
-              </a>
-            </div>
+          <div className="mt-8" data-reveal data-reveal-delay="180">
+            <Notice
+              variant="info"
+              title={t('Приватные материалы', 'Private materials')}
+              icon="fa-lock"
+              actions={
+                <a
+                  href={ACCESS_REQUEST_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm"
+                >
+                  <i className="fa-solid fa-lock"></i>
+                  {t('Запросить доступ', 'Request access')}
+                </a>
+              }
+            >
+              {t('Полный контракт, runbook и changelog доступны по запросу (read‑only).', 'Full contract, runbook and changelog are available on request (read‑only).')}
+            </Notice>
           </div>
         </div>
       </div>

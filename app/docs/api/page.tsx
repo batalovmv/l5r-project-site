@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL } from '@/lib/links'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
+import SectionLinkButton from '@/components/SectionLinkButton'
+import GlossaryTerm from '@/components/GlossaryTerm'
 
 export default function ApiDocPage() {
   const { locale } = useLocale()
@@ -43,9 +45,12 @@ export default function ApiDocPage() {
             <DocsShell toc={toc}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div id="auth" className="card p-6" data-reveal>
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-right-to-bracket text-l5r-red mr-2"></i>
-                    {t('Авторизация', 'Authentication')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-right-to-bracket text-l5r-red mr-2"></i>
+                      {t('Авторизация', 'Authentication')}
+                    </span>
+                    <SectionLinkButton targetId="auth" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Guest режим для старта “без регистрации”', 'Guest mode for instant start')}</li>
@@ -55,9 +60,12 @@ export default function ApiDocPage() {
                 </div>
 
                 <div id="errors" className="card p-6" data-reveal data-reveal-delay="90">
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-diagram-project text-tech mr-2"></i>
-                    {t('Версии и ошибки', 'Versioning & errors')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-diagram-project text-tech mr-2"></i>
+                      {t('Версии и ошибки', 'Versioning & errors')}
+                    </span>
+                    <SectionLinkButton targetId="errors" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Версионирование через /api/v1', 'Versioning via /api/v1')}</li>
@@ -67,9 +75,12 @@ export default function ApiDocPage() {
                 </div>
 
                 <div id="domain" className="card p-6" data-reveal>
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-users text-success mr-2"></i>
-                    {t('Кампании и персонажи', 'Campaigns & characters')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-users text-success mr-2"></i>
+                      {t('Кампании и персонажи', 'Campaigns & characters')}
+                    </span>
+                    <SectionLinkButton targetId="domain" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Кампании: роли GM/Player', 'Campaigns with GM/Player roles')}</li>
@@ -79,12 +90,26 @@ export default function ApiDocPage() {
                 </div>
 
                 <div id="realtime" className="card p-6" data-reveal data-reveal-delay="90">
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-tower-broadcast text-l5r-gold mr-2"></i>
-                    {t('Realtime', 'Realtime')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-tower-broadcast text-l5r-gold mr-2"></i>
+                      {t('Realtime', 'Realtime')}
+                    </span>
+                    <SectionLinkButton targetId="realtime" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('SSE stream для кампании/сцены', 'SSE stream for campaign/scene')}</li>
+                    <li>
+                      •{' '}
+                      {locale === 'ru' ? (
+                        <>
+                          <GlossaryTerm term="SSE">SSE</GlossaryTerm> stream для кампании/сцены
+                        </>
+                      ) : (
+                        <>
+                          <GlossaryTerm term="SSE">SSE</GlossaryTerm> stream for campaign/scene
+                        </>
+                      )}
+                    </li>
                     <li>• {t('События как “append-only” лента', 'Events as an append-only feed')}</li>
                     <li>• {t('Стабильная доставка в multi-instance (детали — приватно)', 'Stable multi-instance delivery (details private)')}</li>
                   </ul>

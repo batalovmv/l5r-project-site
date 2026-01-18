@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
+import Notice from '@/components/Notice'
 
 const DOCS = [
   {
@@ -107,11 +108,15 @@ export default function DocsIndexPage() {
                   ) : null}
                 </div>
               </div>
-              <div className="text-xs text-gray-500 font-code mt-3 text-center">
-                {t(
-                  'Подсказка: приватные материалы (полный контракт/Runbook) выдаются по запросу.',
-                  'Hint: private materials (full contract/runbook) are available on request.'
-                )}
+              <div className="mt-4">
+                <Notice compact variant="info" icon="fa-lock" className="max-w-xl mx-auto">
+                  <div className="text-xs font-code text-gray-600">
+                    {t(
+                      'Подсказка: приватные материалы (полный контракт/Runbook) выдаются по запросу.',
+                      'Hint: private materials (full contract/runbook) are available on request.'
+                    )}
+                  </div>
+                </Notice>
               </div>
             </div>
 

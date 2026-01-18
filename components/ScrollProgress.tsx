@@ -21,6 +21,18 @@ export default function ScrollProgress() {
       raf = 0
       const el = document.documentElement
       const scrollTop = window.scrollY || el.scrollTop || 0
+
+      const docsRoot = document.querySelector<HTMLElement>('[data-scroll-progress-root="docs"]')
+      if (docsRoot) {
+        const rect = docsRoot.getBoundingClientRect()
+        const start = rect.top + scrollTop
+        const height = Math.max(1, rect.height)
+        const viewport = window.innerHeight || el.clientHeight || 0
+        const max = Math.max(1, height - viewport)
+        setProgress(clamp01((scrollTop - start) / max))
+        return
+      }
+
       const scrollHeight = el.scrollHeight || 0
       const clientHeight = el.clientHeight || window.innerHeight || 0
       const max = Math.max(1, scrollHeight - clientHeight)
@@ -49,4 +61,3 @@ export default function ScrollProgress() {
     </div>
   )
 }
-

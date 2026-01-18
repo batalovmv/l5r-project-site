@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL } from '@/lib/links'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
+import SectionLinkButton from '@/components/SectionLinkButton'
+import GlossaryTerm from '@/components/GlossaryTerm'
 
 export default function OpsDocPage() {
   const { locale } = useLocale()
@@ -43,9 +45,12 @@ export default function OpsDocPage() {
             <DocsShell toc={toc}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div id="deploy" className="card p-6" data-reveal>
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-rocket text-l5r-red mr-2"></i>
-                    {t('Деплой', 'Deploy')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-rocket text-l5r-red mr-2"></i>
+                      {t('Деплой', 'Deploy')}
+                    </span>
+                    <SectionLinkButton targetId="deploy" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('CI quality gate: формат, линт, контракт, тесты', 'CI quality gate: format, lint, contract, tests')}</li>
@@ -54,9 +59,12 @@ export default function OpsDocPage() {
                 </div>
 
                 <div id="health" className="card p-6" data-reveal data-reveal-delay="90">
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-heart-pulse text-success mr-2"></i>
-                    {t('Проверки', 'Health checks')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-heart-pulse text-success mr-2"></i>
+                      {t('Проверки', 'Health checks')}
+                    </span>
+                    <SectionLinkButton targetId="health" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('/health и /ready для оркестратора', '/health and /ready for orchestrators')}</li>
@@ -65,20 +73,48 @@ export default function OpsDocPage() {
                 </div>
 
                 <div id="observability" className="card p-6" data-reveal>
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
-                    {t('Метрики и трейсинг', 'Metrics & tracing')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
+                      {t('Метрики и трейсинг', 'Metrics & tracing')}
+                    </span>
+                    <SectionLinkButton targetId="observability" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Prometheus metrics для SLO/алертов', 'Prometheus metrics for SLOs/alerts')}</li>
-                    <li>• {t('OpenTelemetry для поиска узких мест', 'OpenTelemetry for bottleneck analysis')}</li>
+                    <li>
+                      •{' '}
+                      {locale === 'ru' ? (
+                        <>
+                          Prometheus metrics для <GlossaryTerm term="SLO">SLO</GlossaryTerm>/алертов
+                        </>
+                      ) : (
+                        <>
+                          Prometheus metrics for <GlossaryTerm term="SLO">SLOs</GlossaryTerm>/alerts
+                        </>
+                      )}
+                    </li>
+                    <li>
+                      •{' '}
+                      {locale === 'ru' ? (
+                        <>
+                          <GlossaryTerm term="OpenTelemetry">OpenTelemetry</GlossaryTerm> для поиска узких мест
+                        </>
+                      ) : (
+                        <>
+                          <GlossaryTerm term="OpenTelemetry">OpenTelemetry</GlossaryTerm> for bottleneck analysis
+                        </>
+                      )}
+                    </li>
                   </ul>
                 </div>
 
                 <div id="backups" className="card p-6" data-reveal data-reveal-delay="90">
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-database text-tech mr-2"></i>
-                    {t('Бэкапы и миграции', 'Backups & migrations')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-database text-tech mr-2"></i>
+                      {t('Бэкапы и миграции', 'Backups & migrations')}
+                    </span>
+                    <SectionLinkButton targetId="backups" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Бэкапы БД как регулярная операция', 'DB backups as a routine operation')}</li>

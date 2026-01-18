@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL } from '@/lib/links'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
+import SectionLinkButton from '@/components/SectionLinkButton'
+import GlossaryTerm from '@/components/GlossaryTerm'
 
 export default function ArchitectureDocPage() {
   const { locale } = useLocale()
@@ -43,9 +45,12 @@ export default function ArchitectureDocPage() {
             <DocsShell toc={toc}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div id="layers" className="card p-6" data-reveal>
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-layer-group text-l5r-red mr-2"></i>
-                    {t('Слои и границы', 'Layers & boundaries')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-layer-group text-l5r-red mr-2"></i>
+                      {t('Слои и границы', 'Layers & boundaries')}
+                    </span>
+                    <SectionLinkButton targetId="layers" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Routes → Controllers → Services → Repositories', 'Routes → Controllers → Services → Repositories')}</li>
@@ -55,9 +60,12 @@ export default function ArchitectureDocPage() {
                 </div>
 
                 <div id="realtime" className="card p-6" data-reveal data-reveal-delay="90">
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-tower-broadcast text-tech mr-2"></i>
-                    {t('Realtime', 'Realtime')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-tower-broadcast text-tech mr-2"></i>
+                      {t('Realtime', 'Realtime')}
+                    </span>
+                    <SectionLinkButton targetId="realtime" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('SSE для клиентов', 'SSE for clients')}</li>
@@ -67,21 +75,38 @@ export default function ArchitectureDocPage() {
                 </div>
 
                 <div id="data" className="card p-6" data-reveal>
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-database text-success mr-2"></i>
-                    {t('Данные и модель', 'Data & model')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-database text-success mr-2"></i>
+                      {t('Данные и модель', 'Data & model')}
+                    </span>
+                    <SectionLinkButton targetId="data" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('PostgreSQL + Prisma ORM', 'PostgreSQL + Prisma ORM')}</li>
                     <li>• {t('Сложная доменная схема под L5R 5e', 'A rich domain schema for L5R 5e')}</li>
-                    <li>• {t('Идемпотентность для критичных операций', 'Idempotency for critical operations')}</li>
+                    <li>
+                      •{' '}
+                      {locale === 'ru' ? (
+                        <>
+                          <GlossaryTerm term="Idempotency">Идемпотентность</GlossaryTerm> для критичных операций
+                        </>
+                      ) : (
+                        <>
+                          <GlossaryTerm term="Idempotency">Idempotency</GlossaryTerm> for critical operations
+                        </>
+                      )}
+                    </li>
                   </ul>
                 </div>
 
                 <div id="observability" className="card p-6" data-reveal data-reveal-delay="90">
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
-                    {t('Наблюдаемость', 'Observability')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
+                      {t('Наблюдаемость', 'Observability')}
+                    </span>
+                    <SectionLinkButton targetId="observability" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Метрики и health/ready эндпоинты', 'Metrics and health/ready endpoints')}</li>

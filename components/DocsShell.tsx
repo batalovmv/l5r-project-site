@@ -76,7 +76,9 @@ export default function DocsShell({ toc, children }: { toc: DocsTocItem[]; child
         </details>
       </div>
 
-      <div className="docs-shell__main">{children}</div>
+      <div className="docs-shell__main" data-scroll-progress-root="docs">
+        {children}
+      </div>
 
       <aside className="docs-shell__toc" aria-label={t('Оглавление', 'Table of contents')}>
         <div className="docs-shell__tocCard">
@@ -102,4 +104,3 @@ export default function DocsShell({ toc, children }: { toc: DocsTocItem[]; child
     </div>
   )
 }
-

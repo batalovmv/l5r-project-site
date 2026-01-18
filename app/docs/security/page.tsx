@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL } from '@/lib/links'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
+import SectionLinkButton from '@/components/SectionLinkButton'
+import GlossaryTerm from '@/components/GlossaryTerm'
 
 export default function SecurityDocPage() {
   const { locale } = useLocale()
@@ -43,9 +45,12 @@ export default function SecurityDocPage() {
             <DocsShell toc={toc}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div id="validation" className="card p-6" data-reveal>
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-circle-check text-success mr-2"></i>
-                    {t('Валидация', 'Validation')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-circle-check text-success mr-2"></i>
+                      {t('Валидация', 'Validation')}
+                    </span>
+                    <SectionLinkButton targetId="validation" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Схемы для входных данных и понятные ошибки', 'Schema-based input validation and clear errors')}</li>
@@ -54,20 +59,37 @@ export default function SecurityDocPage() {
                 </div>
 
                 <div id="access" className="card p-6" data-reveal data-reveal-delay="90">
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-user-shield text-l5r-red mr-2"></i>
-                    {t('Доступ', 'Access control')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-user-shield text-l5r-red mr-2"></i>
+                      {t('Доступ', 'Access control')}
+                    </span>
+                    <SectionLinkButton targetId="access" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Проверки владения данными (IDOR protection)', 'Ownership checks (IDOR protection)')}</li>
+                    <li>
+                      •{' '}
+                      {locale === 'ru' ? (
+                        <>
+                          Проверки владения данными (защита от <GlossaryTerm term="IDOR">IDOR</GlossaryTerm>)
+                        </>
+                      ) : (
+                        <>
+                          Ownership checks (<GlossaryTerm term="IDOR">IDOR</GlossaryTerm> protection)
+                        </>
+                      )}
+                    </li>
                     <li>• {t('Роли GM/Player в кампании и сценах', 'GM/Player roles for campaigns and scenes')}</li>
                   </ul>
                 </div>
 
                 <div id="limits" className="card p-6" data-reveal>
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-gauge-high text-tech mr-2"></i>
-                    {t('Ограничения', 'Rate limits')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-gauge-high text-tech mr-2"></i>
+                      {t('Ограничения', 'Rate limits')}
+                    </span>
+                    <SectionLinkButton targetId="limits" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Лимиты на API против brute-force и спайков', 'API rate limits against brute-force and spikes')}</li>
@@ -76,9 +98,12 @@ export default function SecurityDocPage() {
                 </div>
 
                 <div id="observability" className="card p-6" data-reveal data-reveal-delay="90">
-                  <h3 className="font-header font-bold text-lg text-ink mb-2">
-                    <i className="fa-solid fa-eye text-l5r-gold mr-2"></i>
-                    {t('Наблюдаемость', 'Observability')}
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-eye text-l5r-gold mr-2"></i>
+                      {t('Наблюдаемость', 'Observability')}
+                    </span>
+                    <SectionLinkButton targetId="observability" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
                     <li>• {t('Метрики/трейсы/логи без утечки секретов', 'Metrics/traces/logs without leaking secrets')}</li>

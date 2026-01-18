@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import SectionLinkButton from '@/components/SectionLinkButton'
 import { useLocale } from '@/contexts/LocaleContext'
 import { ACCESS_REQUEST_URL, SITE_REPO_URL } from '@/lib/links'
+import Notice from '@/components/Notice'
 
 type CodeScene = {
   id: string
@@ -710,41 +711,35 @@ export default function CodeShowcase() {
             </div>
           </div>
 
-          <div className="mt-8 card-soft p-6" data-reveal data-reveal-delay="180">
-            <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-success/10 border border-success/25 flex items-center justify-center flex-shrink-0">
-                <i className="fa-solid fa-shield-halved text-success"></i>
+          <div className="mt-8" data-reveal data-reveal-delay="180">
+            <Notice variant="success" title="Security / Privacy" icon="fa-shield-halved">
+              <div className="leading-relaxed">
+                {t(
+                  'Витрина показывает безопасные фрагменты: значения секретов маскируются, а детали инфраструктуры не раскрываются.',
+                  'This showcase only includes safe snippets: secrets are masked and infrastructure details are not exposed.'
+                )}
               </div>
-              <div>
-                <div className="font-header font-bold text-lg text-ink mb-1">Security / Privacy</div>
-                <div className="text-sm text-ink-light leading-relaxed">
-                  {t(
-                    'Витрина показывает безопасные фрагменты: значения секретов маскируются, а детали инфраструктуры не раскрываются.',
-                    'This showcase only includes safe snippets: secrets are masked and infrastructure details are not exposed.'
-                  )}
-                </div>
-                <ul className="mt-3 space-y-2 text-sm text-ink-light">
-                  <li className="flex items-start gap-2">
-                    <i className="fa-solid fa-check text-success mt-0.5"></i>
-                    <span>
-                      {t(
-                        'Секреты (token/password/key) не публикуются и не копируются “как есть”.',
-                        'Secrets (token/password/key) are never published or copied as-is.'
-                      )}
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <i className="fa-solid fa-check text-success mt-0.5"></i>
-                    <span>
-                      {t(
-                        'Фрагменты могут быть сокращены — цель секции: показать подходы (контракт, тесты, CI, мониторинг).',
-                        'Snippets may be shortened — the goal is to show approaches (contract, tests, CI, observability).'
-                      )}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+              <ul className="mt-3 space-y-2">
+                <li className="flex items-start gap-2">
+                  <i className="fa-solid fa-check text-success mt-0.5"></i>
+                  <span>
+                    {t(
+                      'Секреты (token/password/key) не публикуются и не копируются “как есть”.',
+                      'Secrets (token/password/key) are never published or copied as-is.'
+                    )}
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <i className="fa-solid fa-check text-success mt-0.5"></i>
+                  <span>
+                    {t(
+                      'Фрагменты могут быть сокращены — цель секции: показать подходы (контракт, тесты, CI, мониторинг).',
+                      'Snippets may be shortened — the goal is to show approaches (contract, tests, CI, observability).'
+                    )}
+                  </span>
+                </li>
+              </ul>
+            </Notice>
           </div>
         </div>
       </div>
