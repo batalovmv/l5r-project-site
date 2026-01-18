@@ -1,4 +1,12 @@
+'use client'
+
+import { useLocale } from '@/contexts/LocaleContext'
+
 export default function Footer() {
+  const { locale } = useLocale()
+  const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+  const analyticsEnabled = Boolean(process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN)
+
   const books = ['Core Rulebook', 'Emerald Empire', 'Shadowlands', 'Courts of Stone', 'Path of Waves']
 
   return (
@@ -9,7 +17,9 @@ export default function Footer() {
 
         {/* Supported Books */}
         <div className="mb-6">
-          <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">Поддерживаемые книги</p>
+          <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
+            {t('Поддерживаемые книги', 'Supported books')}
+          </p>
           <div className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
             {books.map((book, i) => (
               <span key={i} className="px-2 py-1 bg-success/20 text-success text-xs rounded">
@@ -21,16 +31,16 @@ export default function Footer() {
 
         {/* Languages */}
         <div className="flex justify-center gap-4 mb-6 text-sm">
-          <span className="text-gray-400">🇷🇺 Русский</span>
+          <span className="text-gray-400">🇷🇺 {t('Русский', 'Russian')}</span>
           <span className="text-gray-600">|</span>
-          <span className="text-gray-500" title="EN позже">🇬🇧 English (soon)</span>
+          <span className="text-gray-400">🇬🇧 English</span>
         </div>
 
         <div className="flex justify-center gap-4 mb-6">
           <a
             href="https://github.com/batalovmv/l5r"
             className="text-gray-400 hover:text-white transition-colors text-2xl"
-            aria-label="GitHub репозиторий проекта"
+            aria-label={t('GitHub репозиторий проекта', 'Project GitHub repository')}
             target="_blank"
             rel="noreferrer"
           >
@@ -39,11 +49,22 @@ export default function Footer() {
         </div>
 
         <div className="text-xs text-gray-500 font-code">
-          Backend: Node.js + Express + PostgreSQL | Frontend (planned): React Native + Expo
+          {t(
+            'Backend: Node.js + Express + PostgreSQL | Frontend (planned): React Native + Expo',
+            'Backend: Node.js + Express + PostgreSQL | Frontend (planned): React Native + Expo'
+          )}
         </div>
         <div className="text-xs text-gray-600 mt-2">
-          122 API endpoints • 92 DB tables • 48 services
+          {t('123 API endpoints • 96 DB tables • 66 services', '123 API endpoints • 96 DB tables • 66 services')}
         </div>
+        {analyticsEnabled ? (
+          <div className="text-[11px] text-gray-600 mt-2">
+            {t(
+              'Аналитика: Cloudflare Web Analytics (минимально, без cookies).',
+              'Analytics: Cloudflare Web Analytics (minimal, cookie-free).'
+            )}
+          </div>
+        ) : null}
       </div>
     </footer>
   )

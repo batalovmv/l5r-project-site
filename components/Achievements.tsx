@@ -1,50 +1,92 @@
+'use client'
+
 import SectionLinkButton from '@/components/SectionLinkButton'
+import { useLocale } from '@/contexts/LocaleContext'
 
 export default function Achievements() {
+  const { locale } = useLocale()
+  const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+
   const stats = [
-    { value: '122', label: 'API Operations', sub: 'REST + OpenAPI', hint: 'Контракт, документация и типы генерируются из OpenAPI' },
-    { value: '92', label: 'Таблиц БД', sub: 'Prisma ORM', hint: 'Сложная реляционная модель + миграции + seed' },
-    { value: '48', label: 'Сервисов', sub: 'Бизнес-логика', hint: 'Сервисы по доменам: auth/campaigns/scenes/xp…' },
-    { value: '32', label: 'Миграций', sub: 'Версионирование', hint: 'Схема БД эволюционировала вместе с фичами' },
+    {
+      value: '122',
+      label: t('API операции', 'API operations'),
+      sub: 'REST + OpenAPI',
+      hint: t('Контракт, документация и типы генерируются из OpenAPI', 'Contract, docs, and types are generated from OpenAPI'),
+    },
+    {
+      value: '92',
+      label: t('Таблиц БД', 'DB tables'),
+      sub: 'Prisma ORM',
+      hint: t('Сложная реляционная модель + миграции + seed', 'Complex relational model + migrations + seed'),
+    },
+    {
+      value: '48',
+      label: t('Сервисов', 'Services'),
+      sub: t('Бизнес-логика', 'Business logic'),
+      hint: t('Сервисы по доменам: auth/campaigns/scenes/xp…', 'Domain services: auth/campaigns/scenes/xp…'),
+    },
+    {
+      value: '32',
+      label: t('Миграций', 'Migrations'),
+      sub: t('Версионирование', 'Versioning'),
+      hint: t('Схема БД эволюционировала вместе с фичами', 'The DB schema evolved alongside features'),
+    },
   ]
 
   const features = [
     {
       icon: 'fa-shield-halved',
       color: 'bg-l5r-red',
-      title: 'Безопасность',
-      items: ['JWT + refresh rotation', 'OAuth 2.0 (Google, VK)', 'Rate limiting + Helmet', 'Валидация запросов (Zod/AJV)'],
+      title: t('Безопасность', 'Security'),
+      items: [
+        'JWT + refresh rotation',
+        t('OAuth 2.0 (Google, VK)', 'OAuth 2.0 (Google, VK)'),
+        'Rate limiting + Helmet',
+        t('Валидация запросов (Zod/AJV)', 'Request validation (Zod/AJV)'),
+      ],
     },
     {
       icon: 'fa-bolt',
       color: 'bg-tech',
-      title: 'Real-time',
+      title: t('Real-time', 'Real-time'),
       items: ['Server-Sent Events (SSE)', 'Redis Pub/Sub (multi-instance)', 'Reconnection/heartbeat', 'Sync API (cursor + tombstones)'],
     },
     {
       icon: 'fa-swords',
       color: 'bg-success',
-      title: 'Боевая система',
-      items: ['Дуэли с фазами', 'Интриги', 'Массовые сражения', 'Dice rolls + проверки'],
+      title: t('Боевая система', 'Combat system'),
+      items: [t('Дуэли с фазами', 'Duels with phases'), t('Интриги', 'Intrigues'), t('Массовые сражения', 'Mass battles'), t('Dice rolls + проверки', 'Dice rolls + checks')],
     },
     {
       icon: 'fa-chart-line',
       color: 'bg-purple-600',
-      title: 'Мониторинг',
+      title: t('Мониторинг', 'Observability'),
       items: ['Prometheus /metrics', 'Sentry errors', 'OpenTelemetry traces', 'Structured logs (Pino)'],
     },
     {
       icon: 'fa-docker',
       color: 'bg-orange-500',
       title: 'DevOps',
-      items: ['CI: lint/typecheck/tests', 'Docker multi-stage + Compose', 'Feature flags + kill switch', 'Backups + runbook', 'k6 load tests'],
+      items: [
+        'CI: lint/typecheck/tests',
+        'Docker multi-stage + Compose',
+        'Feature flags + kill switch',
+        t('Backups + runbook', 'Backups + runbook'),
+        'k6 load tests',
+      ],
       brand: true,
     },
     {
       icon: 'fa-database',
       color: 'bg-cyan-500',
-      title: 'Данные L5R',
-      items: ['5 книг справочников', '7 великих кланов + семьи/школы', 'Техники, предметы, качества', 'xlsx → JSON → seed pipeline'],
+      title: t('Данные L5R', 'L5R data'),
+      items: [
+        t('5 книг справочников', '5 reference books'),
+        t('7 великих кланов + семьи/школы', '7 great clans + families/schools'),
+        t('Техники, предметы, качества', 'Techniques, items, qualities'),
+        'xlsx → JSON → seed pipeline',
+      ],
     },
   ]
 
@@ -53,7 +95,7 @@ export default function Achievements() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12" data-reveal>
           <div className="flex items-center justify-center gap-3 mb-2">
-            <h3 className="section-title mb-0">Достижения (что уже сделано)</h3>
+            <h3 className="section-title mb-0">{t('Достижения (что уже сделано)', 'Achievements (done so far)')}</h3>
             <SectionLinkButton targetId="achievements" />
           </div>
           <div className="section-divider mx-auto mb-4"></div>

@@ -136,7 +136,7 @@ export default function Header() {
             <a
               href="https://github.com/batalovmv/l5r"
               className="text-gray-400 hover:text-white"
-              aria-label="GitHub репозиторий проекта"
+              aria-label={t('GitHub репозиторий проекта', 'Project GitHub repository')}
               target="_blank"
               rel="noreferrer"
             >
@@ -149,7 +149,7 @@ export default function Header() {
       {/* MAIN HEADER */}
       <nav
         className="sticky top-0 z-40 bg-paper/95 backdrop-blur-sm border-b border-ink/10 shadow-lg select-none"
-        aria-label="Навигация по странице"
+        aria-label={t('Навигация по странице', 'Page navigation')}
       >
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <button
@@ -187,7 +187,7 @@ export default function Header() {
           <button
             type="button"
             className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-ink/10 bg-white/70 hover:bg-white shadow-sm"
-            aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-label={menuOpen ? t('Закрыть меню', 'Close menu') : t('Открыть меню', 'Open menu')}
             aria-controls="mobile-nav"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}

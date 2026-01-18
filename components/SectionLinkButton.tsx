@@ -1,10 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { useLocale } from '@/contexts/LocaleContext'
 
 type CopyState = 'idle' | 'copied' | 'error'
 
 export default function SectionLinkButton({ targetId }: { targetId: string }) {
+  const { locale } = useLocale()
+  const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
   const [state, setState] = useState<CopyState>('idle')
 
   const handleCopy = async () => {
@@ -23,10 +26,10 @@ export default function SectionLinkButton({ targetId }: { targetId: string }) {
 
   const label =
     state === 'copied'
-      ? 'Ссылка скопирована'
+      ? t('Ссылка скопирована', 'Link copied')
       : state === 'error'
-        ? 'Не удалось скопировать'
-        : 'Скопировать ссылку на раздел'
+        ? t('Не удалось скопировать', 'Copy failed')
+        : t('Скопировать ссылку на раздел', 'Copy section link')
 
   return (
     <button
@@ -40,4 +43,3 @@ export default function SectionLinkButton({ targetId }: { targetId: string }) {
     </button>
   )
 }
-

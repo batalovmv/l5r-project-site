@@ -1,6 +1,12 @@
+'use client'
+
 import SectionLinkButton from '@/components/SectionLinkButton'
+import { useLocale } from '@/contexts/LocaleContext'
 
 export default function TechStack() {
+  const { locale } = useLocale()
+  const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+
   const backend = [
     { icon: 'fa-node-js', name: 'Node.js 20+', color: 'text-green-600', brand: true },
     { icon: 'fa-js', name: 'TypeScript 5.9', color: 'text-yellow-500', brand: true },
@@ -36,7 +42,7 @@ export default function TechStack() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12" data-reveal>
           <div className="flex items-center justify-center gap-3 mb-2">
-            <h3 className="section-title mb-0">Технологический Стек</h3>
+            <h3 className="section-title mb-0">{t('Технологический стек', 'Tech stack')}</h3>
             <SectionLinkButton targetId="tech" />
           </div>
           <div className="section-divider mx-auto mb-4"></div>
@@ -48,7 +54,12 @@ export default function TechStack() {
             <h4 className="font-header font-bold text-xl mb-6 text-l5r-red flex items-center gap-2">
               <i className="fa-solid fa-server"></i> Backend
             </h4>
-            <p className="hint-text mb-4">Production-ready архитектура с Clean Architecture и SOLID принципами</p>
+            <p className="hint-text mb-4">
+              {t(
+                'Production-ready архитектура с Clean Architecture и SOLID принципами',
+                'Production-ready architecture with Clean Architecture and SOLID principles'
+              )}
+            </p>
             <div className="flex flex-wrap gap-3">
               {backend.map((tech, i) => (
                 <span key={i} className="tech-badge">
@@ -62,9 +73,14 @@ export default function TechStack() {
           {/* Frontend */}
           <div className="card p-8" data-reveal data-reveal-delay="120">
             <h4 className="font-header font-bold text-xl mb-6 text-tech flex items-center gap-2">
-              <i className="fa-solid fa-mobile-screen"></i> Frontend (planned)
+              <i className="fa-solid fa-mobile-screen"></i> {t('Frontend (planned)', 'Frontend (planned)')}
             </h4>
-            <p className="hint-text mb-4">Разработка начнётся после готового дизайна (макетов и дизайн‑системы)</p>
+            <p className="hint-text mb-4">
+              {t(
+                'Разработка начнётся после готового дизайна (макетов и дизайн‑системы)',
+                'Development starts after the design is ready (screens + design system)'
+              )}
+            </p>
             <div className="flex flex-wrap gap-3">
               {frontend.map((tech, i) => (
                 <span key={i} className="tech-badge">
@@ -79,7 +95,8 @@ export default function TechStack() {
         {/* Supported Books */}
         <div className="mt-12 text-center" data-reveal data-reveal-delay="90">
           <h4 className="font-header font-bold text-xl mb-6 text-ink">
-            <i className="fa-solid fa-book text-l5r-gold mr-2"></i>Поддерживаемые книги L5R 5e
+            <i className="fa-solid fa-book text-l5r-gold mr-2"></i>
+            {t('Поддерживаемые книги L5R 5e', 'Supported L5R 5e books')}
           </h4>
           <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
             {books.map((book, i) => (
@@ -90,7 +107,7 @@ export default function TechStack() {
             ))}
             <span className="book-badge planned">
               <i className="fa-solid fa-clock text-l5r-gold"></i>
-              Дополнительные книги
+              {t('Дополнительные книги', 'More books planned')}
             </span>
           </div>
         </div>

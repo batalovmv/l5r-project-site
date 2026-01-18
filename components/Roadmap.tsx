@@ -1,96 +1,183 @@
+'use client'
+
 import SectionLinkButton from '@/components/SectionLinkButton'
+import { useLocale } from '@/contexts/LocaleContext'
 
 export default function Roadmap() {
-  const phases = [
-    {
-      status: 'done',
-      icon: 'fa-server',
-      label: 'Завершено',
-      title: 'Backend API',
-      color: 'border-success',
-      bgColor: 'bg-success',
-      items: [
-        { status: 'done', text: 'Express + TypeScript сервер' },
-        { status: 'done', text: 'PostgreSQL + Prisma (92 таблицы)' },
-        { status: 'done', text: 'JWT + OAuth аутентификация' },
-        { status: 'done', text: 'SSE + Redis realtime' },
-        { status: 'done', text: 'Боевая система (дуэли, интриги, mass battle)' },
-        { status: 'done', text: 'XP, Notes, Sessions, Downtime' },
-        { status: 'done', text: 'Docker + Prometheus + Sentry' },
-        { status: 'done', text: 'Справочные данные L5R (5 книг)' },
-        { status: 'done', text: 'Jest автотесты + OpenAPI контракт' },
-      ],
-    },
-    {
-      status: 'current',
-      icon: 'fa-palette',
-      label: 'В работе',
-      title: 'UI/UX Дизайн',
-      color: 'border-l5r-gold',
-      bgColor: 'bg-l5r-gold',
-      items: [
-        { status: 'wip', text: 'ТЗ + референсы (дизайн пока отсутствует)' },
-        { status: 'pending', text: 'Дизайн‑система (цвета, типографика, UI kit)' },
-        { status: 'pending', text: 'Прототип основного UX флоу' },
-        { status: 'pending', text: 'Макеты ключевых экранов (Home/Characters/Sheet)' },
-        { status: 'pending', text: 'Campaigns screens' },
-        { status: 'pending', text: 'Scene/Combat UI' },
-      ],
-    },
-    {
-      status: 'pending',
-      icon: 'fa-code',
-      label: 'Планируется',
-      title: 'Frontend Разработка',
-      color: 'border-gray-200',
-      bgColor: 'bg-gray-300',
-      items: [
-        { status: 'pending', text: 'Старт разработки после готовых макетов' },
-        { status: 'pending', text: 'Реализация всех экранов по дизайну' },
-        { status: 'pending', text: 'Character Wizard "20 вопросов" (~10 экранов)' },
-        { status: 'pending', text: 'Dice roller с анимацией' },
-        { status: 'pending', text: 'OAuth на фронтенде' },
-        { status: 'pending', text: 'Offline mode' },
-        { status: 'pending', text: 'Push notifications' },
-      ],
-    },
-    {
-      status: 'pending',
-      icon: 'fa-flask-vial',
-      label: 'Планируется',
-      title: 'Тестирование (продукт)',
-      color: 'border-gray-200',
-      bgColor: 'bg-gray-300',
-      items: [
-        { status: 'pending', text: 'UX/QA чек‑листы и тест‑план' },
-        { status: 'pending', text: 'Unit tests на фронтенде' },
-        { status: 'pending', text: 'E2E tests (Detox)' },
-        { status: 'pending', text: 'Beta-тестирование L5R сообщества' },
-      ],
-    },
-    {
-      status: 'pending',
-      icon: 'fa-rocket',
-      label: 'Цель',
-      title: 'Релиз v1.0',
-      color: 'border-gray-200',
-      bgColor: 'bg-l5r-red/50',
-      items: [
-        { status: 'pending', text: 'App Store публикация (iOS)' },
-        { status: 'pending', text: 'Google Play публикация (Android)' },
-        { status: 'pending', text: 'Landing page + документация' },
-      ],
-    },
-  ]
+  const { locale } = useLocale()
+  const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
-  const future = [
-    'Дополнительные книги',
-    'PDF экспорт',
-    'Web-версия для GM',
-    'Генератор NPC',
-    'VTT интеграция',
-    'Карты локаций',
-  ]
+  const phases =
+    locale === 'ru'
+      ? [
+          {
+            status: 'done',
+            icon: 'fa-server',
+            label: 'Завершено',
+            title: 'Backend API',
+            color: 'border-success',
+            bgColor: 'bg-success',
+            items: [
+              { status: 'done', text: 'Express + TypeScript сервер' },
+              { status: 'done', text: 'PostgreSQL + Prisma (96 таблиц)' },
+              { status: 'done', text: 'JWT + OAuth аутентификация' },
+              { status: 'done', text: 'SSE + Redis realtime' },
+              { status: 'done', text: 'Боевая система (дуэли, интриги, mass battle)' },
+              { status: 'done', text: 'XP, Notes, Sessions, Downtime' },
+              { status: 'done', text: 'Docker + Prometheus + Sentry' },
+              { status: 'done', text: 'Feature flags + kill switch' },
+              { status: 'done', text: 'Справочные данные L5R (5 книг)' },
+              { status: 'done', text: 'Jest автотесты + OpenAPI контракт' },
+            ],
+          },
+          {
+            status: 'current',
+            icon: 'fa-palette',
+            label: 'В работе',
+            title: 'UI/UX Дизайн',
+            color: 'border-l5r-gold',
+            bgColor: 'bg-l5r-gold',
+            items: [
+              { status: 'wip', text: 'ТЗ + референсы (дизайн пока отсутствует)' },
+              { status: 'pending', text: 'Дизайн‑система (цвета, типографика, UI kit)' },
+              { status: 'pending', text: 'Прототип основного UX флоу' },
+              { status: 'pending', text: 'Макеты ключевых экранов (Home/Characters/Sheet)' },
+              { status: 'pending', text: 'Campaigns screens' },
+              { status: 'pending', text: 'Scene/Combat UI' },
+            ],
+          },
+          {
+            status: 'pending',
+            icon: 'fa-code',
+            label: 'Планируется',
+            title: 'Frontend Разработка',
+            color: 'border-gray-200',
+            bgColor: 'bg-gray-300',
+            items: [
+              { status: 'pending', text: 'Старт разработки после готовых макетов' },
+              { status: 'pending', text: 'Реализация всех экранов по дизайну' },
+              { status: 'pending', text: 'Character Wizard "20 вопросов" (~10 экранов)' },
+              { status: 'pending', text: 'Dice roller с анимацией' },
+              { status: 'pending', text: 'OAuth на фронтенде' },
+              { status: 'pending', text: 'Offline mode' },
+              { status: 'pending', text: 'Push notifications' },
+            ],
+          },
+          {
+            status: 'pending',
+            icon: 'fa-flask-vial',
+            label: 'Планируется',
+            title: 'Тестирование (продукт)',
+            color: 'border-gray-200',
+            bgColor: 'bg-gray-300',
+            items: [
+              { status: 'pending', text: 'UX/QA чек‑листы и тест‑план' },
+              { status: 'pending', text: 'Unit tests на фронтенде' },
+              { status: 'pending', text: 'E2E tests (Detox)' },
+              { status: 'pending', text: 'Beta-тестирование L5R сообщества' },
+            ],
+          },
+          {
+            status: 'pending',
+            icon: 'fa-rocket',
+            label: 'Цель',
+            title: 'Релиз v1.0',
+            color: 'border-gray-200',
+            bgColor: 'bg-l5r-red/50',
+            items: [
+              { status: 'pending', text: 'App Store публикация (iOS)' },
+              { status: 'pending', text: 'Google Play публикация (Android)' },
+              { status: 'pending', text: 'Landing page + документация' },
+            ],
+          },
+        ]
+      : [
+          {
+            status: 'done',
+            icon: 'fa-server',
+            label: 'Completed',
+            title: 'Backend API',
+            color: 'border-success',
+            bgColor: 'bg-success',
+            items: [
+              { status: 'done', text: 'Express + TypeScript server' },
+              { status: 'done', text: 'PostgreSQL + Prisma (92 tables)' },
+              { status: 'done', text: 'JWT + OAuth authentication' },
+              { status: 'done', text: 'SSE + Redis realtime' },
+              { status: 'done', text: 'Combat system (duels, intrigues, mass battle)' },
+              { status: 'done', text: 'XP, Notes, Sessions, Downtime' },
+              { status: 'done', text: 'Docker + Prometheus + Sentry' },
+              { status: 'done', text: 'Feature flags + kill switch' },
+              { status: 'done', text: 'L5R reference data (5 books)' },
+              { status: 'done', text: 'Jest tests + OpenAPI contract' },
+            ],
+          },
+          {
+            status: 'current',
+            icon: 'fa-palette',
+            label: 'In progress',
+            title: 'UI/UX Design',
+            color: 'border-l5r-gold',
+            bgColor: 'bg-l5r-gold',
+            items: [
+              { status: 'wip', text: 'Scope + references (no designs yet)' },
+              { status: 'pending', text: 'Design system (colors, typography, UI kit)' },
+              { status: 'pending', text: 'Main UX flow prototype' },
+              { status: 'pending', text: 'Key screens (Home/Characters/Sheet)' },
+              { status: 'pending', text: 'Campaigns screens' },
+              { status: 'pending', text: 'Scene/Combat UI' },
+            ],
+          },
+          {
+            status: 'pending',
+            icon: 'fa-code',
+            label: 'Planned',
+            title: 'Frontend Development',
+            color: 'border-gray-200',
+            bgColor: 'bg-gray-300',
+            items: [
+              { status: 'pending', text: 'Start after designs are ready' },
+              { status: 'pending', text: 'Implement all screens from the design' },
+              { status: 'pending', text: 'Character Wizard “20 Questions” (~10 screens)' },
+              { status: 'pending', text: 'Dice roller with animations' },
+              { status: 'pending', text: 'OAuth on the frontend' },
+              { status: 'pending', text: 'Offline mode' },
+              { status: 'pending', text: 'Push notifications' },
+            ],
+          },
+          {
+            status: 'pending',
+            icon: 'fa-flask-vial',
+            label: 'Planned',
+            title: 'Product Testing',
+            color: 'border-gray-200',
+            bgColor: 'bg-gray-300',
+            items: [
+              { status: 'pending', text: 'UX/QA checklists and test plan' },
+              { status: 'pending', text: 'Frontend unit tests' },
+              { status: 'pending', text: 'E2E tests (Detox)' },
+              { status: 'pending', text: 'Community beta testing' },
+            ],
+          },
+          {
+            status: 'pending',
+            icon: 'fa-rocket',
+            label: 'Target',
+            title: 'Release v1.0',
+            color: 'border-gray-200',
+            bgColor: 'bg-l5r-red/50',
+            items: [
+              { status: 'pending', text: 'App Store release (iOS)' },
+              { status: 'pending', text: 'Google Play release (Android)' },
+              { status: 'pending', text: 'Landing page + docs' },
+            ],
+          },
+        ]
+
+  const future =
+    locale === 'ru'
+      ? ['Дополнительные книги', 'PDF экспорт', 'Web-версия для GM', 'Генератор NPC', 'VTT интеграция', 'Карты локаций']
+      : ['More books', 'PDF export', 'Web version for GM', 'NPC generator', 'VTT integration', 'Location maps']
 
   return (
     <section id="roadmap" className="py-24 bg-paper-dark relative overflow-hidden">
@@ -98,15 +185,18 @@ export default function Roadmap() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16" data-reveal>
           <div className="flex items-center justify-center gap-3 mb-4">
-            <h3 className="section-title mb-0">План Развития</h3>
+            <h3 className="section-title mb-0">{t('План развития', 'Roadmap')}</h3>
             <SectionLinkButton targetId="roadmap" />
           </div>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="hint-text max-w-xl mx-auto mt-4">
-            Backend готов. Сейчас нужен дизайн — фронтенд стартует по готовым макетам.
+            {t(
+              'Backend готов. Сейчас нужен дизайн — фронтенд стартует по готовым макетам.',
+              'Backend is ready. Design is next — frontend starts from the finished designs.'
+            )}
           </p>
           <p className="section-subtitle mx-auto">
-            Путь от MVP до публикации в App Store и Google Play
+            {t('Путь от MVP до публикации в App Store и Google Play', 'From MVP to App Store and Google Play release')}
           </p>
         </div>
 
@@ -159,8 +249,10 @@ export default function Roadmap() {
                   <i className="fa-solid fa-crystal-ball text-gray-400 text-xl"></i>
                 </div>
                 <div>
-                  <span className="text-xs font-code font-bold text-gray-400 uppercase tracking-wider">Будущее</span>
-                  <h4 className="font-header text-xl font-bold text-gray-500">Развитие</h4>
+                  <span className="text-xs font-code font-bold text-gray-400 uppercase tracking-wider">
+                    {t('Будущее', 'Future')}
+                  </span>
+                  <h4 className="font-header text-xl font-bold text-gray-500">{t('Развитие', 'Ideas')}</h4>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-2 text-sm text-gray-500">

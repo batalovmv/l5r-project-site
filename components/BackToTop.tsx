@@ -1,8 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useLocale } from '@/contexts/LocaleContext'
 
 export default function BackToTop() {
+  const { locale } = useLocale()
+  const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -38,11 +41,10 @@ export default function BackToTop() {
       type="button"
       onClick={scrollUp}
       className={`back-to-top ${visible ? 'is-visible' : ''}`}
-      aria-label="Наверх"
-      title="Наверх"
+      aria-label={t('Наверх', 'Back to top')}
+      title={t('Наверх', 'Back to top')}
     >
       <i className="fa-solid fa-arrow-up"></i>
     </button>
   )
 }
-

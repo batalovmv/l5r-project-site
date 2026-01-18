@@ -6,13 +6,14 @@ import BackToTop from '@/components/BackToTop'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import { LocaleProvider } from '@/contexts/LocaleContext'
 import Script from 'next/script'
+import SkipLink from '@/components/SkipLink'
 
 const SITE_URL = 'https://batalovmv.github.io/l5r-project-site/'
 
 export const metadata: Metadata = {
   title: 'L5R Project Hub - Legend of the Five Rings Digital Companion',
   description:
-    'Project hub: backend готов, мобильное приложение для онлайн-сессий по Legend of the Five Rings 5th Edition — в разработке',
+    'Project hub for the Legend of the Five Rings 5e digital companion: backend ready, UI/UX design pending, frontend planned',
   keywords: ['L5R', 'Legend of the Five Rings', 'TTRPG', 'React Native', 'Node.js'],
   authors: [{ name: 'batalovmv' }],
   metadataBase: new URL(SITE_URL),
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'L5R Project Hub',
-    description: 'Full-stack проект: production-ready backend + мобильное приложение (в разработке) для L5R 5e',
+    description: 'Full-stack project: production-ready backend + mobile app (in development) for L5R 5e',
     type: 'website',
     url: SITE_URL,
     siteName: 'Project Rokugan',
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'L5R Project Hub',
-    description: 'Full-stack проект: production-ready backend + мобильное приложение (в разработке) для L5R 5e',
+    description: 'Full-stack project: production-ready backend + mobile app (in development) for L5R 5e',
     images: ['og.png'],
   },
 }
@@ -66,12 +67,10 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
-        <a className="skip-link" href="#main">
-          К содержимому
-        </a>
         <ThemeProvider>
           <LocaleProvider>
             <HintsProvider>
+              <SkipLink />
               {children}
               <ScrollEffects />
               <BackToTop />

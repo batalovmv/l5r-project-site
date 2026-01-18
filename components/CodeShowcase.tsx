@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import SectionLinkButton from '@/components/SectionLinkButton'
+import { useLocale } from '@/contexts/LocaleContext'
 
 type CodeScene = {
   id: string
@@ -58,6 +59,8 @@ function sanitizeCode(code: string): string {
 
       line = line.replace(/(postgres(?:ql)?:\/\/[^:\s]+:)([^@\s]+)(@)/gi, '$1***$3')
       line = line.replace(/(redis:\/\/:)([^@\s]+)(@)/gi, '$1***$3')
+      line = line.replace(/(\bBearer\s+)([A-Za-z0-9._-]+)\b/g, '$1***')
+      line = line.replace(/eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/g, '***.***.***')
 
       return line
     })
@@ -65,6 +68,9 @@ function sanitizeCode(code: string): string {
 }
 
 export default function CodeShowcase() {
+  const { locale } = useLocale()
+  const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+
   const prefersReducedMotion = usePrefersReducedMotion()
   const sceneDurationMs = 9000
 
@@ -72,8 +78,8 @@ export default function CodeShowcase() {
     () => [
       {
         id: 'openapi-sse',
-        title: 'Контракт API: SSE stream',
-        caption: 'Realtime endpoint задокументирован в OpenAPI.',
+        title: t('Контракт API: SSE stream', 'API contract: SSE stream'),
+        caption: t('Realtime endpoint задокументирован в OpenAPI.', 'Realtime endpoint is documented in OpenAPI.'),
         icon: 'fa-file-code',
         iconColorClass: 'text-l5r-gold',
         sourceLabel: 'docs/openapi.yaml',
@@ -104,9 +110,62 @@ export default function CodeShowcase() {
         ].join('\n'),
       },
       {
+        id: 'health-ready',
+        title: t('Операции: health / ready', 'Operations: health / ready'),
+        caption: t(
+          'Liveness/readiness для оркестратора: /health и /ready (DB/Redis проверяются по необходимости).',
+          'Liveness/readiness for orchestrators: /health and /ready (DB/Redis checked when needed).'
+        ),
+        icon: 'fa-heart-pulse',
+        iconColorClass: 'text-success',
+        sourceLabel: 'backend/src/routes/health.routes.ts',
+        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/src/routes/health.routes.ts',
+        languageLabel: 'TypeScript',
+        code: [
+          'import { Router } from "express";',
+          '',
+          'export const healthRouter = Router();',
+          '',
+          'healthRouter.get("/api/v1/health", async (_req, res) => {',
+          '  res.status(200).json({ ok: true });',
+          '});',
+          '',
+          'export const readyRouter = Router();',
+          '',
+          'readyRouter.get("/api/v1/ready", async (_req, res) => {',
+          '  // db.ping(); redis.ping(); (env-dependent)',
+          '  res.status(200).json({ ok: true });',
+          '});',
+        ].join('\n'),
+      },
+      {
+        id: 'rate-limit',
+        title: t('Безопасность: rate limiting', 'Security: rate limiting'),
+        caption: t('Лимиты на API защищают от brute-force и спайков; конфиг контролируемый и предсказуемый.', 'API limits protect against brute-force and spikes; the config is controlled and predictable.'),
+        icon: 'fa-shield-halved',
+        iconColorClass: 'text-l5r-red',
+        sourceLabel: 'backend/src/middlewares/rateLimit.ts',
+        sourceUrl: 'https://github.com/batalovmv/l5r/blob/main/backend/src/middlewares/rateLimit.ts',
+        languageLabel: 'TypeScript',
+        code: [
+          'import rateLimit from "express-rate-limit";',
+          '',
+          'export const apiRateLimit = rateLimit({',
+          '  windowMs: 60_000,',
+          '  max: MAX_REQUESTS_PER_WINDOW,',
+          '  standardHeaders: true,',
+          '  legacyHeaders: false,',
+          '  keyGenerator: (req) => req.user?.id ?? req.ip,',
+          '});',
+        ].join('\n'),
+      },
+      {
         id: 'realtime-smoke',
-        title: 'Realtime: smoke (2 instances)',
-        caption: 'Скрипт проверяет доставку событий через Redis Pub/Sub между двумя API инстансами.',
+        title: t('Realtime: smoke (2 instances)', 'Realtime: smoke (2 instances)'),
+        caption: t(
+          'Скрипт проверяет доставку событий через Redis Pub/Sub между двумя API инстансами.',
+          'A script validates event delivery via Redis Pub/Sub across two API instances.'
+        ),
         icon: 'fa-tower-broadcast',
         iconColorClass: 'text-tech',
         sourceLabel: 'backend/tools/realtime-smoke.js',
@@ -138,8 +197,8 @@ export default function CodeShowcase() {
       },
       {
         id: 'jest-oauth',
-        title: 'Тесты: OAuth flow (Jest)',
-        caption: 'Интеграционный тест проверяет логику логина и повторного входа.',
+        title: t('Тесты: OAuth flow (Jest)', 'Tests: OAuth flow (Jest)'),
+        caption: t('Интеграционный тест проверяет логику логина и повторного входа.', 'Integration test covers login and repeat login.'),
         icon: 'fa-flask',
         iconColorClass: 'text-success',
         sourceLabel: 'backend/test/auth.oauth.test.ts',
@@ -181,8 +240,8 @@ export default function CodeShowcase() {
       },
       {
         id: 'prisma-models',
-        title: 'DB: Prisma model',
-        caption: 'Пример доменной модели: users + idempotency keys (92 таблицы в схеме).',
+        title: t('DB: Prisma model', 'DB: Prisma model'),
+        caption: t('Пример доменной модели: users + idempotency keys (96 таблиц в схеме).', 'Example domain model: users + idempotency keys (96 tables).'),
         icon: 'fa-database',
         iconColorClass: 'text-tech',
         sourceLabel: 'backend/prisma/schema.prisma',
@@ -225,8 +284,11 @@ export default function CodeShowcase() {
       },
       {
         id: 'metrics-prom',
-        title: 'Observability: /metrics (Prometheus)',
-        caption: 'Prometheus /metrics + realtime gauge по SSE каналам. Доступ в production ограничивается.',
+        title: t('Observability: /metrics (Prometheus)', 'Observability: /metrics (Prometheus)'),
+        caption: t(
+          'Prometheus /metrics + realtime gauge по SSE каналам. Доступ в production ограничивается.',
+          'Prometheus /metrics + realtime gauges for SSE channels. Access is restricted in production.'
+        ),
         icon: 'fa-chart-line',
         iconColorClass: 'text-success',
         sourceLabel: 'backend/src/routes/metrics.routes.ts',
@@ -251,8 +313,11 @@ export default function CodeShowcase() {
       },
       {
         id: 'otel-setup',
-        title: 'Tracing: OpenTelemetry',
-        caption: 'HTTP авто‑инструментация + Prisma, экспорт в Jaeger/Zipkin, исключены health/metrics.',
+        title: t('Tracing: OpenTelemetry', 'Tracing: OpenTelemetry'),
+        caption: t(
+          'HTTP авто‑инструментация + Prisma, экспорт в Jaeger/Zipkin, исключены health/metrics.',
+          'HTTP auto-instrumentation + Prisma, export to Jaeger/Zipkin, excluding health/metrics.'
+        ),
         icon: 'fa-wave-square',
         iconColorClass: 'text-purple-600',
         sourceLabel: 'backend/src/lib/monitoring/otel.ts',
@@ -291,8 +356,8 @@ export default function CodeShowcase() {
       },
       {
         id: 'k6-load',
-        title: 'Perf: k6 load',
-        caption: 'Ramping VUs + p95 guardrails по критичным эндпоинтам.',
+        title: t('Perf: k6 load', 'Perf: k6 load'),
+        caption: t('Ramping VUs + p95 guardrails по критичным эндпоинтам.', 'Ramping VUs + p95 guardrails for critical endpoints.'),
         icon: 'fa-gauge-high',
         iconColorClass: 'text-l5r-gold',
         sourceLabel: 'backend/perf/k6/load.js',
@@ -330,8 +395,8 @@ export default function CodeShowcase() {
       },
       {
         id: 'github-actions',
-        title: 'CI: quality gate',
-        caption: 'Форматирование, линт, OpenAPI checks, тесты с БД и coverage.',
+        title: t('CI: quality gate', 'CI: quality gate'),
+        caption: t('Форматирование, линт, OpenAPI checks, тесты с БД и coverage.', 'Formatting, lint, OpenAPI checks, DB tests and coverage.'),
         icon: 'fa-gears',
         iconColorClass: 'text-l5r-red',
         sourceLabel: '.github/workflows/backend-ci.yml',
@@ -363,7 +428,7 @@ export default function CodeShowcase() {
         ].join('\n'),
       },
     ],
-    []
+    [locale]
   )
 
   const [activeSceneId, setActiveSceneId] = useState(scenes[0]?.id ?? 'openapi-sse')
@@ -486,15 +551,21 @@ export default function CodeShowcase() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12" data-reveal>
             <div className="flex items-center justify-center gap-3 mb-2">
-              <h3 className="section-title mb-0">Техническая витрина</h3>
+              <h3 className="section-title mb-0">{t('Видео кода (backend)', 'Code walkthrough (backend)')}</h3>
               <SectionLinkButton targetId="code" />
             </div>
             <div className="section-divider mx-auto mb-4"></div>
             <p className="section-subtitle mx-auto">
-              Вместо скриншотов — живые фрагменты из backend репозитория: контракт API, realtime, тесты, CI, нагрузка и мониторинг.
+              {t(
+                'Не скриншоты — а «видео кода»: живые фрагменты из backend репозитория (контракт API, realtime, тесты, CI, нагрузка и мониторинг).',
+                'Not screenshots — a code walkthrough: live snippets from the backend repo (API contract, realtime, tests, CI, load and observability).'
+              )}
             </p>
             <p className="hint-text max-w-2xl mx-auto mt-3">
-              Автопрокрутка и автосмена останавливаются при наведении. Если включён reduced motion — autoplay выключается.
+              {t(
+                'Автопрокрутка и автосмена останавливаются при наведении. Если включён reduced motion — автопоказ выключается.',
+                'Auto-scroll and auto-switch pause on hover. If reduced motion is enabled, autoplay is disabled.'
+              )}
             </p>
           </div>
 
@@ -502,7 +573,7 @@ export default function CodeShowcase() {
             <div className="lg:col-span-4" data-reveal data-reveal-delay="0">
               <div className="card-soft p-4">
                 <div className="flex items-center justify-between gap-3 mb-3">
-                  <div className="text-xs font-code text-gray-600 uppercase tracking-wider">Сцены</div>
+                  <div className="text-xs font-code text-gray-600 uppercase tracking-wider">{t('Сцены', 'Scenes')}</div>
                   <button
                     type="button"
                     className={`px-3 py-1.5 text-xs font-bold rounded-lg border ${
@@ -514,7 +585,7 @@ export default function CodeShowcase() {
                     aria-pressed={autoplay}
                   >
                     <i className={`fa-solid ${autoplay ? 'fa-pause' : 'fa-play'} mr-2`}></i>
-                    {autoplay ? 'Автопоказ' : 'Ручной'}
+                    {autoplay ? t('Автопоказ', 'Autoplay') : t('Ручной', 'Manual')}
                   </button>
                 </div>
 
@@ -582,7 +653,11 @@ export default function CodeShowcase() {
                         onClick={handleCopy}
                       >
                         <i className="fa-solid fa-copy mr-2"></i>
-                        {copyState === 'copied' ? 'Скопировано' : copyState === 'error' ? 'Ошибка' : 'Копировать'}
+                        {copyState === 'copied'
+                          ? t('Скопировано', 'Copied')
+                          : copyState === 'error'
+                            ? t('Ошибка', 'Error')
+                            : t('Копировать', 'Copy')}
                       </button>
                       <a
                         href="https://github.com/batalovmv/l5r"
@@ -590,7 +665,8 @@ export default function CodeShowcase() {
                         rel="noreferrer"
                         className="px-3 py-1.5 text-xs font-bold rounded-lg border border-ink/10 bg-white hover:bg-gray-50"
                       >
-                        <i className="fa-brands fa-github mr-2"></i>Репозиторий
+                        <i className="fa-brands fa-github mr-2"></i>
+                        {t('Репозиторий', 'Repository')}
                       </a>
                     </div>
                   </div>
@@ -635,16 +711,29 @@ export default function CodeShowcase() {
               <div>
                 <div className="font-header font-bold text-lg text-ink mb-1">Security / Privacy</div>
                 <div className="text-sm text-ink-light leading-relaxed">
-                  Витрина показывает безопасные фрагменты: значения секретов маскируются, а детали инфраструктуры не раскрываются.
+                  {t(
+                    'Витрина показывает безопасные фрагменты: значения секретов маскируются, а детали инфраструктуры не раскрываются.',
+                    'This showcase only includes safe snippets: secrets are masked and infrastructure details are not exposed.'
+                  )}
                 </div>
                 <ul className="mt-3 space-y-2 text-sm text-ink-light">
                   <li className="flex items-start gap-2">
                     <i className="fa-solid fa-check text-success mt-0.5"></i>
-                    <span>Секреты (token/password/key) не публикуются и не копируются “как есть”.</span>
+                    <span>
+                      {t(
+                        'Секреты (token/password/key) не публикуются и не копируются “как есть”.',
+                        'Secrets (token/password/key) are never published or copied as-is.'
+                      )}
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <i className="fa-solid fa-check text-success mt-0.5"></i>
-                    <span>Фрагменты могут быть сокращены — цель секции: показать подходы (контракт, тесты, CI, мониторинг).</span>
+                    <span>
+                      {t(
+                        'Фрагменты могут быть сокращены — цель секции: показать подходы (контракт, тесты, CI, мониторинг).',
+                        'Snippets may be shortened — the goal is to show approaches (contract, tests, CI, observability).'
+                      )}
+                    </span>
                   </li>
                 </ul>
               </div>
