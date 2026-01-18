@@ -7,7 +7,7 @@ import { SITE_REPO_URL } from '@/lib/links'
 export default function Hero() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
-  const lastUpdated = '2026-01-18'
+  const lastUpdated = '2026-01-08'
 
   return (
     <section className="hero-surface relative py-20 px-4 overflow-hidden flex flex-col items-center text-center border-b border-ink/5 bg-gradient-to-b from-paper to-white/70">
