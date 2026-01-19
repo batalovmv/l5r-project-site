@@ -6,9 +6,11 @@ import { useEffect, useState } from 'react'
 import { useHints } from '@/contexts/HintsContext'
 import { useTheme } from '@/contexts/ThemeContext'
 import { useLocale } from '@/contexts/LocaleContext'
+import { useViewMode } from '@/contexts/ViewModeContext'
 import { SITE_REPO_URL } from '@/lib/links'
+import ViewModeToggle from '@/components/ViewModeToggle'
 
-const HOME_NAV_ITEMS = [
+const DEVELOPER_NAV_ITEMS = [
   { id: 'progress', label: { ru: 'ПРОГРЕСС', en: 'PROGRESS' } },
   { id: 'features', label: { ru: 'ФУНКЦИИ', en: 'FEATURES' } },
   { id: 'achievements', label: { ru: 'ДОСТИЖЕНИЯ', en: 'DONE' } },
@@ -16,6 +18,12 @@ const HOME_NAV_ITEMS = [
   { id: 'docs', label: { ru: 'ДОКИ', en: 'DOCS' } },
   { id: 'tech', label: { ru: 'СТЕК', en: 'STACK' } },
   { id: 'roadmap', label: { ru: 'ПЛАН', en: 'ROADMAP' } },
+] as const
+
+const PLAYER_NAV_ITEMS = [
+  { id: 'features', label: { ru: 'ВОЗМОЖНОСТИ', en: 'FEATURES' } },
+  { id: 'roadmap', label: { ru: 'РЕЛИЗ', en: 'RELEASE' } },
+  { id: 'faq', label: { ru: 'FAQ', en: 'FAQ' } },
 ] as const
 
 const DOC_NAV_ITEMS = [
@@ -27,6 +35,9 @@ const DOC_NAV_ITEMS = [
   { href: '/docs/ops/', label: { ru: 'OPS', en: 'OPS' } },
 ] as const
 
+type HomeNavItem = (typeof DEVELOPER_NAV_ITEMS)[number] | (typeof PLAYER_NAV_ITEMS)[number]
+type HomeNavId = HomeNavItem['id']
+
 export default function Header() {
   const pathname = usePathname()
   const pathnameKey = (pathname ?? '').replace(/\/$/, '')
@@ -34,15 +45,17 @@ export default function Header() {
   const { hintsActive, toggleHints } = useHints()
   const { theme, toggleTheme } = useTheme()
   const { locale, setLocale } = useLocale()
+  const { isPlayerMode } = useViewMode()
   const [menuOpen, setMenuOpen] = useState(false)
-  const [activeSectionId, setActiveSectionId] = useState<(typeof HOME_NAV_ITEMS)[number]['id']>('progress')
+  const [activeSectionId, setActiveSectionId] = useState<HomeNavId>('progress')
 
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
+  const homeNavItems: readonly HomeNavItem[] = isPlayerMode ? PLAYER_NAV_ITEMS : DEVELOPER_NAV_ITEMS
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: HomeNavId) => {
     e.preventDefault()
     setMenuOpen(false)
-    setActiveSectionId(targetId as (typeof HOME_NAV_ITEMS)[number]['id'])
+    setActiveSectionId(targetId)
     const element = document.getElementById(targetId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -55,6 +68,15 @@ export default function Header() {
   }
 
   useEffect(() => {
+    if (isDocs) return
+    const ids = homeNavItems.map((item) => item.id)
+    if (!ids.includes(activeSectionId)) {
+      const nextId = homeNavItems[0]?.id
+      if (nextId) setActiveSectionId(nextId)
+    }
+  }, [activeSectionId, homeNavItems, isDocs])
+
+  useEffect(() => {
     if (typeof window === 'undefined') return
     if (isDocs) return
 
@@ -63,9 +85,9 @@ export default function Header() {
     const updateActive = () => {
       raf = 0
       const y = window.scrollY + 140
-      let current: (typeof HOME_NAV_ITEMS)[number]['id'] | null = null
+      let current: HomeNavId | null = null
 
-      for (const item of HOME_NAV_ITEMS) {
+      for (const item of homeNavItems) {
         const el = document.getElementById(item.id)
         if (!el) continue
         if (el.offsetTop <= y) current = item.id
@@ -88,7 +110,7 @@ export default function Header() {
       window.removeEventListener('resize', onScroll)
       if (raf) window.cancelAnimationFrame(raf)
     }
-  }, [isDocs])
+  }, [homeNavItems, isDocs])
 
   return (
     <>
@@ -109,6 +131,7 @@ export default function Header() {
             </div>
           </div>
           <div className="flex items-center gap-4">
+            <ViewModeToggle />
             <div className="lang-toggle hidden sm:flex">
               <button
                 type="button"
@@ -205,7 +228,7 @@ export default function Header() {
                     </Link>
                   )
                 })
-              : HOME_NAV_ITEMS.map((item) => (
+              : homeNavItems.map((item) => (
                   <a
                     key={item.id}
                     href={`#${item.id}`}
@@ -257,7 +280,7 @@ export default function Header() {
                       </Link>
                     )
                   })
-                : HOME_NAV_ITEMS.map((item) => {
+                : homeNavItems.map((item) => {
                     const active = activeSectionId === item.id
                     return (
                       <a

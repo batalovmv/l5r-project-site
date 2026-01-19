@@ -6,6 +6,7 @@ import ScrollEffects from '@/components/ScrollEffects'
 import BackToTop from '@/components/BackToTop'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import { LocaleProvider } from '@/contexts/LocaleContext'
+import { ViewModeProvider } from '@/contexts/ViewModeContext'
 import Script from 'next/script'
 import SkipLink from '@/components/SkipLink'
 import ScrollProgress from '@/components/ScrollProgress'
@@ -67,14 +68,16 @@ export default function RootLayout({
       <body className="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
         <ThemeProvider>
           <LocaleProvider>
-            <HintsProvider>
-              <SkipLink />
-              {children}
-              <ScrollEffects />
-              <ScrollProgress />
-              <HeroPointerGlow />
-              <BackToTop />
-            </HintsProvider>
+            <ViewModeProvider>
+              <HintsProvider>
+                <SkipLink />
+                {children}
+                <ScrollEffects />
+                <ScrollProgress />
+                <HeroPointerGlow />
+                <BackToTop />
+              </HintsProvider>
+            </ViewModeProvider>
           </LocaleProvider>
         </ThemeProvider>
 
