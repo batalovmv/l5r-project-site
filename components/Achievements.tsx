@@ -9,25 +9,25 @@ export default function Achievements() {
 
   const stats = [
     {
-      value: '122',
+      value: '200',
       label: t('API операции', 'API operations'),
       sub: 'REST + OpenAPI',
       hint: t('Контракт, документация и типы генерируются из OpenAPI', 'Contract, docs, and types are generated from OpenAPI'),
     },
     {
-      value: '92',
+      value: '109',
       label: t('Таблиц БД', 'DB tables'),
       sub: 'Prisma ORM',
       hint: t('Сложная реляционная модель + миграции + seed', 'Complex relational model + migrations + seed'),
     },
     {
-      value: '48',
+      value: '90',
       label: t('Сервисов', 'Services'),
       sub: t('Бизнес-логика', 'Business logic'),
       hint: t('Сервисы по доменам: auth/campaigns/scenes/xp…', 'Domain services: auth/campaigns/scenes/xp…'),
     },
     {
-      value: '32',
+      value: '55',
       label: t('Миграций', 'Migrations'),
       sub: t('Версионирование', 'Versioning'),
       hint: t('Схема БД эволюционировала вместе с фичами', 'The DB schema evolved alongside features'),

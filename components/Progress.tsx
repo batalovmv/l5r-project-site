@@ -119,7 +119,7 @@ export default function Progress() {
                 )}
               </div>
               <div className="text-sm font-code text-gray-600">
-                {t('123 endpoints • 96 таблицы • 66 сервисов', '123 endpoints • 96 tables • 66 services')}
+                {t('200 endpoints • 109 таблиц • 90 сервисов', '200 endpoints • 109 tables • 90 services')}
               </div>
             </div>
           </div>

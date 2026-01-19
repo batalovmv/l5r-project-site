@@ -10,9 +10,9 @@ export default function TechStack() {
   const backend = [
     { icon: 'fa-node-js', name: 'Node.js 20+', color: 'text-green-600', brand: true },
     { icon: 'fa-js', name: 'TypeScript 5.9', color: 'text-yellow-500', brand: true },
-    { icon: 'fa-bolt', name: 'Express 5', color: 'text-gray-600' },
+    { icon: 'fa-bolt', name: 'Express 5.2', color: 'text-gray-600' },
     { icon: 'fa-database', name: 'PostgreSQL', color: 'text-blue-600' },
-    { icon: 'fa-layer-group', name: 'Prisma ORM', color: 'text-purple-600' },
+    { icon: 'fa-layer-group', name: 'Prisma 6', color: 'text-purple-600' },
     { icon: 'fa-key', name: 'JWT/OAuth', color: 'text-yellow-600' },
     { icon: 'fa-tower-broadcast', name: 'SSE', color: 'text-red-500' },
     { icon: 'fa-database', name: 'Redis', color: 'text-red-600' },

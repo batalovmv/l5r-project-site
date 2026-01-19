@@ -19,7 +19,7 @@ export default function Roadmap() {
             bgColor: 'bg-success',
             items: [
               { status: 'done', text: 'Express + TypeScript сервер' },
-              { status: 'done', text: 'PostgreSQL + Prisma (96 таблиц)' },
+              { status: 'done', text: 'PostgreSQL + Prisma (109 таблиц)' },
               { status: 'done', text: 'JWT + OAuth аутентификация' },
               { status: 'done', text: 'SSE + Redis realtime' },
               { status: 'done', text: 'Боевая система (дуэли, интриги, mass battle)' },
@@ -101,7 +101,7 @@ export default function Roadmap() {
             bgColor: 'bg-success',
             items: [
               { status: 'done', text: 'Express + TypeScript server' },
-              { status: 'done', text: 'PostgreSQL + Prisma (92 tables)' },
+              { status: 'done', text: 'PostgreSQL + Prisma (109 tables)' },
               { status: 'done', text: 'JWT + OAuth authentication' },
               { status: 'done', text: 'SSE + Redis realtime' },
               { status: 'done', text: 'Combat system (duels, intrigues, mass battle)' },

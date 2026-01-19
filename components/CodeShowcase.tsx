@@ -241,7 +241,7 @@ export default function CodeShowcase() {
       {
         id: 'prisma-models',
         title: t('DB: Prisma model', 'DB: Prisma model'),
-        caption: t('Пример доменной модели: users + idempotency keys (96 таблиц в схеме).', 'Example domain model: users + idempotency keys (96 tables).'),
+        caption: t('Пример доменной модели: users + idempotency keys (109 таблиц в схеме).', 'Example domain model: users + idempotency keys (109 tables).'),
         icon: 'fa-database',
         iconColorClass: 'text-tech',
         sourceLabel: t('backend • schema', 'backend • schema'),
