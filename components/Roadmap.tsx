@@ -176,8 +176,8 @@ export default function Roadmap() {
 
   const future =
     locale === 'ru'
-      ? ['Дополнительные книги', 'PDF экспорт', 'Web-версия для GM', 'Генератор NPC', 'VTT интеграция', 'Карты локаций']
-      : ['More books', 'PDF export', 'Web version for GM', 'NPC generator', 'VTT integration', 'Location maps']
+      ? ['Дополнительные книги', 'Web-версия для GM', 'Карты локаций', 'Офлайн-режим']
+      : ['More books', 'Web version for GM', 'Location maps', 'Offline mode']
 
   return (
     <section id="roadmap" className="py-24 bg-paper-dark relative overflow-hidden">

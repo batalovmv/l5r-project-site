@@ -41,7 +41,7 @@ export default function Achievements() {
       title: t('Безопасность', 'Security'),
       items: [
         'JWT + refresh rotation',
-        t('OAuth 2.0 (Google, VK)', 'OAuth 2.0 (Google, VK)'),
+        t('OAuth 2.0 (Google, VK, Discord)', 'OAuth 2.0 (Google, VK, Discord)'),
         'Rate limiting + Helmet',
         t('Валидация запросов (Zod/AJV)', 'Request validation (Zod/AJV)'),
       ],
@@ -50,13 +50,40 @@ export default function Achievements() {
       icon: 'fa-bolt',
       color: 'bg-tech',
       title: t('Real-time', 'Real-time'),
-      items: ['Server-Sent Events (SSE)', 'Redis Pub/Sub (multi-instance)', 'Reconnection/heartbeat', 'Sync API (cursor + tombstones)'],
+      items: [
+        'Server-Sent Events (SSE)',
+        'Redis Pub/Sub (multi-instance)',
+        t('Чат + typing indicator', 'Chat + typing indicator'),
+        t('Push уведомления (FCM)', 'Push notifications (FCM)'),
+      ],
     },
     {
       icon: 'fa-khanda',
       color: 'bg-success',
       title: t('Боевая система', 'Combat system'),
-      items: [t('Дуэли с фазами', 'Duels with phases'), t('Интриги', 'Intrigues'), t('Массовые сражения', 'Mass battles'), t('Dice rolls + проверки', 'Dice rolls + checks')],
+      items: [t('Дуэли с фазами', 'Duels with phases'), t('Интриги', 'Intrigues'), t('Массовые сражения', 'Mass battles'), t('Карты сцен + токены', 'Scene maps + tokens')],
+    },
+    {
+      icon: 'fa-robot',
+      color: 'bg-indigo-600',
+      title: t('AI Ассистент', 'AI Assistant'),
+      items: [
+        t('Генерация NPC и локаций', 'NPC & location generation'),
+        t('Поиск и объяснение правил', 'Rules search & explain'),
+        t('Подсказки opportunities', 'Opportunity suggestions'),
+        t('Анализ боя и рекапы', 'Combat analysis & recaps'),
+      ],
+    },
+    {
+      icon: 'fa-plug',
+      color: 'bg-amber-600',
+      title: t('Интеграции', 'Integrations'),
+      items: [
+        'Foundry VTT (import/export)',
+        t('Google & Outlook календарь', 'Google & Outlook calendar'),
+        t('Discord бот + вебхуки', 'Discord bot + webhooks'),
+        t('PDF и JSON экспорт', 'PDF & JSON export'),
+      ],
     },
     {
       icon: 'fa-chart-line',
@@ -86,6 +113,17 @@ export default function Achievements() {
         t('7 великих кланов + семьи/школы', '7 great clans + families/schools'),
         t('Техники, предметы, качества', 'Techniques, items, qualities'),
         'xlsx → JSON → seed pipeline',
+      ],
+    },
+    {
+      icon: 'fa-wand-sparkles',
+      color: 'bg-pink-600',
+      title: t('Генераторы', 'Generators'),
+      items: [
+        t('Генератор NPC + скейлинг', 'NPC generator + scaling'),
+        t('Генератор имён и лута', 'Name & loot generator'),
+        t('Encounter builder', 'Encounter builder'),
+        t('Случайные события', 'Random events'),
       ],
     },
   ]
