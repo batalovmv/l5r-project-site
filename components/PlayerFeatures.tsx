@@ -62,6 +62,42 @@ export default function PlayerFeatures() {
         'NPC generation on the fly, rules hints, combat analysis. GM no longer needs to flip through the book.'
       ),
     },
+    {
+      icon: 'fa-book-open',
+      color: 'bg-amber-600',
+      title: t('Справочник под рукой', 'Rulebook at your fingertips'),
+      description: t(
+        'Все техники, преимущества, оружие — ищи и читай прямо в приложении. 5 книг, быстрый поиск.',
+        'All techniques, advantages, weapons — search and read right in the app. 5 books, fast search.'
+      ),
+    },
+    {
+      icon: 'fa-scroll',
+      color: 'bg-teal-600',
+      title: t('Пересказ "что было"', 'Session recaps'),
+      description: t(
+        'Забыл что было в прошлый раз? AI напомнит ключевые события за 30 секунд перед началом игры.',
+        'Forgot what happened last time? AI will remind you of key events in 30 seconds before the game.'
+      ),
+    },
+    {
+      icon: 'fa-bell',
+      color: 'bg-pink-600',
+      title: t('Напоминания о сессиях', 'Session reminders'),
+      description: t(
+        'Push-уведомления напомнят о предстоящей игре. Синхронизация с Google и Outlook календарём.',
+        'Push notifications will remind you about upcoming games. Google & Outlook calendar sync.'
+      ),
+    },
+    {
+      icon: 'fa-file-pdf',
+      color: 'bg-red-700',
+      title: t('Экспорт в PDF', 'Export to PDF'),
+      description: t(
+        'Нужен бумажный лист? Экспортируй персонажа в PDF и распечатай.',
+        'Need a paper sheet? Export your character to PDF and print.'
+      ),
+    },
   ]
 
   return (

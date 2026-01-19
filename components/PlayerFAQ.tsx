@@ -49,6 +49,20 @@ export default function PlayerFAQ() {
         'Currently in the design phase. After that — development and testing. Stay tuned for updates!'
       ),
     },
+    {
+      q: t('Что если я забыл что было на прошлой сессии?', 'What if I forgot what happened last session?'),
+      a: t(
+        'AI автоматически создаёт краткий пересказ каждой сессии. Перед игрой за 30 секунд освежишь память — кто, где, что произошло.',
+        'AI automatically creates a brief recap of each session. Before the game, refresh your memory in 30 seconds — who, where, what happened.'
+      ),
+    },
+    {
+      q: t('GM должен платить за AI-фичи?', 'Does the GM have to pay for AI features?'),
+      a: t(
+        'Базовые функции (персонаж, кубики, справочник) бесплатны навсегда. AI-функции — часть премиум-подписки, детали ближе к релизу.',
+        'Basic features (character, dice, rulebook) are free forever. AI features are part of premium subscription, details closer to release.'
+      ),
+    },
   ]
 
   return (
