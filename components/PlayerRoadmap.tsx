@@ -14,19 +14,19 @@ export default function PlayerRoadmap() {
       icon: 'fa-check',
       status: 'done' as PhaseStatus,
       title: t('Движок готов', 'Engine ready'),
-      description: t('Вся логика игры уже собрана для оффлайн-приложения', 'All game logic is already assembled for the offline app'),
+      description: t('Вся логика игры реализована', 'All game logic implemented'),
+    },
+    {
+      icon: 'fa-check',
+      status: 'done' as PhaseStatus,
+      title: t('Мобильное приложение', 'Mobile app'),
+      description: t('React Native + SQLite оффлайн архитектура', 'React Native + SQLite offline architecture'),
     },
     {
       icon: 'fa-palette',
       status: 'current' as PhaseStatus,
-      title: t('Делаем дизайн', 'Designing'),
-      description: t('Рисуем красивые экраны приложения', 'Creating beautiful app screens'),
-    },
-    {
-      icon: 'fa-mobile',
-      status: 'pending' as PhaseStatus,
-      title: t('Разработка приложения', 'App development'),
-      description: t('iOS и Android приложения', 'iOS and Android apps'),
+      title: t('UI/UX дизайн', 'UI/UX design'),
+      description: t('Работа над интерфейсом', 'Working on interface'),
     },
     {
       icon: 'fa-rocket',

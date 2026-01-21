@@ -119,7 +119,7 @@ export default function Progress() {
                 )}
               </div>
               <div className="text-sm font-code text-gray-600">
-                {t('5 книг • 20 вопросов • оффлайн', '5 books • 20 questions • offline')}
+                {t('Монорепо: backend + mobile • 44 сервиса • 55 миграций', 'Monorepo: backend + mobile • 44 services • 55 migrations')}
               </div>
             </div>
           </div>

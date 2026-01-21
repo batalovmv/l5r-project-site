@@ -7,21 +7,24 @@ export default function TechStack() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
-  const core = [
+  const backend = [
     { icon: 'fa-node-js', name: 'Node.js 20+', color: 'text-green-600', brand: true },
     { icon: 'fa-js', name: 'TypeScript 5.9', color: 'text-yellow-500', brand: true },
-    { icon: 'fa-layer-group', name: 'Prisma 6', color: 'text-purple-600' },
+    { icon: 'fa-bolt', name: 'Express 5', color: 'text-gray-600' },
     { icon: 'fa-database', name: 'PostgreSQL', color: 'text-blue-600' },
+    { icon: 'fa-layer-group', name: 'Prisma ORM', color: 'text-purple-600' },
     { icon: 'fa-flask', name: 'Jest', color: 'text-green-500' },
   ]
 
-  const frontend = [
+  const mobile = [
     { icon: 'fa-react', name: 'React Native', color: 'text-cyan-500', brand: true },
-    { icon: 'fa-e', name: 'Expo', color: 'text-black' },
-    { icon: 'fa-js', name: 'TypeScript', color: 'text-yellow-500', brand: true },
-    { icon: 'fa-route', name: 'React Navigation', color: 'text-purple-500' },
-    { icon: 'fa-globe', name: 'i18next', color: 'text-blue-500' },
-    { icon: 'fa-flask', name: 'Jest', color: 'text-red-500' },
+    { icon: 'fa-js', name: 'TypeScript 5.9', color: 'text-yellow-500', brand: true },
+    { icon: 'fa-mobile', name: 'Expo 54', color: 'text-purple-500' },
+    { icon: 'fa-database', name: 'SQLite', color: 'text-blue-500' },
+    { icon: 'fa-store', name: 'Zustand', color: 'text-amber-600' },
+    { icon: 'fa-file-code', name: 'React Hook Form', color: 'text-pink-500' },
+    { icon: 'fa-shield', name: 'Zod', color: 'text-blue-600' },
+    { icon: 'fa-flask', name: 'Jest', color: 'text-green-500' },
   ]
 
   return (
@@ -36,19 +39,19 @@ export default function TechStack() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Core tooling */}
+          {/* Backend */}
           <div className="card p-8" data-reveal data-reveal-delay="0">
             <h4 className="font-header font-bold text-xl mb-6 text-l5r-red flex items-center gap-2">
-              <i className="fa-solid fa-gears"></i> {t('Инструменты ядра', 'Core tooling')}
+              <i className="fa-solid fa-gears"></i> {t('Backend', 'Backend')}
             </h4>
             <p className="hint-text mb-4">
               {t(
-                'Инструменты для подготовки оффлайн-данных и правил; сервер в приложении не требуется',
-                'Tooling for preparing offline data and rules; no server is required in the app'
+                'Бэкенд для подготовки справочных данных и миграций; приложение работает оффлайн',
+                'Backend for reference data and migrations; the app runs offline'
               )}
             </p>
             <div className="flex flex-wrap gap-3">
-              {core.map((tech, i) => (
+              {backend.map((tech, i) => (
                 <span key={i} className="tech-badge">
                   <i className={`${tech.brand ? 'fa-brands' : 'fa-solid'} ${tech.icon} ${tech.color}`}></i>
                   {tech.name}
@@ -57,19 +60,19 @@ export default function TechStack() {
             </div>
           </div>
 
-          {/* Frontend */}
+          {/* Mobile */}
           <div className="card p-8" data-reveal data-reveal-delay="120">
             <h4 className="font-header font-bold text-xl mb-6 text-tech flex items-center gap-2">
-              <i className="fa-solid fa-mobile-screen"></i> {t('Frontend (planned)', 'Frontend (planned)')}
+              <i className="fa-solid fa-mobile-screen"></i> {t('Мобильное приложение', 'Mobile app')}
             </h4>
             <p className="hint-text mb-4">
               {t(
-                'Разработка начнётся после готового дизайна (макетов и дизайн‑системы)',
-                'Development starts after the design is ready (screens + design system)'
+                'React Native + Expo, локальное хранение в SQLite и Zustand для состояния',
+                'React Native + Expo, local storage with SQLite and Zustand state'
               )}
             </p>
             <div className="flex flex-wrap gap-3">
-              {frontend.map((tech, i) => (
+              {mobile.map((tech, i) => (
                 <span key={i} className="tech-badge">
                   <i className={`${tech.brand ? 'fa-brands' : 'fa-solid'} ${tech.icon} ${tech.color}`}></i>
                   {tech.name}

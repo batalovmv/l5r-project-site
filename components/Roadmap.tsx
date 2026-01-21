@@ -29,6 +29,20 @@ export default function Roadmap() {
             ],
           },
           {
+            status: 'done',
+            icon: 'fa-mobile-screen',
+            label: 'Завершено',
+            title: 'Мобильное приложение',
+            color: 'border-success',
+            bgColor: 'bg-success',
+            items: [
+              { status: 'done', text: 'React Native (Expo 54)' },
+              { status: 'done', text: 'SQLite оффлайн-хранение' },
+              { status: 'done', text: 'Zustand + React Hook Form' },
+              { status: 'done', text: 'Локальный экспорт/импорт' },
+            ],
+          },
+          {
             status: 'current',
             icon: 'fa-palette',
             label: 'В работе',
@@ -106,6 +120,20 @@ export default function Roadmap() {
               { status: 'done', text: 'L5R reference data (5 books)' },
               { status: 'done', text: 'Local data model' },
               { status: 'done', text: 'Character export to PDF/JSON' },
+            ],
+          },
+          {
+            status: 'done',
+            icon: 'fa-mobile-screen',
+            label: 'Completed',
+            title: 'Mobile app',
+            color: 'border-success',
+            bgColor: 'bg-success',
+            items: [
+              { status: 'done', text: 'React Native (Expo 54)' },
+              { status: 'done', text: 'SQLite offline storage' },
+              { status: 'done', text: 'Zustand + React Hook Form' },
+              { status: 'done', text: 'Local export/import' },
             ],
           },
           {

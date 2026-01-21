@@ -120,7 +120,7 @@ export default function Features() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16" data-reveal>
           <div className="flex items-center justify-center gap-3 mb-4">
-            <h3 className="section-title mb-0">{t('Функциональность', 'Features')}</h3>
+            <h3 className="section-title mb-0">{t('Архитектура приложения', 'App architecture')}</h3>
             <SectionLinkButton targetId="features" />
           </div>
           <div className="section-divider mx-auto mb-4"></div>
@@ -136,6 +136,33 @@ export default function Features() {
               'The app is fully standalone: no servers or accounts, all data stays on the device'
             )}
           </p>
+        </div>
+
+        <div className="card p-6 mb-8" data-reveal>
+          <h4 className="font-header text-xl font-bold text-ink mb-4">
+            <i className="fa-solid fa-folder-tree text-l5r-gold mr-2"></i>
+            {t('Структура монорепо', 'Monorepo Structure')}
+          </h4>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <h5 className="font-bold text-sm mb-2 text-tech">backend/</h5>
+              <ul className="text-sm text-ink-light space-y-1">
+                <li>• Node.js 20+ / Express</li>
+                <li>• PostgreSQL + Prisma ORM</li>
+                <li>• {t('55 миграций', '55 migrations')}</li>
+                <li>• {t('Справочные данные L5R', 'L5R reference data')}</li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-bold text-sm mb-2 text-tech">mobile/</h5>
+              <ul className="text-sm text-ink-light space-y-1">
+                <li>• React Native (Expo 54)</li>
+                <li>• SQLite (expo-sqlite)</li>
+                <li>• Zustand + React Hook Form</li>
+                <li>• {t('44 сервиса', '44 services')}</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
@@ -355,7 +382,7 @@ export default function Features() {
             <ul className="space-y-2 text-sm text-ink-light">
               <li>
                 <i className="fa-solid fa-cloud-arrow-down text-success mr-2"></i>
-                {t('Локальный экспорт/импорт кампаний', 'Local campaign export/import')}
+                {t('Локальный экспорт/импорт JSON', 'Local JSON export/import')}
               </li>
             </ul>
           </div>
@@ -400,12 +427,16 @@ export default function Features() {
             <h4 className="font-header text-xl font-bold text-ink mb-3">{t('Инструменты GM', 'GM tools')}</h4>
             <ul className="space-y-2 text-sm text-ink-light">
               <li>
-                <i className="fa-solid fa-eye-slash text-purple-500 mr-2"></i>
-                {t('Приватные заметки + раскрытие', 'Private notes + reveal')}
+                <i className="fa-solid fa-file-pdf text-red-500 mr-2"></i>
+                {t('PDF экспорт персонажа', 'Character PDF export')}
               </li>
               <li>
-                <i className="fa-solid fa-file-pdf text-red-500 mr-2"></i>
-                {t('PDF и JSON экспорт', 'PDF & JSON export')}
+                <i className="fa-solid fa-eye-slash text-purple-500 mr-2"></i>
+                {t('Приватные заметки', 'Private notes')}
+              </li>
+              <li>
+                <i className="fa-solid fa-wand-magic-sparkles text-pink-500 mr-2"></i>
+                {t('Генератор NPC (локальный)', 'NPC generator (local)')}
               </li>
             </ul>
           </div>

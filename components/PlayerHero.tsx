@@ -19,8 +19,8 @@ export default function PlayerHero() {
         </h2>
         <p className="font-body text-xl text-ink-light max-w-2xl mx-auto mb-8 leading-relaxed">
           {t(
-            'Забудь про бумажные листы персонажей. Кубики, техники, бой — всё в одном приложении. Работает без интернета.',
-            'Forget paper character sheets. Dice, techniques, combat — all in one app. Works offline.'
+            'Забудь про бумажные листы персонажей. Кубики, техники, бой — всё в одном приложении. Работает полностью оффлайн.',
+            'Forget paper character sheets. Dice, techniques, combat — all in one app. Works fully offline.'
           )}
         </p>
         <div className="flex flex-wrap gap-4 justify-center">

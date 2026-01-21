@@ -17,15 +17,15 @@ export default function PlayerFAQ() {
     {
       q: t('Можно играть за одним столом?', 'Can I play at one table?'),
       a: t(
-        'Да! Приложение идеально подходит для классической игры за столом. Каждый игрок ведёт своего персонажа на своём телефоне.',
-        'Yes! The app is perfect for classic tabletop play. Each player manages their character on their own phone.'
+        'Да! Это основной сценарий. Каждый игрок ведёт своего персонажа на телефоне. Синхронизация не нужна — данные у каждого свои.',
+        'Yes! This is the main scenario. Each player manages their character on their phone. No sync needed — each has their own data.'
       ),
     },
     {
       q: t('Приложение работает без интернета?', 'Does the app work offline?'),
       a: t(
-        'Да! Приложение полностью автономное. Никаких серверов, аккаунтов или подписок. Все данные хранятся на устройстве.',
-        'Yes! The app is fully standalone. No servers, accounts, or subscriptions. All data is stored on your device.'
+        'Да, полностью! Никаких серверов, аккаунтов или подписок. Все данные хранятся на устройстве.',
+        'Yes, completely! No servers, accounts, or subscriptions. All data stored on device.'
       ),
     },
     {
@@ -45,8 +45,15 @@ export default function PlayerFAQ() {
     {
       q: t('Как перенести персонажа на другой телефон?', 'How to transfer a character to another phone?'),
       a: t(
-        'Экспортируй персонажа в JSON или PDF, отправь файл на новый телефон и импортируй.',
-        'Export your character to JSON or PDF, send the file to your new phone, and import it.'
+        'Экспортируй в JSON, отправь файл на новый телефон (мессенджер, email, AirDrop) и импортируй.',
+        'Export to JSON, send the file to the new phone (messenger, email, AirDrop) and import.'
+      ),
+    },
+    {
+      q: t('Данные персонажей безопасны?', 'Is character data safe?'),
+      a: t(
+        'Данные хранятся только на твоём устройстве. Мы не собираем никакой информации. Рекомендуем периодически экспортировать важных персонажей.',
+        'Data is stored only on your device. We do not collect any information. We recommend periodically exporting important characters.'
       ),
     },
     {

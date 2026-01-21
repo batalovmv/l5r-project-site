@@ -49,17 +49,17 @@ export default function PlayerFeatures() {
       color: 'bg-amber-600',
       title: t('Справочник под рукой', 'Rulebook at your fingertips'),
       description: t(
-        'Все техники, преимущества, оружие — ищи и читай прямо в приложении. 5 книг, работает без интернета.',
-        'All techniques, advantages, weapons — search and read right in the app. 5 books, works offline.'
+        'Все техники, преимущества, оружие — ищи прямо в приложении. 5 книг L5R, мгновенный поиск, работает без интернета.',
+        'All techniques, advantages, weapons — search right in the app. 5 L5R books, instant search, works offline.'
       ),
     },
     {
       icon: 'fa-wifi-slash',
       color: 'bg-gray-700',
-      title: t('Работает без интернета', 'Works offline'),
+      title: t('Работает оффлайн', 'Works offline'),
       description: t(
-        'Никакого сервера, никаких аккаунтов. Все данные хранятся локально на твоём телефоне.',
-        'No server, no accounts. All data is stored locally on your phone.'
+        'Никаких серверов или аккаунтов. Все данные хранятся локально на твоём устройстве. Полная приватность.',
+        'No servers or accounts. All data stored locally on your device. Complete privacy.'
       ),
     },
     {
