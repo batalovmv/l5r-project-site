@@ -12,22 +12,20 @@ export default function Roadmap() {
       ? [
           {
             status: 'done',
-            icon: 'fa-server',
+            icon: 'fa-cube',
             label: 'Завершено',
-            title: 'Backend API',
+            title: 'Ядро приложения',
             color: 'border-success',
             bgColor: 'bg-success',
             items: [
-              { status: 'done', text: 'Express + TypeScript сервер' },
-              { status: 'done', text: 'PostgreSQL + Prisma (109 таблиц)' },
-              { status: 'done', text: 'JWT + OAuth аутентификация' },
-              { status: 'done', text: 'SSE + Redis realtime' },
+              { status: 'done', text: 'Логика создания персонажа (20 вопросов)' },
+              { status: 'done', text: 'Полный лист персонажа и производные статы' },
               { status: 'done', text: 'Боевая система (дуэли, интриги, mass battle)' },
-              { status: 'done', text: 'XP, Notes, Sessions, Downtime' },
-              { status: 'done', text: 'Docker + Prometheus + Sentry' },
-              { status: 'done', text: 'Feature flags + kill switch' },
+              { status: 'done', text: 'Сцены и валидация действий' },
+              { status: 'done', text: 'Dice roller (кольца/навыки/взрывы)' },
               { status: 'done', text: 'Справочные данные L5R (5 книг)' },
-              { status: 'done', text: 'Jest автотесты + OpenAPI контракт' },
+              { status: 'done', text: 'Локальная модель данных' },
+              { status: 'done', text: 'Экспорт персонажа в PDF/JSON' },
             ],
           },
           {
@@ -58,9 +56,9 @@ export default function Roadmap() {
               { status: 'pending', text: 'Реализация всех экранов по дизайну' },
               { status: 'pending', text: 'Character Wizard "20 вопросов" (~10 экранов)' },
               { status: 'pending', text: 'Dice roller с анимацией' },
-              { status: 'pending', text: 'OAuth на фронтенде' },
-              { status: 'pending', text: 'Offline mode' },
-              { status: 'pending', text: 'Push notifications' },
+              { status: 'pending', text: 'Локальное хранение + автосохранение' },
+              { status: 'pending', text: 'Экспорт/импорт PDF и JSON' },
+              { status: 'pending', text: 'Поиск по справочнику и фильтры' },
             ],
           },
           {
@@ -94,22 +92,20 @@ export default function Roadmap() {
       : [
           {
             status: 'done',
-            icon: 'fa-server',
+            icon: 'fa-cube',
             label: 'Completed',
-            title: 'Backend API',
+            title: 'App core',
             color: 'border-success',
             bgColor: 'bg-success',
             items: [
-              { status: 'done', text: 'Express + TypeScript server' },
-              { status: 'done', text: 'PostgreSQL + Prisma (109 tables)' },
-              { status: 'done', text: 'JWT + OAuth authentication' },
-              { status: 'done', text: 'SSE + Redis realtime' },
+              { status: 'done', text: 'Character creation logic (20 Questions)' },
+              { status: 'done', text: 'Full character sheet + derived stats' },
               { status: 'done', text: 'Combat system (duels, intrigues, mass battle)' },
-              { status: 'done', text: 'XP, Notes, Sessions, Downtime' },
-              { status: 'done', text: 'Docker + Prometheus + Sentry' },
-              { status: 'done', text: 'Feature flags + kill switch' },
+              { status: 'done', text: 'Scenes and action validation' },
+              { status: 'done', text: 'Dice roller (rings/skills/explosions)' },
               { status: 'done', text: 'L5R reference data (5 books)' },
-              { status: 'done', text: 'Jest tests + OpenAPI contract' },
+              { status: 'done', text: 'Local data model' },
+              { status: 'done', text: 'Character export to PDF/JSON' },
             ],
           },
           {
@@ -140,9 +136,9 @@ export default function Roadmap() {
               { status: 'pending', text: 'Implement all screens from the design' },
               { status: 'pending', text: 'Character Wizard “20 Questions” (~10 screens)' },
               { status: 'pending', text: 'Dice roller with animations' },
-              { status: 'pending', text: 'OAuth on the frontend' },
-              { status: 'pending', text: 'Offline mode' },
-              { status: 'pending', text: 'Push notifications' },
+              { status: 'pending', text: 'Local storage + autosave' },
+              { status: 'pending', text: 'PDF/JSON export and import' },
+              { status: 'pending', text: 'Rulebook search and filters' },
             ],
           },
           {
@@ -176,8 +172,8 @@ export default function Roadmap() {
 
   const future =
     locale === 'ru'
-      ? ['Дополнительные книги', 'Web-версия для GM', 'Карты локаций', 'Офлайн-режим']
-      : ['More books', 'Web version for GM', 'Location maps', 'Offline mode']
+      ? ['Дополнительные книги', 'Журнал сессий и заметки', 'Карты локаций', 'Новые шаблоны листов']
+      : ['More books', 'Session journal and notes', 'Location maps', 'New sheet layouts']
 
   return (
     <section id="roadmap" className="py-24 bg-paper-dark relative overflow-hidden">
@@ -191,8 +187,8 @@ export default function Roadmap() {
           <div className="section-divider mx-auto mb-4"></div>
           <p className="hint-text max-w-xl mx-auto mt-4">
             {t(
-              'Backend готов. Сейчас нужен дизайн — фронтенд стартует по готовым макетам.',
-              'Backend is ready. Design is next — frontend starts from the finished designs.'
+              'Ядро приложения готово. Сейчас нужен дизайн — фронтенд стартует по готовым макетам.',
+              'The app core is ready. Design is next — frontend starts from the finished designs.'
             )}
           </p>
           <p className="section-subtitle mx-auto">
@@ -267,4 +263,3 @@ export default function Roadmap() {
     </section>
   )
 }
-

@@ -51,12 +51,12 @@ export default function Footer() {
 
         <div className="text-xs text-gray-500 font-code">
           {t(
-            'Backend: Node.js + Express + PostgreSQL | Frontend (planned): React Native + Expo',
-            'Backend: Node.js + Express + PostgreSQL | Frontend (planned): React Native + Expo'
+            'Ядро: оффлайн‑правила и данные | Приложение (planned): React Native + Expo',
+            'Core: offline rules and data | App (planned): React Native + Expo'
           )}
         </div>
         <div className="text-xs text-gray-600 mt-2">
-          {t('123 API endpoints • 96 DB tables • 66 services', '123 API endpoints • 96 DB tables • 66 services')}
+          {t('5 книг • 20 вопросов • оффлайн', '5 books • 20 questions • offline')}
         </div>
         {analyticsEnabled ? (
           <div className="text-[11px] text-gray-600 mt-2">

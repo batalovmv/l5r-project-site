@@ -10,35 +10,35 @@ const PUBLIC_DOC_LINKS = [
     icon: 'fa-sitemap',
     title: { ru: 'Архитектура', en: 'Architecture' },
     desc: {
-      ru: 'Слои, границы, realtime и ключевые решения (без инфраструктурных деталей).',
-      en: 'Layers, boundaries, realtime, and key decisions (without infra details).',
+      ru: 'Модули, оффлайн‑ядро и ключевые решения (без инфраструктурных деталей).',
+      en: 'Modules, offline core, and key decisions (without infra details).',
     },
     href: '/docs/architecture/',
   },
   {
-    icon: 'fa-book',
-    title: { ru: 'API обзор', en: 'API overview' },
+    icon: 'fa-database',
+    title: { ru: 'Данные и хранение', en: 'Data & storage' },
     desc: {
-      ru: 'Группы эндпоинтов, auth, realtime и модель ошибок — на уровне “как пользоваться”.',
-      en: 'Endpoint groups, auth, realtime, and error model — usage-level overview.',
+      ru: 'Локальная модель данных, форматы и версияция — на уровне “как устроено”.',
+      en: 'Local data model, formats, and versioning — a how-it-works overview.',
     },
     href: '/docs/api/',
   },
   {
     icon: 'fa-shield-halved',
-    title: { ru: 'Security', en: 'Security' },
+    title: { ru: 'Приватность', en: 'Privacy' },
     desc: {
-      ru: 'Подходы: валидация, rate limit, idempotency, логирование — без секретов и адресов.',
-      en: 'Approaches: validation, rate limiting, idempotency, logging — no secrets/hosts.',
+      ru: 'Как данные остаются на устройстве и не уходят в сеть.',
+      en: 'How data stays on the device and never leaves it.',
     },
     href: '/docs/security/',
   },
   {
     icon: 'fa-gears',
-    title: { ru: 'Ops (lite)', en: 'Ops (lite)' },
+    title: { ru: 'Экспорт и перенос', en: 'Export & portability' },
     desc: {
-      ru: 'Как деплоится/наблюдается в целом, без конкретных хостов и ключей.',
-      en: 'How it’s deployed/observed at a high level, without hosts/keys.',
+      ru: 'PDF/JSON экспорт, перенос на новое устройство и резервные копии.',
+      en: 'PDF/JSON export, device transfer, and backups.',
     },
     href: '/docs/ops/',
   },
@@ -60,8 +60,8 @@ export default function DocsLinks() {
             <div className="section-divider mx-auto mb-4"></div>
             <p className="section-subtitle mx-auto">
               {t(
-                'Короткая документация проекта: архитектура, API, безопасность и ops.',
-                'Short project docs: architecture, API, security and ops.'
+                'Короткая документация проекта: архитектура, данные, приватность и перенос.',
+                'Short project docs: architecture, data, privacy, and portability.'
               )}
             </p>
           </div>

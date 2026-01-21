@@ -12,35 +12,35 @@ const DOCS = [
     icon: 'fa-sitemap',
     title: { ru: 'Архитектура', en: 'Architecture' },
     desc: {
-      ru: 'Слои, границы, realtime и ключевые решения. Без хостов, ключей и секретов.',
-      en: 'Layers, boundaries, realtime, and key decisions. No hosts, keys, or secrets.',
+      ru: 'Модули, оффлайн‑ядро и ключевые решения. Без хостов, ключей и секретов.',
+      en: 'Modules, offline core, and key decisions. No hosts, keys, or secrets.',
     },
   },
   {
     href: '/docs/api/',
-    icon: 'fa-book',
-    title: { ru: 'API обзор', en: 'API overview' },
+    icon: 'fa-database',
+    title: { ru: 'Данные и хранение', en: 'Data & storage' },
     desc: {
-      ru: 'Как устроено API на уровне использования: auth, версии, realtime, ошибки.',
-      en: 'Usage-level API: auth, versioning, realtime, error model.',
+      ru: 'Локальная модель данных, форматы и версияция.',
+      en: 'Local data model, formats, and versioning.',
     },
   },
   {
     href: '/docs/security/',
     icon: 'fa-shield-halved',
-    title: { ru: 'Security', en: 'Security' },
+    title: { ru: 'Приватность', en: 'Privacy' },
     desc: {
-      ru: 'Подходы безопасности: валидация, ограничения, idempotency, наблюдаемость.',
-      en: 'Security approaches: validation, limits, idempotency, observability.',
+      ru: 'Как данные остаются на устройстве и не уходят в сеть.',
+      en: 'How data stays on the device and never leaves it.',
     },
   },
   {
     href: '/docs/ops/',
     icon: 'fa-gears',
-    title: { ru: 'Ops (lite)', en: 'Ops (lite)' },
+    title: { ru: 'Экспорт и перенос', en: 'Export & portability' },
     desc: {
-      ru: 'Высокоуровнево: деплой, health/ready, метрики, трассировка, бэкапы.',
-      en: 'High-level: deploy, health/ready, metrics, tracing, backups.',
+      ru: 'PDF/JSON экспорт, перенос на новое устройство и резервные копии.',
+      en: 'PDF/JSON export, device transfer, and backups.',
     },
   },
 ] as const
@@ -73,8 +73,8 @@ export default function DocsIndexPage() {
             <h2 className="font-header text-4xl md:text-5xl font-bold text-ink mb-4">{t('Документация проекта', 'Project documentation')}</h2>
             <p className="font-body text-lg text-ink-light max-w-2xl mx-auto leading-relaxed">
               {t(
-                'Публичный обзор: архитектура, API и подходы к безопасности/эксплуатации.',
-                'Public overview: architecture, API, and security/ops approaches.'
+                'Публичный обзор: архитектура, данные, приватность и перенос.',
+                'Public overview: architecture, data, privacy, and portability.'
               )}
             </p>
           </div>

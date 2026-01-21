@@ -36,15 +36,6 @@ export default function PlayerFeatures() {
       ),
     },
     {
-      icon: 'fa-users',
-      color: 'bg-purple-600',
-      title: t('Играй с друзьями', 'Play with friends'),
-      description: t(
-        'Создай кампанию, пригласи игроков по коду. Все видят изменения мгновенно — за одним столом или онлайн.',
-        'Create a campaign, invite players by code. Everyone sees changes instantly — at one table or online.'
-      ),
-    },
-    {
       icon: 'fa-khanda',
       color: 'bg-red-600',
       title: t('Полная боевая система', 'Full combat system'),
@@ -54,39 +45,21 @@ export default function PlayerFeatures() {
       ),
     },
     {
-      icon: 'fa-robot',
-      color: 'bg-indigo-600',
-      title: t('AI помощник для мастера', 'AI assistant for the GM'),
-      description: t(
-        'Генерация NPC на лету, подсказки по правилам, анализ боевых ситуаций. Мастеру больше не нужно листать книгу.',
-        'NPC generation on the fly, rules hints, combat analysis. GM no longer needs to flip through the book.'
-      ),
-    },
-    {
       icon: 'fa-book-open',
       color: 'bg-amber-600',
       title: t('Справочник под рукой', 'Rulebook at your fingertips'),
       description: t(
-        'Все техники, преимущества, оружие — ищи и читай прямо в приложении. 5 книг, быстрый поиск.',
-        'All techniques, advantages, weapons — search and read right in the app. 5 books, fast search.'
+        'Все техники, преимущества, оружие — ищи и читай прямо в приложении. 5 книг, работает без интернета.',
+        'All techniques, advantages, weapons — search and read right in the app. 5 books, works offline.'
       ),
     },
     {
-      icon: 'fa-scroll',
-      color: 'bg-teal-600',
-      title: t('Пересказ "что было"', 'Session recaps'),
+      icon: 'fa-wifi-slash',
+      color: 'bg-gray-700',
+      title: t('Работает без интернета', 'Works offline'),
       description: t(
-        'Забыл что было в прошлый раз? AI напомнит ключевые события за 30 секунд перед началом игры.',
-        'Forgot what happened last time? AI will remind you of key events in 30 seconds before the game.'
-      ),
-    },
-    {
-      icon: 'fa-bell',
-      color: 'bg-pink-600',
-      title: t('Напоминания о сессиях', 'Session reminders'),
-      description: t(
-        'Push-уведомления напомнят о предстоящей игре. Синхронизация с Google и Outlook календарём.',
-        'Push notifications will remind you about upcoming games. Google & Outlook calendar sync.'
+        'Никакого сервера, никаких аккаунтов. Все данные хранятся локально на твоём телефоне.',
+        'No server, no accounts. All data is stored locally on your phone.'
       ),
     },
     {

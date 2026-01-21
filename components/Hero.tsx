@@ -15,7 +15,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-4xl">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-xs font-code font-bold text-amber-600 mb-6 shadow-sm">
           <i className="fa-solid fa-code"></i>
-          {t('FULL-STACK ПРОЕКТ • PROJECT HUB', 'FULL-STACK PROJECT • PROJECT HUB')}
+          {t('OFFLINE-ПРИЛОЖЕНИЕ • PROJECT HUB', 'OFFLINE APP • PROJECT HUB')}
         </div>
         <h2 className="font-header text-4xl md:text-6xl font-bold text-ink mb-6">
           {t('Легенда Пяти Колец', 'Legend of the Five Rings')}
@@ -24,13 +24,13 @@ export default function Hero() {
         </h2>
         <p className="font-body text-xl text-ink-light mb-6 max-w-2xl mx-auto leading-relaxed">
           {t(
-            'Цель проекта — мобильное приложение для онлайн‑сессий по настольной ролевой игре ',
-            'The goal is a mobile app for online sessions of the tabletop RPG '
+            'Цель проекта — мобильное приложение для настольной ролевой игры ',
+            'The goal is a mobile companion for the tabletop RPG '
           )}
           <strong>Legend of the Five Rings 5th Edition</strong>
           {t(
-            '. Вместо книг и листов персонажей — игра со смартфона с синхронизацией в реальном времени.',
-            '. Instead of books and paper sheets: play from your phone with real-time sync.'
+            '. Вместо книг и листов персонажей — игра со смартфона, полностью без интернета.',
+            '. Instead of books and paper sheets: play from your phone, fully offline.'
           )}
         </p>
         <div className="card-soft p-4 max-w-2xl mx-auto mb-6">
@@ -47,8 +47,8 @@ export default function Hero() {
         </div>
         <p className="hint-text max-w-xl mx-auto mb-6">
           {t(
-            'Технический фокус: REST API, PostgreSQL, TypeScript, React Native, Docker, CI/CD, real-time системы',
-            'Tech focus: REST API, PostgreSQL, TypeScript, React Native, Docker, CI/CD, real-time systems'
+            'Технический фокус: offline-first, локальное хранение, справочник L5R, экспорт PDF/JSON, React Native',
+            'Tech focus: offline-first, local storage, L5R reference data, PDF/JSON export, React Native'
           )}
         </p>
         <div className="flex flex-wrap gap-4 justify-center mb-8">

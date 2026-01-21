@@ -7,16 +7,11 @@ export default function TechStack() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
-  const backend = [
+  const core = [
     { icon: 'fa-node-js', name: 'Node.js 20+', color: 'text-green-600', brand: true },
     { icon: 'fa-js', name: 'TypeScript 5.9', color: 'text-yellow-500', brand: true },
-    { icon: 'fa-bolt', name: 'Express 5.2', color: 'text-gray-600' },
-    { icon: 'fa-database', name: 'PostgreSQL', color: 'text-blue-600' },
     { icon: 'fa-layer-group', name: 'Prisma 6', color: 'text-purple-600' },
-    { icon: 'fa-key', name: 'JWT/OAuth', color: 'text-yellow-600' },
-    { icon: 'fa-tower-broadcast', name: 'SSE', color: 'text-red-500' },
-    { icon: 'fa-database', name: 'Redis', color: 'text-red-600' },
-    { icon: 'fa-docker', name: 'Docker', color: 'text-blue-400', brand: true },
+    { icon: 'fa-database', name: 'PostgreSQL', color: 'text-blue-600' },
     { icon: 'fa-flask', name: 'Jest', color: 'text-green-500' },
   ]
 
@@ -41,19 +36,19 @@ export default function TechStack() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Backend */}
+          {/* Core tooling */}
           <div className="card p-8" data-reveal data-reveal-delay="0">
             <h4 className="font-header font-bold text-xl mb-6 text-l5r-red flex items-center gap-2">
-              <i className="fa-solid fa-server"></i> Backend
+              <i className="fa-solid fa-gears"></i> {t('Инструменты ядра', 'Core tooling')}
             </h4>
             <p className="hint-text mb-4">
               {t(
-                'Production-ready архитектура с Clean Architecture и SOLID принципами',
-                'Production-ready architecture with Clean Architecture and SOLID principles'
+                'Инструменты для подготовки оффлайн-данных и правил; сервер в приложении не требуется',
+                'Tooling for preparing offline data and rules; no server is required in the app'
               )}
             </p>
             <div className="flex flex-wrap gap-3">
-              {backend.map((tech, i) => (
+              {core.map((tech, i) => (
                 <span key={i} className="tech-badge">
                   <i className={`${tech.brand ? 'fa-brands' : 'fa-solid'} ${tech.icon} ${tech.color}`}></i>
                   {tech.name}
@@ -88,4 +83,3 @@ export default function TechStack() {
     </section>
   )
 }
-

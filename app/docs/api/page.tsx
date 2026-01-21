@@ -4,17 +4,16 @@ import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
 import SectionLinkButton from '@/components/SectionLinkButton'
-import GlossaryTerm from '@/components/GlossaryTerm'
 
 export default function ApiDocPage() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
   const toc: DocsTocItem[] = [
-    { id: 'auth', icon: 'fa-right-to-bracket', label: { ru: 'Авторизация', en: 'Authentication' } },
-    { id: 'errors', icon: 'fa-diagram-project', label: { ru: 'Версии и ошибки', en: 'Versioning & errors' } },
+    { id: 'storage', icon: 'fa-hard-drive', label: { ru: 'Локальное хранение', en: 'Local storage' } },
+    { id: 'versioning', icon: 'fa-diagram-project', label: { ru: 'Версии данных', en: 'Data versioning' } },
     { id: 'domain', icon: 'fa-users', label: { ru: 'Кампании и персонажи', en: 'Campaigns & characters' } },
-    { id: 'realtime', icon: 'fa-tower-broadcast', label: { ru: 'Realtime', en: 'Realtime' } },
+    { id: 'exports', icon: 'fa-file-export', label: { ru: 'Экспорт', en: 'Export' } },
   ]
 
   return (
@@ -25,13 +24,13 @@ export default function ApiDocPage() {
           <div className="text-center" data-reveal>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-tech/10 border border-tech/25 rounded-full text-xs font-code font-bold text-tech mb-6 shadow-sm">
               <i className="fa-solid fa-book"></i>
-              {t('API', 'API')}
+              {t('ДАННЫЕ', 'DATA')}
             </div>
-            <h2 className="font-header text-4xl md:text-5xl font-bold text-ink mb-4">{t('API обзор (публично)', 'API overview (public)')}</h2>
+            <h2 className="font-header text-4xl md:text-5xl font-bold text-ink mb-4">{t('Данные и хранение (публично)', 'Data & storage (public)')}</h2>
             <p className="font-body text-lg text-ink-light max-w-2xl mx-auto leading-relaxed">
               {t(
-                'Главные принципы API без полного контракта: как авторизоваться, как работать с кампаниями и realtime.',
-                'Key API principles without the full contract: auth, campaigns, and realtime usage.'
+                'Главные принципы локального хранения: форматы, версии и перенос данных.',
+                'Key principles of local storage: formats, versioning, and data transfer.'
               )}
             </p>
           </div>
@@ -43,33 +42,33 @@ export default function ApiDocPage() {
           <div className="max-w-5xl mx-auto">
             <DocsShell toc={toc}>
               <div className="grid md:grid-cols-2 gap-6">
-                <div id="auth" className="card p-6" data-reveal>
+                <div id="storage" className="card p-6" data-reveal>
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-right-to-bracket text-l5r-red mr-2"></i>
-                      {t('Авторизация', 'Authentication')}
+                      <i className="fa-solid fa-hard-drive text-l5r-red mr-2"></i>
+                      {t('Локальное хранение', 'Local storage')}
                     </span>
-                    <SectionLinkButton targetId="auth" />
+                    <SectionLinkButton targetId="storage" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Guest режим для старта “без регистрации”', 'Guest mode for instant start')}</li>
-                    <li>• {t('OAuth вход для привязки аккаунта', 'OAuth sign-in for account linking')}</li>
-                    <li>• {t('Access/refresh токены с ротацией', 'Access/refresh tokens with rotation')}</li>
+                    <li>• {t('Все данные хранятся на устройстве', 'All data is stored on the device')}</li>
+                    <li>• {t('Работает без интернета и сервера', 'Works without internet or a server')}</li>
+                    <li>• {t('Поиск и фильтры работают оффлайн', 'Search and filters work offline')}</li>
                   </ul>
                 </div>
 
-                <div id="errors" className="card p-6" data-reveal data-reveal-delay="90">
+                <div id="versioning" className="card p-6" data-reveal data-reveal-delay="90">
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
                       <i className="fa-solid fa-diagram-project text-tech mr-2"></i>
-                      {t('Версии и ошибки', 'Versioning & errors')}
+                      {t('Версии данных', 'Data versioning')}
                     </span>
-                    <SectionLinkButton targetId="errors" />
+                    <SectionLinkButton targetId="versioning" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Версионирование через /api/v1', 'Versioning via /api/v1')}</li>
-                    <li>• {t('Единый формат ответа для успеха/ошибки', 'Consistent success/error envelope')}</li>
-                    <li>• {t('Валидация входных данных и понятные коды ошибок', 'Input validation and clear error codes')}</li>
+                    <li>• {t('Форматы данных имеют версию', 'Data formats are versioned')}</li>
+                    <li>• {t('Обновления не ломают сохранения', 'Updates do not break saves')}</li>
+                    <li>• {t('Миграции выполняются локально', 'Migrations run locally')}</li>
                   </ul>
                 </div>
 
@@ -82,35 +81,24 @@ export default function ApiDocPage() {
                     <SectionLinkButton targetId="domain" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Кампании: роли GM/Player', 'Campaigns with GM/Player roles')}</li>
+                    <li>• {t('Кампании и сессии хранятся локально', 'Campaigns and sessions are stored locally')}</li>
                     <li>• {t('Персонажи: создание/лист/прогресс', 'Characters: creation/sheet/progression')}</li>
-                    <li>• {t('Идемпотентность для важных операций', 'Idempotency for critical operations')}</li>
+                    <li>• {t('Роли GM/Player для игры за столом', 'GM/Player roles for tabletop play')}</li>
                   </ul>
                 </div>
 
-                <div id="realtime" className="card p-6" data-reveal data-reveal-delay="90">
+                <div id="exports" className="card p-6" data-reveal data-reveal-delay="90">
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-tower-broadcast text-l5r-gold mr-2"></i>
-                      {t('Realtime', 'Realtime')}
+                      <i className="fa-solid fa-file-export text-l5r-gold mr-2"></i>
+                      {t('Экспорт', 'Export')}
                     </span>
-                    <SectionLinkButton targetId="realtime" />
+                    <SectionLinkButton targetId="exports" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>
-                      •{' '}
-                      {locale === 'ru' ? (
-                        <>
-                          <GlossaryTerm term="SSE">SSE</GlossaryTerm> stream для кампании/сцены
-                        </>
-                      ) : (
-                        <>
-                          <GlossaryTerm term="SSE">SSE</GlossaryTerm> stream for campaign/scene
-                        </>
-                      )}
-                    </li>
-                    <li>• {t('События как “append-only” лента', 'Events as an append-only feed')}</li>
-                    <li>• {t('Стабильная доставка в multi-instance', 'Stable multi-instance delivery')}</li>
+                    <li>• {t('PDF лист персонажа для печати', 'Character sheet PDF for printing')}</li>
+                    <li>• {t('JSON экспорт для переноса', 'JSON export for transfer')}</li>
+                    <li>• {t('Импорт из файла на новом устройстве', 'File-based import on a new device')}</li>
                   </ul>
                 </div>
               </div>
@@ -120,8 +108,8 @@ export default function ApiDocPage() {
           <div className="max-w-5xl mx-auto mt-8 card-soft p-6" data-reveal data-reveal-delay="180">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="text-sm text-ink">
-                <span className="font-bold">{t('Полный контракт:', 'Full contract:')}</span>{' '}
-                {t('будет опубликован позже (когда фронтенд начнёт интеграцию).', 'will be published later (when the frontend integration begins).')}
+                <span className="font-bold">{t('Подробности:', 'Details:')}</span>{' '}
+                {t('дополним по мере готовности экранов и функций.', 'will be expanded as screens and features are finalized.')}
               </div>
               <div className="flex flex-wrap gap-2">
                 <Link href="/docs/" className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">

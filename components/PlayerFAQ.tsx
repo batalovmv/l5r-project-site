@@ -15,17 +15,17 @@ export default function PlayerFAQ() {
       ),
     },
     {
-      q: t('Нужен интернет для игры?', 'Do I need internet to play?'),
+      q: t('Можно играть за одним столом?', 'Can I play at one table?'),
       a: t(
-        'Для синхронизации с группой — да. Планируется офлайн-режим для просмотра персонажа без сети.',
-        'For syncing with your group — yes. Offline mode for viewing your character without internet is planned.'
+        'Да! Приложение идеально подходит для классической игры за столом. Каждый игрок ведёт своего персонажа на своём телефоне.',
+        'Yes! The app is perfect for classic tabletop play. Each player manages their character on their own phone.'
       ),
     },
     {
-      q: t('Можно играть за одним столом?', 'Can I play at one table?'),
+      q: t('Приложение работает без интернета?', 'Does the app work offline?'),
       a: t(
-        'Да! Приложение идеально подходит для классической игры за столом. Каждый игрок со своим телефоном, все данные синхронизируются.',
-        'Yes! The app is perfect for classic tabletop play. Each player with their phone, all data synced.'
+        'Да! Приложение полностью автономное. Никаких серверов, аккаунтов или подписок. Все данные хранятся на устройстве.',
+        'Yes! The app is fully standalone. No servers, accounts, or subscriptions. All data is stored on your device.'
       ),
     },
     {
@@ -43,24 +43,17 @@ export default function PlayerFAQ() {
       ),
     },
     {
+      q: t('Как перенести персонажа на другой телефон?', 'How to transfer a character to another phone?'),
+      a: t(
+        'Экспортируй персонажа в JSON или PDF, отправь файл на новый телефон и импортируй.',
+        'Export your character to JSON or PDF, send the file to your new phone, and import it.'
+      ),
+    },
+    {
       q: t('Когда выйдет приложение?', 'When will the app be released?'),
       a: t(
         'Сейчас идёт этап дизайна. После него — разработка и тестирование. Следи за обновлениями!',
         'Currently in the design phase. After that — development and testing. Stay tuned for updates!'
-      ),
-    },
-    {
-      q: t('Что если я забыл что было на прошлой сессии?', 'What if I forgot what happened last session?'),
-      a: t(
-        'AI автоматически создаёт краткий пересказ каждой сессии. Перед игрой за 30 секунд освежишь память — кто, где, что произошло.',
-        'AI automatically creates a brief recap of each session. Before the game, refresh your memory in 30 seconds — who, where, what happened.'
-      ),
-    },
-    {
-      q: t('GM должен платить за AI-фичи?', 'Does the GM have to pay for AI features?'),
-      a: t(
-        'Базовые функции (персонаж, кубики, справочник) бесплатны навсегда. AI-функции — часть премиум-подписки, детали ближе к релизу.',
-        'Basic features (character, dice, rulebook) are free forever. AI features are part of premium subscription, details closer to release.'
       ),
     },
   ]

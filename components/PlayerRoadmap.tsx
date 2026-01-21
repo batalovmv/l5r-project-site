@@ -14,7 +14,7 @@ export default function PlayerRoadmap() {
       icon: 'fa-check',
       status: 'done' as PhaseStatus,
       title: t('Движок готов', 'Engine ready'),
-      description: t('Вся логика игры уже работает на сервере', 'All game logic is already working on the server'),
+      description: t('Вся логика игры уже собрана для оффлайн-приложения', 'All game logic is already assembled for the offline app'),
     },
     {
       icon: 'fa-palette',

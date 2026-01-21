@@ -4,17 +4,16 @@ import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
 import SectionLinkButton from '@/components/SectionLinkButton'
-import GlossaryTerm from '@/components/GlossaryTerm'
 
 export default function SecurityDocPage() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
   const toc: DocsTocItem[] = [
-    { id: 'validation', icon: 'fa-circle-check', label: { ru: 'Валидация', en: 'Validation' } },
-    { id: 'access', icon: 'fa-user-shield', label: { ru: 'Доступ', en: 'Access control' } },
-    { id: 'limits', icon: 'fa-gauge-high', label: { ru: 'Ограничения', en: 'Rate limits' } },
-    { id: 'observability', icon: 'fa-eye', label: { ru: 'Наблюдаемость', en: 'Observability' } },
+    { id: 'privacy', icon: 'fa-user-shield', label: { ru: 'Приватность', en: 'Privacy' } },
+    { id: 'storage', icon: 'fa-hard-drive', label: { ru: 'Локальное хранение', en: 'Local storage' } },
+    { id: 'exports', icon: 'fa-file-export', label: { ru: 'Экспорт', en: 'Export' } },
+    { id: 'integrity', icon: 'fa-lock', label: { ru: 'Целостность', en: 'Integrity' } },
   ]
 
   return (
@@ -27,11 +26,11 @@ export default function SecurityDocPage() {
               <i className="fa-solid fa-shield-halved"></i>
               {t('SECURITY', 'SECURITY')}
             </div>
-            <h2 className="font-header text-4xl md:text-5xl font-bold text-ink mb-4">{t('Security (публично)', 'Security (public)')}</h2>
+            <h2 className="font-header text-4xl md:text-5xl font-bold text-ink mb-4">{t('Приватность (публично)', 'Privacy (public)')}</h2>
             <p className="font-body text-lg text-ink-light max-w-2xl mx-auto leading-relaxed">
               {t(
-                'Принципы безопасности без “инструкций для атаки”: только подходы и гарантии.',
-                'Security principles without “attack instructions”: only approaches and guarantees.'
+                'Принципы приватности без “инструкций для атаки”: только подходы и гарантии.',
+                'Privacy principles without “attack instructions”: only approaches and guarantees.'
               )}
             </p>
           </div>
@@ -43,70 +42,61 @@ export default function SecurityDocPage() {
           <div className="max-w-5xl mx-auto">
             <DocsShell toc={toc}>
               <div className="grid md:grid-cols-2 gap-6">
-                <div id="validation" className="card p-6" data-reveal>
+                <div id="privacy" className="card p-6" data-reveal>
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-circle-check text-success mr-2"></i>
-                      {t('Валидация', 'Validation')}
+                      <i className="fa-solid fa-user-shield text-success mr-2"></i>
+                      {t('Приватность', 'Privacy')}
                     </span>
-                    <SectionLinkButton targetId="validation" />
+                    <SectionLinkButton targetId="privacy" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Схемы для входных данных и понятные ошибки', 'Schema-based input validation and clear errors')}</li>
-                    <li>• {t('Запрет “молчаливых” типов и неожиданных полей', 'No silent typing or unexpected fields')}</li>
+                    <li>• {t('Никаких серверов и аккаунтов', 'No servers or accounts')}</li>
+                    <li>• {t('Данные остаются на устройстве', 'Data stays on the device')}</li>
+                    <li>• {t('Работа без интернета по умолчанию', 'Offline by default')}</li>
                   </ul>
                 </div>
 
-                <div id="access" className="card p-6" data-reveal data-reveal-delay="90">
+                <div id="storage" className="card p-6" data-reveal data-reveal-delay="90">
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-user-shield text-l5r-red mr-2"></i>
-                      {t('Доступ', 'Access control')}
+                      <i className="fa-solid fa-hard-drive text-l5r-red mr-2"></i>
+                      {t('Локальное хранение', 'Local storage')}
                     </span>
-                    <SectionLinkButton targetId="access" />
+                    <SectionLinkButton targetId="storage" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>
-                      •{' '}
-                      {locale === 'ru' ? (
-                        <>
-                          Проверки владения данными (защита от <GlossaryTerm term="IDOR">IDOR</GlossaryTerm>)
-                        </>
-                      ) : (
-                        <>
-                          Ownership checks (<GlossaryTerm term="IDOR">IDOR</GlossaryTerm> protection)
-                        </>
-                      )}
-                    </li>
-                    <li>• {t('Роли GM/Player в кампании и сценах', 'GM/Player roles for campaigns and scenes')}</li>
+                    <li>• {t('Файлы сохраняются локально', 'Files are stored locally')}</li>
+                    <li>• {t('Никакой облачной синхронизации', 'No cloud sync')}</li>
+                    <li>• {t('Импорт только по инициативе игрока', 'Imports only on player action')}</li>
                   </ul>
                 </div>
 
-                <div id="limits" className="card p-6" data-reveal>
+                <div id="exports" className="card p-6" data-reveal>
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-gauge-high text-tech mr-2"></i>
-                      {t('Ограничения', 'Rate limits')}
+                      <i className="fa-solid fa-file-export text-tech mr-2"></i>
+                      {t('Экспорт', 'Export')}
                     </span>
-                    <SectionLinkButton targetId="limits" />
+                    <SectionLinkButton targetId="exports" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Лимиты на API против brute-force и спайков', 'API rate limits against brute-force and spikes')}</li>
-                    <li>• {t('Предсказуемые политики и безопасные дефолты', 'Predictable policies and safe defaults')}</li>
+                    <li>• {t('PDF и JSON — только локально', 'PDF and JSON — local only')}</li>
+                    <li>• {t('Перенос через файл, без фоновой отправки', 'Transfer via file, no background upload')}</li>
                   </ul>
                 </div>
 
-                <div id="observability" className="card p-6" data-reveal data-reveal-delay="90">
+                <div id="integrity" className="card p-6" data-reveal data-reveal-delay="90">
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-eye text-l5r-gold mr-2"></i>
-                      {t('Наблюдаемость', 'Observability')}
+                      <i className="fa-solid fa-lock text-l5r-gold mr-2"></i>
+                      {t('Целостность', 'Integrity')}
                     </span>
-                    <SectionLinkButton targetId="observability" />
+                    <SectionLinkButton targetId="integrity" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Метрики/трейсы/логи без утечки секретов', 'Metrics/traces/logs without leaking secrets')}</li>
-                    <li>• {t('Ограничение доступа к диагностике в production', 'Restricted access to diagnostics in production')}</li>
+                    <li>• {t('Проверка формата при импорте', 'Format checks during import')}</li>
+                    <li>• {t('Версии данных для безопасных обновлений', 'Data versioning for safe updates')}</li>
                   </ul>
                 </div>
               </div>
@@ -116,7 +106,7 @@ export default function SecurityDocPage() {
           <div className="max-w-5xl mx-auto mt-8 card-soft p-6" data-reveal data-reveal-delay="180">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="text-sm text-ink">
-                <span className="font-bold">{t('Детали security:', 'Security details:')}</span>{' '}
+                <span className="font-bold">{t('Детали приватности:', 'Privacy details:')}</span>{' '}
                 {t('публичный обзор без “инструкций для атаки”.', 'public overview without “attack instructions”.')}
               </div>
               <div className="flex flex-wrap gap-2">

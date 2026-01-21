@@ -120,47 +120,42 @@ export default function Features() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16" data-reveal>
           <div className="flex items-center justify-center gap-3 mb-4">
-            <h3 className="section-title mb-0">{t('Функциональность (backend)', 'Features (backend)')}</h3>
+            <h3 className="section-title mb-0">{t('Функциональность', 'Features')}</h3>
             <SectionLinkButton targetId="features" />
           </div>
           <div className="section-divider mx-auto mb-4"></div>
           <p className="section-subtitle mx-auto">
             {t(
-              'Доменная логика и API уже реализованы; интерфейс появится после UI/UX дизайна',
-              'Domain logic and API are implemented; UI starts after UI/UX design'
+              'Ключевые механики L5R 5e уже собраны и работают локально; интерфейс появится после UI/UX дизайна',
+              'Key L5R 5e mechanics are already assembled and run locally; the UI comes after the UI/UX design'
             )}
           </p>
           <p className="hint-text max-w-xl mx-auto mt-3">
             {t(
-              'Backend документирован (OpenAPI) и покрыт автотестами; UI/UX и фронтенд стартуют после дизайна',
-              'Backend is documented (OpenAPI) and covered by automated tests; UI/UX and frontend start after design'
+              'Приложение полностью автономно: никаких серверов и аккаунтов, все данные остаются на устройстве',
+              'The app is fully standalone: no servers or accounts, all data stays on the device'
             )}
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
           <div className="feature-card" data-reveal data-reveal-delay="0">
-            <div className="feature-icon bg-gradient-to-br from-purple-500 to-purple-700 text-white">
-              <i className="fa-solid fa-user-shield"></i>
+            <div className="feature-icon bg-gradient-to-br from-gray-700 to-gray-900 text-white">
+              <i className="fa-solid fa-wifi-slash"></i>
             </div>
-            <h4 className="font-header text-xl font-bold text-ink mb-3">{t('Аккаунты и вход', 'Accounts & sign-in')}</h4>
+            <h4 className="font-header text-xl font-bold text-ink mb-3">{t('Полностью оффлайн', 'Fully offline')}</h4>
             <ul className="space-y-2 text-ink-light">
               <li className="flex items-start gap-2">
-                <i className="fa-solid fa-bolt text-l5r-gold mt-1"></i>
-                <span>
-                  <strong>{t('Гостевой вход', 'Guest login')}</strong> —{' '}
-                  {t('начните играть мгновенно, без регистрации', 'start instantly without registration')}
-                </span>
+                <i className="fa-solid fa-lock text-l5r-gold mt-1"></i>
+                <span>{t('Никаких серверов и логина', 'No servers or logins')}</span>
               </li>
               <li className="flex items-start gap-2">
-                <i className="fa-brands fa-google text-red-500 mt-1"></i>
-                <span>
-                  <strong>OAuth</strong> — {t('авторизация через Google, ВКонтакте или Discord', 'sign-in via Google, VK, or Discord')}
-                </span>
+                <i className="fa-solid fa-hard-drive text-tech mt-1"></i>
+                <span>{t('Все данные хранятся локально на устройстве', 'All data is stored locally on the device')}</span>
               </li>
               <li className="flex items-start gap-2">
-                <i className="fa-solid fa-link text-tech mt-1"></i>
-                <span>{t('Гостевой аккаунт можно привязать позже', 'Guest account can be linked later')}</span>
+                <i className="fa-solid fa-file-export text-success mt-1"></i>
+                <span>{t('Экспорт и перенос персонажей через PDF/JSON', 'Export and transfer characters via PDF/JSON')}</span>
               </li>
             </ul>
           </div>
@@ -359,20 +354,8 @@ export default function Features() {
             <h4 className="font-header text-xl font-bold text-ink mb-3">{t('Кампании', 'Campaigns')}</h4>
             <ul className="space-y-2 text-sm text-ink-light">
               <li>
-                <i className="fa-solid fa-key text-l5r-gold mr-2"></i>
-                {t('Уникальный код приглашения', 'Unique invite code')}
-              </li>
-              <li>
-                <i className="fa-solid fa-comments text-tech mr-2"></i>
-                {t('Чат + typing indicator', 'Chat + typing indicator')}
-              </li>
-              <li>
-                <i className="fa-solid fa-calendar-days text-purple-500 mr-2"></i>
-                {t('Планирование сессий + ICS', 'Session scheduling + ICS')}
-              </li>
-              <li>
                 <i className="fa-solid fa-cloud-arrow-down text-success mr-2"></i>
-                {t('Бэкап и импорт кампаний', 'Campaign backup & import')}
+                {t('Локальный экспорт/импорт кампаний', 'Local campaign export/import')}
               </li>
             </ul>
           </div>
@@ -417,20 +400,12 @@ export default function Features() {
             <h4 className="font-header text-xl font-bold text-ink mb-3">{t('Инструменты GM', 'GM tools')}</h4>
             <ul className="space-y-2 text-sm text-ink-light">
               <li>
-                <i className="fa-solid fa-robot text-indigo-500 mr-2"></i>
-                {t('AI генерация NPC и локаций', 'AI NPC & location generation')}
-              </li>
-              <li>
                 <i className="fa-solid fa-eye-slash text-purple-500 mr-2"></i>
                 {t('Приватные заметки + раскрытие', 'Private notes + reveal')}
               </li>
               <li>
                 <i className="fa-solid fa-file-pdf text-red-500 mr-2"></i>
                 {t('PDF и JSON экспорт', 'PDF & JSON export')}
-              </li>
-              <li>
-                <i className="fa-solid fa-share-nodes text-tech mr-2"></i>
-                {t('Шаринг контента (NPC, модули)', 'Content sharing (NPC, modules)')}
               </li>
             </ul>
           </div>
@@ -457,43 +432,6 @@ export default function Features() {
                 <p className="text-xs font-bold">{item.name}</p>
               </div>
             ))}
-          </div>
-        </div>
-
-        <div className="mt-12 card p-8" data-reveal>
-          <h4 className="font-header text-2xl font-bold text-ink mb-6 text-center" data-reveal data-reveal-delay="90">
-            <i className="fa-solid fa-plug text-l5r-gold mr-2"></i>
-            {t('Интеграции', 'Integrations')}
-          </h4>
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="text-center" data-reveal data-reveal-delay="0">
-              <div className="w-14 h-14 mx-auto mb-3 bg-indigo-100 rounded-xl flex items-center justify-center">
-                <i className="fa-brands fa-discord text-2xl text-indigo-600"></i>
-              </div>
-              <h5 className="font-header font-bold text-sm mb-1">Discord</h5>
-              <p className="text-xs text-gray-500">{t('Бот + вебхуки для уведомлений', 'Bot + webhooks for notifications')}</p>
-            </div>
-            <div className="text-center" data-reveal data-reveal-delay="90">
-              <div className="w-14 h-14 mx-auto mb-3 bg-orange-100 rounded-xl flex items-center justify-center">
-                <i className="fa-solid fa-dice-d20 text-2xl text-orange-600"></i>
-              </div>
-              <h5 className="font-header font-bold text-sm mb-1">Foundry VTT</h5>
-              <p className="text-xs text-gray-500">{t('Импорт/экспорт персонажей и сцен', 'Import/export characters & scenes')}</p>
-            </div>
-            <div className="text-center" data-reveal data-reveal-delay="180">
-              <div className="w-14 h-14 mx-auto mb-3 bg-blue-100 rounded-xl flex items-center justify-center">
-                <i className="fa-brands fa-google text-2xl text-blue-600"></i>
-              </div>
-              <h5 className="font-header font-bold text-sm mb-1">Google Calendar</h5>
-              <p className="text-xs text-gray-500">{t('Синхронизация сессий', 'Session sync')}</p>
-            </div>
-            <div className="text-center" data-reveal data-reveal-delay="270">
-              <div className="w-14 h-14 mx-auto mb-3 bg-sky-100 rounded-xl flex items-center justify-center">
-                <i className="fa-brands fa-microsoft text-2xl text-sky-600"></i>
-              </div>
-              <h5 className="font-header font-bold text-sm mb-1">Outlook</h5>
-              <p className="text-xs text-gray-500">{t('Синхронизация сессий', 'Session sync')}</p>
-            </div>
           </div>
         </div>
 

@@ -4,17 +4,16 @@ import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
 import SectionLinkButton from '@/components/SectionLinkButton'
-import GlossaryTerm from '@/components/GlossaryTerm'
 
 export default function OpsDocPage() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
   const toc: DocsTocItem[] = [
-    { id: 'deploy', icon: 'fa-rocket', label: { ru: 'Деплой', en: 'Deploy' } },
-    { id: 'health', icon: 'fa-heart-pulse', label: { ru: 'Проверки', en: 'Health checks' } },
-    { id: 'observability', icon: 'fa-chart-line', label: { ru: 'Метрики и трейсинг', en: 'Metrics & tracing' } },
-    { id: 'backups', icon: 'fa-database', label: { ru: 'Бэкапы и миграции', en: 'Backups & migrations' } },
+    { id: 'export', icon: 'fa-file-export', label: { ru: 'Экспорт', en: 'Export' } },
+    { id: 'import', icon: 'fa-file-import', label: { ru: 'Импорт', en: 'Import' } },
+    { id: 'backups', icon: 'fa-box-archive', label: { ru: 'Резервные копии', en: 'Backups' } },
+    { id: 'updates', icon: 'fa-arrows-rotate', label: { ru: 'Обновления', en: 'Updates' } },
   ]
 
   return (
@@ -27,11 +26,11 @@ export default function OpsDocPage() {
               <i className="fa-solid fa-gears"></i>
               {t('OPS', 'OPS')}
             </div>
-            <h2 className="font-header text-4xl md:text-5xl font-bold text-ink mb-4">{t('Ops (lite)', 'Ops (lite)')}</h2>
+            <h2 className="font-header text-4xl md:text-5xl font-bold text-ink mb-4">{t('Экспорт и перенос (публично)', 'Export & portability (public)')}</h2>
             <p className="font-body text-lg text-ink-light max-w-2xl mx-auto leading-relaxed">
               {t(
-                'Общий подход к эксплуатации, без конкретных окружений, адресов и секретов.',
-                'Operational approach without specific environments, hosts, or secrets.'
+                'Как переносить данные между устройствами и делать копии, без облачной зависимости.',
+                'How to move data between devices and keep backups, without cloud dependency.'
               )}
             </p>
           </div>
@@ -43,81 +42,59 @@ export default function OpsDocPage() {
           <div className="max-w-5xl mx-auto">
             <DocsShell toc={toc}>
               <div className="grid md:grid-cols-2 gap-6">
-                <div id="deploy" className="card p-6" data-reveal>
+                <div id="export" className="card p-6" data-reveal>
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-rocket text-l5r-red mr-2"></i>
-                      {t('Деплой', 'Deploy')}
+                      <i className="fa-solid fa-file-export text-l5r-red mr-2"></i>
+                      {t('Экспорт', 'Export')}
                     </span>
-                    <SectionLinkButton targetId="deploy" />
+                    <SectionLinkButton targetId="export" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('CI quality gate: формат, линт, контракт, тесты', 'CI quality gate: format, lint, contract, tests')}</li>
-                    <li>• {t('Повторяемые сборки и окружения через переменные', 'Repeatable builds and environments via variables')}</li>
+                    <li>• {t('PDF лист персонажа для печати', 'Character sheet PDF for printing')}</li>
+                    <li>• {t('JSON файл для переноса и архива', 'JSON file for transfer and archive')}</li>
                   </ul>
                 </div>
 
-                <div id="health" className="card p-6" data-reveal data-reveal-delay="90">
+                <div id="import" className="card p-6" data-reveal data-reveal-delay="90">
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-heart-pulse text-success mr-2"></i>
-                      {t('Проверки', 'Health checks')}
+                      <i className="fa-solid fa-file-import text-success mr-2"></i>
+                      {t('Импорт', 'Import')}
                     </span>
-                    <SectionLinkButton targetId="health" />
+                    <SectionLinkButton targetId="import" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('/health и /ready для оркестратора', '/health and /ready for orchestrators')}</li>
-                    <li>• {t('Readiness учитывает зависимости (по необходимости)', 'Readiness accounts for dependencies when needed')}</li>
+                    <li>• {t('Импорт из файла на новом устройстве', 'File-based import on a new device')}</li>
+                    <li>• {t('Проверка формата перед загрузкой', 'Format check before import')}</li>
                   </ul>
                 </div>
 
-                <div id="observability" className="card p-6" data-reveal>
+                <div id="backups" className="card p-6" data-reveal>
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
-                      {t('Метрики и трейсинг', 'Metrics & tracing')}
-                    </span>
-                    <SectionLinkButton targetId="observability" />
-                  </h3>
-                  <ul className="text-sm text-ink-light space-y-2">
-                    <li>
-                      •{' '}
-                      {locale === 'ru' ? (
-                        <>
-                          Prometheus metrics для <GlossaryTerm term="SLO">SLO</GlossaryTerm>/алертов
-                        </>
-                      ) : (
-                        <>
-                          Prometheus metrics for <GlossaryTerm term="SLO">SLOs</GlossaryTerm>/alerts
-                        </>
-                      )}
-                    </li>
-                    <li>
-                      •{' '}
-                      {locale === 'ru' ? (
-                        <>
-                          <GlossaryTerm term="OpenTelemetry">OpenTelemetry</GlossaryTerm> для поиска узких мест
-                        </>
-                      ) : (
-                        <>
-                          <GlossaryTerm term="OpenTelemetry">OpenTelemetry</GlossaryTerm> for bottleneck analysis
-                        </>
-                      )}
-                    </li>
-                  </ul>
-                </div>
-
-                <div id="backups" className="card p-6" data-reveal data-reveal-delay="90">
-                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
-                    <span className="inline-flex items-center">
-                      <i className="fa-solid fa-database text-tech mr-2"></i>
-                      {t('Бэкапы и миграции', 'Backups & migrations')}
+                      <i className="fa-solid fa-box-archive text-l5r-gold mr-2"></i>
+                      {t('Резервные копии', 'Backups')}
                     </span>
                     <SectionLinkButton targetId="backups" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Бэкапы БД как регулярная операция', 'DB backups as a routine operation')}</li>
-                    <li>• {t('Миграции применяются предсказуемо и контролируемо', 'Migrations applied predictably and controlled')}</li>
+                    <li>• {t('Копии создаются вручную игроком', 'Backups are created manually by the player')}</li>
+                    <li>• {t('Файлы остаются локально', 'Files stay local')}</li>
+                  </ul>
+                </div>
+
+                <div id="updates" className="card p-6" data-reveal data-reveal-delay="90">
+                  <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center">
+                      <i className="fa-solid fa-arrows-rotate text-tech mr-2"></i>
+                      {t('Обновления', 'Updates')}
+                    </span>
+                    <SectionLinkButton targetId="updates" />
+                  </h3>
+                  <ul className="text-sm text-ink-light space-y-2">
+                    <li>• {t('Форматы данных версионируются', 'Data formats are versioned')}</li>
+                    <li>• {t('Миграции выполняются на устройстве', 'Migrations run on the device')}</li>
                   </ul>
                 </div>
               </div>
@@ -127,8 +104,8 @@ export default function OpsDocPage() {
           <div className="max-w-5xl mx-auto mt-8 card-soft p-6" data-reveal data-reveal-delay="180">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="text-sm text-ink">
-                <span className="font-bold">{t('Runbook:', 'Runbook:')}</span>{' '}
-                {t('будет добавлен позже (без чувствительных деталей).', 'will be added later (without sensitive details).')}
+                <span className="font-bold">{t('Инструкции:', 'Guide:')}</span>{' '}
+                {t('добавим позже по мере готовности функций переноса.', 'will be added as transfer features mature.')}
               </div>
               <div className="flex flex-wrap gap-2">
                 <Link href="/docs/" className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-ink/10 bg-white hover:bg-gray-50 font-bold text-sm">

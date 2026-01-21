@@ -30,9 +30,9 @@ const DOC_NAV_ITEMS = [
   { href: '/', label: { ru: 'ГЛАВНАЯ', en: 'HOME' } },
   { href: '/docs/', label: { ru: 'ДОКИ', en: 'DOCS' } },
   { href: '/docs/architecture/', label: { ru: 'АРХИТЕКТУРА', en: 'ARCH' } },
-  { href: '/docs/api/', label: { ru: 'API', en: 'API' } },
-  { href: '/docs/security/', label: { ru: 'SECURITY', en: 'SECURITY' } },
-  { href: '/docs/ops/', label: { ru: 'OPS', en: 'OPS' } },
+  { href: '/docs/api/', label: { ru: 'ДАННЫЕ', en: 'DATA' } },
+  { href: '/docs/security/', label: { ru: 'PRIVACY', en: 'PRIVACY' } },
+  { href: '/docs/ops/', label: { ru: 'ЭКСПОРТ', en: 'EXPORT' } },
 ] as const
 
 type HomeNavItem = (typeof DEVELOPER_NAV_ITEMS)[number] | (typeof PLAYER_NAV_ITEMS)[number]

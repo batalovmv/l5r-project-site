@@ -9,52 +9,41 @@ export default function Achievements() {
 
   const stats = [
     {
-      value: '200',
-      label: t('API операции', 'API operations'),
-      sub: 'REST + OpenAPI',
-      hint: t('Контракт, документация и типы генерируются из OpenAPI', 'Contract, docs, and types are generated from OpenAPI'),
+      value: '5',
+      label: t('Книг справочника', 'Reference books'),
+      sub: 'L5R 5e',
+      hint: t('Полные справочники доступны оффлайн', 'Full reference books available offline'),
     },
     {
-      value: '109',
-      label: t('Таблиц БД', 'DB tables'),
-      sub: 'Prisma ORM',
-      hint: t('Сложная реляционная модель + миграции + seed', 'Complex relational model + migrations + seed'),
+      value: '20',
+      label: t('Вопросов создания', 'Creation questions'),
+      sub: t('Мастер персонажа', 'Character wizard'),
+      hint: t('Полный путь создания персонажа по книге', 'Complete book-guided character creation flow'),
     },
     {
-      value: '90',
-      label: t('Сервисов', 'Services'),
-      sub: t('Бизнес-логика', 'Business logic'),
-      hint: t('Сервисы по доменам: auth/campaigns/scenes/xp…', 'Domain services: auth/campaigns/scenes/xp…'),
+      value: '5',
+      label: t('Типов сцен', 'Scene types'),
+      sub: t('Skirmish • Duel • Intrigue', 'Skirmish • Duel • Intrigue'),
+      hint: t('Отдельные правила для каждой сцены', 'Distinct rules for each scene'),
     },
     {
-      value: '55',
-      label: t('Миграций', 'Migrations'),
-      sub: t('Версионирование', 'Versioning'),
-      hint: t('Схема БД эволюционировала вместе с фичами', 'The DB schema evolved alongside features'),
+      value: '7',
+      label: t('Великих кланов', 'Great clans'),
+      sub: t('Кланы, семьи, школы', 'Clans, families, schools'),
+      hint: t('Полный справочник персонажей', 'Complete character reference'),
     },
   ]
 
-  const features = [
+  const features: Array<{ icon: string; color: string; title: string; items: string[]; brand?: boolean }> = [
     {
       icon: 'fa-shield-halved',
       color: 'bg-l5r-red',
-      title: t('Безопасность', 'Security'),
+      title: t('Приватность', 'Privacy'),
       items: [
-        'JWT + refresh rotation',
-        t('OAuth 2.0 (Google, VK, Discord)', 'OAuth 2.0 (Google, VK, Discord)'),
-        'Rate limiting + Helmet',
-        t('Валидация запросов (Zod/AJV)', 'Request validation (Zod/AJV)'),
-      ],
-    },
-    {
-      icon: 'fa-bolt',
-      color: 'bg-tech',
-      title: t('Real-time', 'Real-time'),
-      items: [
-        'Server-Sent Events (SSE)',
-        'Redis Pub/Sub (multi-instance)',
-        t('Чат + typing indicator', 'Chat + typing indicator'),
-        t('Push уведомления (FCM)', 'Push notifications (FCM)'),
+        t('Никаких серверов и аккаунтов', 'No servers or accounts'),
+        t('Локальное хранение данных', 'Local data storage'),
+        t('Работа без интернета', 'Works without internet'),
+        t('Полный контроль у игрока', 'Full control stays with the player'),
       ],
     },
     {
@@ -64,45 +53,15 @@ export default function Achievements() {
       items: [t('Дуэли с фазами', 'Duels with phases'), t('Интриги', 'Intrigues'), t('Массовые сражения', 'Mass battles'), t('Карты сцен + токены', 'Scene maps + tokens')],
     },
     {
-      icon: 'fa-robot',
-      color: 'bg-indigo-600',
-      title: t('AI Ассистент', 'AI Assistant'),
-      items: [
-        t('Генерация NPC и локаций', 'NPC & location generation'),
-        t('Поиск и объяснение правил', 'Rules search & explain'),
-        t('Подсказки opportunities', 'Opportunity suggestions'),
-        t('Анализ боя и рекапы', 'Combat analysis & recaps'),
-      ],
-    },
-    {
-      icon: 'fa-plug',
+      icon: 'fa-scroll',
       color: 'bg-amber-600',
-      title: t('Интеграции', 'Integrations'),
+      title: t('Создание персонажа', 'Character creation'),
       items: [
-        'Foundry VTT (import/export)',
-        t('Google & Outlook календарь', 'Google & Outlook calendar'),
-        t('Discord бот + вебхуки', 'Discord bot + webhooks'),
-        t('PDF и JSON экспорт', 'PDF & JSON export'),
+        t('Мастер "20 вопросов"', '20 Questions wizard'),
+        t('Автоподсчёт бонусов', 'Automatic bonus calculation'),
+        t('Кланы, семьи, школы', 'Clans, families, schools'),
+        t('Быстрый старт персонажа', 'Fast character setup'),
       ],
-    },
-    {
-      icon: 'fa-chart-line',
-      color: 'bg-purple-600',
-      title: t('Мониторинг', 'Observability'),
-      items: ['Prometheus /metrics', 'Sentry errors', 'OpenTelemetry traces', 'Structured logs (Pino)'],
-    },
-    {
-      icon: 'fa-docker',
-      color: 'bg-orange-500',
-      title: 'DevOps',
-      items: [
-        'CI: lint/typecheck/tests',
-        'Docker multi-stage + Compose',
-        'Feature flags + kill switch',
-        t('Backups + runbook', 'Backups + runbook'),
-        'k6 load tests',
-      ],
-      brand: true,
     },
     {
       icon: 'fa-database',
@@ -116,14 +75,25 @@ export default function Achievements() {
       ],
     },
     {
-      icon: 'fa-wand-sparkles',
+      icon: 'fa-dice',
       color: 'bg-pink-600',
-      title: t('Генераторы', 'Generators'),
+      title: t('Кубики и проверки', 'Dice & checks'),
       items: [
-        t('Генератор NPC + скейлинг', 'NPC generator + scaling'),
-        t('Генератор имён и лута', 'Name & loot generator'),
-        t('Encounter builder', 'Encounter builder'),
-        t('Случайные события', 'Random events'),
+        t('Кольцо + навык', 'Ring + skill'),
+        t('Автоподсчёт успехов', 'Automatic success tally'),
+        t('Взрывы и возможности', 'Explosions and opportunities'),
+        t('Физические кубики — опционально', 'Physical dice are optional'),
+      ],
+    },
+    {
+      icon: 'fa-file-export',
+      color: 'bg-purple-600',
+      title: t('Экспорт и перенос', 'Export & portability'),
+      items: [
+        t('PDF лист персонажа', 'Character sheet PDF'),
+        t('JSON для переноса', 'JSON for transfer'),
+        t('Файлы остаются у вас', 'Files stay with you'),
+        t('Удобно для печати', 'Print-friendly'),
       ],
     },
   ]
@@ -175,4 +145,3 @@ export default function Achievements() {
     </section>
   )
 }
-

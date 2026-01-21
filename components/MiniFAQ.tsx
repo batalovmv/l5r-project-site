@@ -14,8 +14,8 @@ const QA = [
   {
     q: { ru: 'Что уже реально готово?', en: 'What is actually ready?' },
     a: {
-      ru: 'Сейчас основной фокус — backend и доменная логика. Фронтенд начнётся после дизайна.',
-      en: 'Current focus is the backend and domain logic. Frontend starts after the design is ready.',
+      ru: 'Сейчас готово ядро правил и данные. Фронтенд начнётся после дизайна.',
+      en: 'The rules core and data are ready. Frontend starts after the design is ready.',
     },
   },
   {
@@ -28,8 +28,8 @@ const QA = [
   {
     q: { ru: 'Где смотреть детали?', en: 'Where to find details?' },
     a: {
-      ru: 'В секции “ДОКИ” — архитектура, API, security и ops (публично, без секретов).',
-      en: 'In “DOCS” — architecture, API, security, and ops (public, no secrets).',
+      ru: 'В секции “ДОКИ” — архитектура, локальные данные, приватность и перенос (публично, без секретов).',
+      en: 'In “DOCS” — architecture, local data, privacy, and portability (public, no secrets).',
     },
   },
 ] as const
@@ -66,4 +66,3 @@ export default function MiniFAQ() {
     </section>
   )
 }
-

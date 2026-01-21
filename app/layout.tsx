@@ -17,8 +17,8 @@ const SITE_URL = 'https://batalovmv.github.io/l5r-project-site/'
 export const metadata: Metadata = {
   title: 'L5R Project Hub - Legend of the Five Rings Digital Companion',
   description:
-    'Project hub for the Legend of the Five Rings 5e digital companion: backend ready, frontend planned',
-  keywords: ['L5R', 'Legend of the Five Rings', 'TTRPG', 'React Native', 'Node.js'],
+    'Project hub for the Legend of the Five Rings 5e offline companion: fully standalone app in development',
+  keywords: ['L5R', 'Legend of the Five Rings', 'TTRPG', 'React Native', 'offline'],
   authors: [{ name: 'batalovmv' }],
   metadataBase: new URL(SITE_URL),
   alternates: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'L5R Project Hub',
-    description: 'Full-stack project: production-ready backend + mobile app (in development) for L5R 5e',
+    description: 'Offline-first companion app for L5R 5e — no servers, accounts, or subscriptions',
     type: 'website',
     url: SITE_URL,
     siteName: 'Project Rokugan',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'L5R Project Hub',
-    description: 'Full-stack project: production-ready backend + mobile app (in development) for L5R 5e',
+    description: 'Offline-first companion app for L5R 5e — no servers, accounts, or subscriptions',
     images: ['og.png'],
   },
 }

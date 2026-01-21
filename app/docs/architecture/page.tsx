@@ -4,17 +4,16 @@ import Link from 'next/link'
 import { useLocale } from '@/contexts/LocaleContext'
 import DocsShell, { type DocsTocItem } from '@/components/DocsShell'
 import SectionLinkButton from '@/components/SectionLinkButton'
-import GlossaryTerm from '@/components/GlossaryTerm'
 
 export default function ArchitectureDocPage() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
 
   const toc: DocsTocItem[] = [
-    { id: 'layers', icon: 'fa-layer-group', label: { ru: 'Слои и границы', en: 'Layers & boundaries' } },
-    { id: 'realtime', icon: 'fa-tower-broadcast', label: { ru: 'Realtime', en: 'Realtime' } },
+    { id: 'layers', icon: 'fa-layer-group', label: { ru: 'Модули и границы', en: 'Modules & boundaries' } },
+    { id: 'offline', icon: 'fa-wifi-slash', label: { ru: 'Оффлайн-ядро', en: 'Offline core' } },
     { id: 'data', icon: 'fa-database', label: { ru: 'Данные и модель', en: 'Data & model' } },
-    { id: 'observability', icon: 'fa-chart-line', label: { ru: 'Наблюдаемость', en: 'Observability' } },
+    { id: 'portability', icon: 'fa-file-export', label: { ru: 'Экспорт и перенос', en: 'Export & portability' } },
   ]
 
   return (
@@ -30,8 +29,8 @@ export default function ArchitectureDocPage() {
             <h2 className="font-header text-4xl md:text-5xl font-bold text-ink mb-4">{t('Архитектура (публично)', 'Architecture (public)')}</h2>
             <p className="font-body text-lg text-ink-light max-w-2xl mx-auto leading-relaxed">
               {t(
-                'Коротко: как устроен backend и почему он “production-ready”, без инфраструктурных деталей.',
-                'A concise view of how the backend is built and why it’s production-ready, without infra details.'
+                'Коротко: как устроено оффлайн‑ядро приложения и данные, без инфраструктурных деталей.',
+                'A concise view of the offline app core and data model, without infrastructure details.'
               )}
             </p>
           </div>
@@ -47,29 +46,29 @@ export default function ArchitectureDocPage() {
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
                       <i className="fa-solid fa-layer-group text-l5r-red mr-2"></i>
-                      {t('Слои и границы', 'Layers & boundaries')}
+                      {t('Модули и границы', 'Modules & boundaries')}
                     </span>
                     <SectionLinkButton targetId="layers" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Routes → Controllers → Services → Repositories', 'Routes → Controllers → Services → Repositories')}</li>
-                    <li>• {t('Бизнес-логика в сервисах, доступ к данным изолирован', 'Business logic in services, data access isolated')}</li>
-                    <li>• {t('Валидация входа и единый формат ошибок', 'Input validation and a consistent error envelope')}</li>
+                    <li>• {t('UI → Use-cases → Rules → Storage', 'UI → Use-cases → Rules → Storage')}</li>
+                    <li>• {t('Правила и расчёты — чистые функции', 'Rules and calculations are pure functions')}</li>
+                    <li>• {t('Хранилище изолировано от UI-слоя', 'Storage is isolated from the UI layer')}</li>
                   </ul>
                 </div>
 
-                <div id="realtime" className="card p-6" data-reveal data-reveal-delay="90">
+                <div id="offline" className="card p-6" data-reveal data-reveal-delay="90">
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-tower-broadcast text-tech mr-2"></i>
-                      {t('Realtime', 'Realtime')}
+                      <i className="fa-solid fa-wifi-slash text-tech mr-2"></i>
+                      {t('Оффлайн-ядро', 'Offline core')}
                     </span>
-                    <SectionLinkButton targetId="realtime" />
+                    <SectionLinkButton targetId="offline" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('SSE для клиентов', 'SSE for clients')}</li>
-                    <li>• {t('Pub/Sub шина для multi-instance доставки', 'Pub/Sub bus for multi-instance delivery')}</li>
-                    <li>• {t('События сцены/кампании как “event stream”', 'Scene/campaign events as an “event stream”')}</li>
+                    <li>• {t('Работает без интернета и серверов', 'Works without internet or servers')}</li>
+                    <li>• {t('Вся логика выполняется на устройстве', 'All logic runs on the device')}</li>
+                    <li>• {t('Данные не покидают устройство', 'Data never leaves the device')}</li>
                   </ul>
                 </div>
 
@@ -82,35 +81,24 @@ export default function ArchitectureDocPage() {
                     <SectionLinkButton targetId="data" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('PostgreSQL + Prisma ORM', 'PostgreSQL + Prisma ORM')}</li>
-                    <li>• {t('Сложная доменная схема под L5R 5e', 'A rich domain schema for L5R 5e')}</li>
-                    <li>
-                      •{' '}
-                      {locale === 'ru' ? (
-                        <>
-                          <GlossaryTerm term="Idempotency">Идемпотентность</GlossaryTerm> для критичных операций
-                        </>
-                      ) : (
-                        <>
-                          <GlossaryTerm term="Idempotency">Idempotency</GlossaryTerm> for critical operations
-                        </>
-                      )}
-                    </li>
+                    <li>• {t('Справочники L5R структурированы и локальны', 'L5R reference data is structured and local')}</li>
+                    <li>• {t('Единые идентификаторы для персонажей и кампаний', 'Stable identifiers for characters and campaigns')}</li>
+                    <li>• {t('Версионирование форматов для безопасных обновлений', 'Versioned formats for safe updates')}</li>
                   </ul>
                 </div>
 
-                <div id="observability" className="card p-6" data-reveal data-reveal-delay="90">
+                <div id="portability" className="card p-6" data-reveal data-reveal-delay="90">
                   <h3 className="font-header font-bold text-lg text-ink mb-2 flex items-start justify-between gap-3">
                     <span className="inline-flex items-center">
-                      <i className="fa-solid fa-chart-line text-l5r-gold mr-2"></i>
-                      {t('Наблюдаемость', 'Observability')}
+                      <i className="fa-solid fa-file-export text-l5r-gold mr-2"></i>
+                      {t('Экспорт и перенос', 'Export & portability')}
                     </span>
-                    <SectionLinkButton targetId="observability" />
+                    <SectionLinkButton targetId="portability" />
                   </h3>
                   <ul className="text-sm text-ink-light space-y-2">
-                    <li>• {t('Метрики и health/ready эндпоинты', 'Metrics and health/ready endpoints')}</li>
-                    <li>• {t('Трассировка (OpenTelemetry)', 'Tracing (OpenTelemetry)')}</li>
-                    <li>• {t('Логи с корреляцией (request id)', 'Correlated logs (request id)')}</li>
+                    <li>• {t('PDF/JSON экспорт для переноса', 'PDF/JSON export for transfer')}</li>
+                    <li>• {t('Импорт из файлов без облака', 'File-based import without any cloud')}</li>
+                    <li>• {t('Прозрачный контроль над данными', 'Transparent control over data')}</li>
                   </ul>
                 </div>
               </div>

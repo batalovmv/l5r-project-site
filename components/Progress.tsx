@@ -33,17 +33,17 @@ export default function Progress() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {/* Backend */}
+            {/* Core */}
             <div className="card p-6" data-reveal data-reveal-delay="0">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <i className="fa-solid fa-server text-success"></i>
-                  <div className="font-header font-bold text-lg">Backend</div>
+                  <i className="fa-solid fa-cube text-success"></i>
+                  <div className="font-header font-bold text-lg">Core</div>
                 </div>
                 <span className="chip chip-done">{t('ГОТОВ', 'READY')}</span>
               </div>
               <div className="text-sm text-ink-light mb-4">
-                {t('API, БД, realtime, мониторинг — production‑ready.', 'API, DB, realtime, observability — production‑ready.')}
+                {t('Правила, данные и оффлайн‑хранение готовы.', 'Rules, data, and offline storage are ready.')}
               </div>
               <div className="progress-track mb-2">
                 <div
@@ -119,7 +119,7 @@ export default function Progress() {
                 )}
               </div>
               <div className="text-sm font-code text-gray-600">
-                {t('200 endpoints • 109 таблиц • 90 сервисов', '200 endpoints • 109 tables • 90 services')}
+                {t('5 книг • 20 вопросов • оффлайн', '5 books • 20 questions • offline')}
               </div>
             </div>
           </div>
@@ -128,4 +128,3 @@ export default function Progress() {
     </section>
   )
 }
-
