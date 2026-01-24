@@ -59,8 +59,8 @@ export default function PlayerFAQ() {
     {
       q: t('Когда выйдет приложение?', 'When will the app be released?'),
       a: t(
-        'Сейчас идёт этап дизайна. После него — разработка и тестирование. Следи за обновлениями!',
-        'Currently in the design phase. After that — development and testing. Stay tuned for updates!'
+        'Разработка на паузе: жду дизайн с 8 января 2026. Как только будут макеты, вернусь к разработке и тестам.',
+        'Development is paused: waiting for design since Jan 8, 2026. Once mockups are ready, I will resume development and testing.'
       ),
     },
   ]

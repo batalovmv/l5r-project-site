@@ -103,15 +103,15 @@ export default function Features() {
   const nextSteps =
     locale === 'ru'
       ? [
-          { icon: 'fa-pen-ruler', color: 'text-l5r-gold', name: 'UI/UX дизайн', desc: 'Макетов пока нет: ТЗ + референсы → дизайн‑система', muted: false },
-          { icon: 'fa-mobile-screen', color: 'text-tech', name: 'Frontend (React Native)', desc: 'Старт после дизайна: экраны + навигация', muted: true },
-          { icon: 'fa-flask-vial', color: 'text-success', name: 'QA / Beta', desc: 'Тестирование продукта начнётся после UI', muted: true },
+          { icon: 'fa-pen-ruler', color: 'text-l5r-gold', name: 'UI/UX дизайн', desc: 'Ожидаю макеты с 8 янв 2026; без них разработка на паузе', muted: false },
+          { icon: 'fa-mobile-screen', color: 'text-tech', name: 'Frontend (React Native)', desc: 'Старт после дизайна; сейчас стоп', muted: true },
+          { icon: 'fa-flask-vial', color: 'text-success', name: 'QA / Beta', desc: 'После UI; пока на паузе', muted: true },
           { icon: 'fa-dice', color: 'text-l5r-red', name: 'Dice Roller', desc: 'Визуальный бросок кубиков L5R', muted: true },
         ]
       : [
-          { icon: 'fa-pen-ruler', color: 'text-l5r-gold', name: 'UI/UX design', desc: 'No mockups yet: brief + references → design system', muted: false },
-          { icon: 'fa-mobile-screen', color: 'text-tech', name: 'Frontend (React Native)', desc: 'Starts after design: screens + navigation', muted: true },
-          { icon: 'fa-flask-vial', color: 'text-success', name: 'QA / Beta', desc: 'Product testing begins after UI exists', muted: true },
+          { icon: 'fa-pen-ruler', color: 'text-l5r-gold', name: 'UI/UX design', desc: 'Waiting for mockups since Jan 8, 2026; development is on hold', muted: false },
+          { icon: 'fa-mobile-screen', color: 'text-tech', name: 'Frontend (React Native)', desc: 'Starts after design; currently on hold', muted: true },
+          { icon: 'fa-flask-vial', color: 'text-success', name: 'QA / Beta', desc: 'After UI; currently on hold', muted: true },
           { icon: 'fa-dice', color: 'text-l5r-red', name: 'Dice roller', desc: 'Visual L5R dice roll', muted: true },
         ]
 
@@ -126,8 +126,8 @@ export default function Features() {
           <div className="section-divider mx-auto mb-4"></div>
           <p className="section-subtitle mx-auto">
             {t(
-              'Ключевые механики L5R 5e уже собраны и работают локально; интерфейс появится после UI/UX дизайна',
-              'Key L5R 5e mechanics are already assembled and run locally; the UI comes after the UI/UX design'
+              'Ключевые механики L5R 5e уже собраны и работают локально; интерфейс ждёт UI/UX дизайна — разработка сейчас на паузе.',
+              'Key L5R 5e mechanics are already assembled and run locally; the UI is waiting on UI/UX design — development is currently paused.'
             )}
           </p>
           <p className="hint-text max-w-xl mx-auto mt-3">

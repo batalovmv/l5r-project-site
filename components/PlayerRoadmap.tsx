@@ -26,7 +26,7 @@ export default function PlayerRoadmap() {
       icon: 'fa-palette',
       status: 'current' as PhaseStatus,
       title: t('UI/UX дизайн', 'UI/UX design'),
-      description: t('Работа над интерфейсом', 'Working on interface'),
+      description: t('Ожидание дизайна с 8 января 2026 (пауза)', 'Waiting for design since Jan 8, 2026 (paused)'),
     },
     {
       icon: 'fa-rocket',

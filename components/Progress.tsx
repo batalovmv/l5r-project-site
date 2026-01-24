@@ -27,7 +27,7 @@ export default function Progress() {
             </div>
             <div className="flex flex-wrap gap-2">
               <span className="chip chip-done"><i className="fa-solid fa-check"></i> {t('ГОТОВО', 'DONE')}</span>
-              <span className="chip chip-wip"><i className="fa-solid fa-gear"></i> {t('В РАБОТЕ', 'IN PROGRESS')}</span>
+              <span className="chip chip-wip"><i className="fa-solid fa-gear"></i> {t('ПАУЗА', 'PAUSED')}</span>
               <span className="chip chip-pending"><i className="fa-solid fa-circle"></i> {t('ПЛАН', 'PLANNED')}</span>
             </div>
           </div>
@@ -63,12 +63,12 @@ export default function Progress() {
                   <i className="fa-solid fa-palette text-l5r-gold"></i>
                   <div className="font-header font-bold text-lg">UI/UX</div>
                 </div>
-                <span className="chip chip-wip">{t('В РАБОТЕ', 'WIP')}</span>
+                <span className="chip chip-wip">{t('ПАУЗА', 'PAUSED')}</span>
               </div>
               <div className="text-sm text-ink-light mb-4">
                 {t(
-                  'Дизайн ещё не готов — сейчас формируется ТЗ и собираются референсы.',
-                  'Design is not ready yet — scope and references are being prepared.'
+                  'Дизайн ещё не готов — жду макеты с 8 января 2026; разработка на паузе.',
+                  'Design is not ready yet — waiting for mockups since Jan 8, 2026; development is paused.'
                 )}
               </div>
               <div className="progress-track mb-2">
@@ -93,8 +93,8 @@ export default function Progress() {
               </div>
               <div className="text-sm text-ink-light mb-4">
                 {t(
-                  'Разработка ещё не началась — стартую после готового дизайна.',
-                  'Development has not started yet — it begins after the design is ready.'
+                  'Frontend на паузе до готовых макетов.',
+                  'Frontend is on hold until the designs are ready.'
                 )}
               </div>
               <div className="progress-track mb-2">
@@ -114,8 +114,8 @@ export default function Progress() {
               <div className="text-sm text-ink">
                 <span className="font-bold">{t('Сейчас:', 'Now:')}</span>{' '}
                 {t(
-                  'подготовка UI/UX (ТЗ, референсы) → затем старт фронтенда.',
-                  'UI/UX prep (scope, references) → then frontend work.'
+                  'разработка на паузе: жду дизайн с 8 января 2026 (на 24 января макетов нет). Параллельно сделал большой рефакторинг кода.',
+                  'development paused: waiting for design since Jan 8, 2026 (as of Jan 24, no mockups). In parallel I completed a major code refactor.'
                 )}
               </div>
               <div className="text-sm font-code text-gray-600">

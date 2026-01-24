@@ -7,7 +7,7 @@ import { SITE_REPO_URL } from '@/lib/links'
 export default function Hero() {
   const { locale } = useLocale()
   const t = (ru: string, en: string) => (locale === 'ru' ? ru : en)
-  const lastUpdated = '2026-01-08'
+  const lastUpdated = '2026-01-24'
 
   return (
     <section className="hero-surface relative py-20 px-4 overflow-hidden flex flex-col items-center text-center border-b border-ink/5 bg-gradient-to-b from-paper to-white/70">
@@ -37,8 +37,14 @@ export default function Hero() {
           <div className="text-sm text-ink">
             <span className="font-bold">{t('Статус:', 'Status:')}</span>{' '}
             {t(
-              'жду дизайн → по нему стартую frontend.',
-              'waiting for design → then I start the frontend.'
+              'Разработка на паузе: жду дизайн с 8 января 2026; на 24 января 2026 макетов всё ещё нет.',
+              'Development is paused: waiting for design since Jan 8, 2026; as of Jan 24, 2026 there are still no mockups.'
+            )}
+          </div>
+          <div className="text-xs text-ink-light mt-2">
+            {t(
+              'Последний апдейт: большой рефакторинг кода и структуры проекта.',
+              'Latest update: major codebase and structure refactor.'
             )}
           </div>
           <div className="text-xs font-code text-gray-600 mt-2">

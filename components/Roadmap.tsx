@@ -45,12 +45,12 @@ export default function Roadmap() {
           {
             status: 'current',
             icon: 'fa-palette',
-            label: 'В работе',
+            label: 'Пауза',
             title: 'UI/UX Дизайн',
             color: 'border-l5r-gold',
             bgColor: 'bg-l5r-gold',
             items: [
-              { status: 'wip', text: 'ТЗ + референсы (дизайн пока отсутствует)' },
+              { status: 'wip', text: 'Ожидание дизайна с 8 января 2026 (на 24 января макетов нет)' },
               { status: 'pending', text: 'Дизайн‑система (цвета, типографика, UI kit)' },
               { status: 'pending', text: 'Прототип основного UX флоу' },
               { status: 'pending', text: 'Макеты ключевых экранов (Home/Characters/Sheet)' },
@@ -66,7 +66,7 @@ export default function Roadmap() {
             color: 'border-gray-200',
             bgColor: 'bg-gray-300',
             items: [
-              { status: 'pending', text: 'Старт разработки после готовых макетов' },
+              { status: 'pending', text: 'Старт разработки после готовых макетов (сейчас пауза)' },
               { status: 'pending', text: 'Реализация всех экранов по дизайну' },
               { status: 'pending', text: 'Character Wizard "20 вопросов" (~10 экранов)' },
               { status: 'pending', text: 'Dice roller с анимацией' },
@@ -139,12 +139,12 @@ export default function Roadmap() {
           {
             status: 'current',
             icon: 'fa-palette',
-            label: 'In progress',
+            label: 'Paused',
             title: 'UI/UX Design',
             color: 'border-l5r-gold',
             bgColor: 'bg-l5r-gold',
             items: [
-              { status: 'wip', text: 'Scope + references (no designs yet)' },
+              { status: 'wip', text: 'Waiting for design since Jan 8, 2026 (as of Jan 24, no mockups)' },
               { status: 'pending', text: 'Design system (colors, typography, UI kit)' },
               { status: 'pending', text: 'Main UX flow prototype' },
               { status: 'pending', text: 'Key screens (Home/Characters/Sheet)' },
@@ -160,7 +160,7 @@ export default function Roadmap() {
             color: 'border-gray-200',
             bgColor: 'bg-gray-300',
             items: [
-              { status: 'pending', text: 'Start after designs are ready' },
+              { status: 'pending', text: 'Start after designs are ready (currently on hold)' },
               { status: 'pending', text: 'Implement all screens from the design' },
               { status: 'pending', text: 'Character Wizard “20 Questions” (~10 screens)' },
               { status: 'pending', text: 'Dice roller with animations' },
@@ -215,8 +215,8 @@ export default function Roadmap() {
           <div className="section-divider mx-auto mb-4"></div>
           <p className="hint-text max-w-xl mx-auto mt-4">
             {t(
-              'Ядро приложения готово. Сейчас нужен дизайн — фронтенд стартует по готовым макетам.',
-              'The app core is ready. Design is next — frontend starts from the finished designs.'
+              'Ядро приложения готово. Разработка на паузе: жду дизайн с 8 января 2026 (на 24 января макетов нет).',
+              'The app core is ready. Development is paused: waiting for design since Jan 8, 2026 (as of Jan 24, no mockups).'
             )}
           </p>
           <p className="section-subtitle mx-auto">

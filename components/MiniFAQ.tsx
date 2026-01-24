@@ -14,15 +14,15 @@ const QA = [
   {
     q: { ru: 'Что уже реально готово?', en: 'What is actually ready?' },
     a: {
-      ru: 'Сейчас готово ядро правил и данные. Фронтенд начнётся после дизайна.',
-      en: 'The rules core and data are ready. Frontend starts after the design is ready.',
+      ru: 'Готово ядро правил, данные и оффлайн‑хранилище; недавно был большой рефакторинг. Фронтенд на паузе до дизайна.',
+      en: 'The rules core, data, and offline storage are ready; recently did a major refactor. Frontend is on hold until design.',
     },
   },
   {
     q: { ru: 'Почему нет скриншотов интерфейса?', en: 'Why no UI screenshots yet?' },
     a: {
-      ru: 'Потому что UI ещё не стартовал: жду дизайн. Вместо скриншотов есть витрина кода и описание функциональности.',
-      en: 'UI hasn’t started yet: waiting for design. Instead, there’s a code walkthrough and feature overview.',
+      ru: 'Потому что UI ещё не стартовал: жду дизайн с 8 января 2026 (на 24 января 2026 макетов всё ещё нет). Вместо скриншотов есть витрина кода и описание функциональности.',
+      en: 'UI hasn’t started yet: waiting for design since Jan 8, 2026 (as of Jan 24, 2026 there are still no mockups). Instead, there’s a code walkthrough and feature overview.',
     },
   },
   {

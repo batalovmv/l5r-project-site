@@ -123,7 +123,7 @@ export default function Header() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500 deploy-dot"></span>
               </span>
-              {t('АКТИВНАЯ РАЗРАБОТКА', 'ACTIVE DEVELOPMENT')}
+              {t('ПАУЗА • ЖДУ ДИЗАЙН', 'PAUSED • AWAITING DESIGN')}
             </div>
             <div className="hidden md:flex gap-4 text-gray-400">
               <span><i className="fa-solid fa-code-branch text-l5r-gold mr-1"></i> main</span>
